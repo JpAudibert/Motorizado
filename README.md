@@ -1,12 +1,11 @@
-# It's not Yours
-
+# Motorizado
 ## Made by:
 
   * Felipe Fritz Franceschi
   * João Pedro Basso Audibert
   * Lucas Fauri
 
-## Howdy! Welcome to It's not Yours repository!
+## Howdy! Welcome to Motorizado's repository!
 
   * This is a college project developed with Java and made for desktop.
   * The idea is to control a car renting business, from the beggining, until the end.
