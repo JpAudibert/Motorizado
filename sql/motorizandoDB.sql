@@ -111,7 +111,6 @@ CREATE TABLE vehicle (
 	chassis_id VARCHAR(17) NOT NULL,
 	vehicle_power VARCHAR(10) NOT NULL,
 	fuel_type VARCHAR(20) NOT NULL,
-	responsibility_idresponsibility INT NOT NULL,
 	created_at DATE NOT NULL DEFAULT NOW(),
 	updated_at DATE,
 	deleted_at DATE,
