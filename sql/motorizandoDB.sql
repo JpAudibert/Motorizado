@@ -77,10 +77,10 @@ CREATE TABLE contract (
 CREATE TABLE vehicle_models (
 	idvehicle_models SERIAL,
 	model_name VARCHAR(45) NOT NULL,
-	brand_idbrand INT NOT NULL,
 	created_at DATE NOT NULL DEFAULT NOW(),
 	updated_at DATE,
 	deleted_at DATE,
+	brand_idbrand INT NOT NULL,
 
 	CONSTRAINT pk_idvehicle_models PRIMARY KEY (idvehicle_models),
 	CONSTRAINT fk_brand_idbrand FOREIGN KEY(brand_idbrand) REFERENCES brand
@@ -94,11 +94,11 @@ CREATE TABLE employees (
 	phone VARCHAR(15) NOT NULL,
 	birthday DATE NOT NULL,
 	email VARCHAR(100) NOT NULL UNIQUE,
-	password VARCHAR(100) NOT NULL, 
-	responsibility_idresponsibility INT NOT NULL,
+	password VARCHAR(100) NOT NULL,
 	created_at DATE NOT NULL DEFAULT NOW(),
 	updated_at DATE,
 	deleted_at DATE,
+	responsibility_idresponsibility INT NOT NULL,
 
 	CONSTRAINT pk_idemployees PRIMARY KEY (idemployees),
 	CONSTRAINT fk_responsibility_idresponsibility FOREIGN KEY(responsibility_idresponsibility) REFERENCES responsibility
@@ -112,11 +112,11 @@ CREATE TABLE vehicle (
 	vehicle_power VARCHAR(10) NOT NULL,
 	fuel_type VARCHAR(20) NOT NULL,
 	responsibility_idresponsibility INT NOT NULL,
-	vehicle_models_idvehicle_models INT NOT NULL,
-	category_idcategory INT NOT NULL,
 	created_at DATE NOT NULL DEFAULT NOW(),
 	updated_at DATE,
 	deleted_at DATE,
+	vehicle_models_idvehicle_models INT NOT NULL,
+	category_idcategory INT NOT NULL,
 
 	CONSTRAINT pk_idvehicle PRIMARY KEY (idvehicle),
 	CONSTRAINT fk_vehicle_models_idvehicle_models FOREIGN KEY(vehicle_models_idvehicle_models) REFERENCES vehicle_models,
@@ -132,11 +132,11 @@ CREATE TABLE service_order (
 	unitary_value DECIMAL(10,2) NOT NULL,
 	total_value DECIMAL(10,2) NOT NULL,
 	equipment_purchased VARCHAR(200) NOT NULL,
-	employees_idemployees INT NOT NULL,
-	contract_idcontract INT NOT NULL,
 	created_at DATE NOT NULL DEFAULT NOW(),
 	updated_at DATE,
 	deleted_at DATE,
+	employees_idemployees INT NOT NULL,
+	contract_idcontract INT NOT NULL,
 
 	CONSTRAINT pk_idservice_order PRIMARY KEY (idservice_order),
 	CONSTRAINT fk_employees_idemployees FOREIGN KEY(employees_idemployees) REFERENCES employees,
@@ -149,13 +149,13 @@ CREATE TABLE maintenance (
 	changed_parts VARCHAR(100) NOT NULL,
 	service_value DECIMAL(10,2) NOT NULL,
 	isexternal BOOLEAN NOT NULL,
+	created_at DATE NOT NULL DEFAULT NOW(),
+	updated_at DATE,
+	deleted_at DATE,
 	employees_idemployees INT,
 	service_order_idservice_order INT NOT NULL,
 	service_order_employees_employees_idemployees INT NOT NULL,
 	vehicle_idvehicle INT NOT NULL,
-	created_at DATE NOT NULL DEFAULT NOW(),
-	updated_at DATE,
-	deleted_at DATE,
 
 	CONSTRAINT pk_idmaintenance PRIMARY KEY (idmaintenance),
 	CONSTRAINT fk_employees_idemployees FOREIGN KEY(employees_idemployees) REFERENCES employees,
@@ -167,12 +167,12 @@ CREATE TABLE maintenance (
 
 CREATE TABLE vehicle_booking (
 	idvehicle_booking SERIAL,
-	vehicle_idvehicle INT NOT NULL,
-	client_idclient INT NOT NULL,
-	contract_idcontract INT NOT NULL,
 	created_at DATE NOT NULL DEFAULT NOW(),
 	updated_at DATE,
 	deleted_at DATE,
+	vehicle_idvehicle INT NOT NULL,
+	client_idclient INT NOT NULL,
+	contract_idcontract INT NOT NULL,
 
 	CONSTRAINT pk_idvehicle_booking PRIMARY KEY (idvehicle_booking),
 	CONSTRAINT fk_vehicle_idvehicle FOREIGN KEY(vehicle_idvehicle) REFERENCES vehicle,
