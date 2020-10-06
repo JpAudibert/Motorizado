@@ -8,9 +8,13 @@ public interface IBasicController<T> {
 
     public T show(int id);
 
-    public boolean store(T object);
+    public boolean create(T object);
 
     public boolean update(T object, int id);
 
     public boolean delete(int id);
+    
+    public boolean hardDelete(int id);
+    
+    public boolean undoSoftDelete(int id);
 }

@@ -1,10 +1,10 @@
 package controllers;
 
 import helpers.DBConnection;
+import helpers.Formatacao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,8 +13,6 @@ public class LoginController {
     private ResultSet result;
 
     public boolean authenticate(String email, String password) {
-        Base64.Decoder decoder = Base64.getDecoder();
-
         boolean auth = false;
 
         try {
@@ -28,8 +26,8 @@ public class LoginController {
             result = stmt.executeQuery(query);
 
             if (result.next()) {
-                String passwordDecoded = new String(decoder.decode(result.getString("password")));
-                if (passwordDecoded.equals(password)) {
+                String passwordEncoded = Formatacao.getStringInBase64(password);
+                if (passwordEncoded.equals(result.getString("password"))) {
                     auth = true;
                 }
             }
