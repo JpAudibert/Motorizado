@@ -5,6 +5,7 @@
  */
 package views;
 
+import controllers.ClientController;
 import helpers.Formatacao;
 import javax.swing.JFormattedTextField;
 
@@ -13,6 +14,8 @@ import javax.swing.JFormattedTextField;
  * @author lucas
  */
 public class ClientView extends javax.swing.JFrame {
+    
+    ClientController clientController = new ClientController();
 
     /**
      * Creates new form Client
@@ -22,6 +25,8 @@ public class ClientView extends javax.swing.JFrame {
 //        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.PNG")).getImage());
         Formatacao.formatarData(jTXTData);
         Formatacao.formatarCpf((JFormattedTextField) jTXTCpf);
+        clientController.popularTabelaXXX(jTable1, "");
+        
     }
     
     public ClientView(int id) {
@@ -29,6 +34,7 @@ public class ClientView extends javax.swing.JFrame {
 //        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.PNG")).getImage());
         Formatacao.formatarData(jTXTData);
         Formatacao.formatarCpf((JFormattedTextField) jTXTCpf);
+        clientController.popularTabelaXXX(jTable1, "");
     }
 
     /**
