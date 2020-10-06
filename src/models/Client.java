@@ -12,6 +12,7 @@ public class Client {
     private String email;
     private String password;
     private String CNH_register;
+    private String CNH_mirror;
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;
@@ -19,7 +20,7 @@ public class Client {
     public Client() {
     }
 
-    public Client(int idClient, String name, String cpf, String phone, Date birthday, String email, String password, String CNH_register, Date created_at, Date updated_at, Date deleted_at) {
+    public Client(int idClient, String name, String cpf, String phone, Date birthday, String email, String password, String CNH_register, String CNH_mirror, Date created_at, Date updated_at, Date deleted_at) {
         this.idClient = idClient;
         this.name = name;
         this.cpf = cpf;
@@ -28,16 +29,9 @@ public class Client {
         this.email = email;
         this.password = password;
         this.CNH_register = CNH_register;
+        this.CNH_mirror = CNH_mirror;
         this.created_at = created_at;
         this.updated_at = updated_at;
-        this.deleted_at = deleted_at;
-    }
-
-    public Date getDeleted_at() {
-        return deleted_at;
-    }
-
-    public void setDeleted_at(Date deleted_at) {
         this.deleted_at = deleted_at;
     }
 
@@ -105,6 +99,14 @@ public class Client {
         this.CNH_register = CNH_register;
     }
 
+    public String getCNH_mirror() {
+        return CNH_mirror;
+    }
+
+    public void setCNH_mirror(String CNH_mirror) {
+        this.CNH_mirror = CNH_mirror;
+    }
+
     public Date getCreated_at() {
         return created_at;
     }
@@ -119,6 +121,14 @@ public class Client {
 
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public Date getDeleted_at() {
+        return deleted_at;
+    }
+
+    public void setDeleted_at(Date deleted_at) {
+        this.deleted_at = deleted_at;
     }
 
 }
