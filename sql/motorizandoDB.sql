@@ -13,9 +13,9 @@ DROP TABLE IF EXISTS contract;
 CREATE TABLE brand (
 	idbrand SERIAL,
 	name VARCHAR(45) NOT NULL,
-	created_at DATE NOT NULL DEFAULT NOW(),
-	updated_at DATE,
-	deleted_at DATE,
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP,
 
 	CONSTRAINT pk_idbrand PRIMARY KEY (idbrand)
 );
@@ -23,9 +23,9 @@ CREATE TABLE brand (
 CREATE TABLE category (
 	idcategory SERIAL,
 	category_name VARCHAR(45) NOT NULL,
-	created_at DATE NOT NULL DEFAULT NOW(),
-	updated_at DATE,
-	deleted_at DATE,
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP,
 
 	CONSTRAINT pk_idcategory PRIMARY KEY (idcategory)
 );
@@ -35,9 +35,9 @@ CREATE TABLE responsibility (
 	sector VARCHAR(60) NOT NULL,
 	hiring_date DATE CHECK(hiring_date >= NOW()) NOT NULL,
 	firing_date DATE CHECK(firing_date > hiring_date),
-	created_at DATE NOT NULL DEFAULT NOW(),
-	updated_at DATE,
-	deleted_at DATE,
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP,
 
 	CONSTRAINT pk_idresponsibility PRIMARY KEY (idresponsibility)
 );
@@ -53,9 +53,9 @@ CREATE TABLE client (
 	password VARCHAR(100) NOT NULL, 
 	CNH_register VARCHAR(11) NOT NULL,
 	CNH_mirror VARCHAR(10) NOT NULL,
-	created_at DATE NOT NULL DEFAULT NOW(),
-	updated_at DATE,
-	deleted_at DATE,
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP,
 
 	CONSTRAINT pk_idclient PRIMARY KEY (idclient)
 );
@@ -67,9 +67,9 @@ CREATE TABLE contract (
 	penalty INT NOT NULL,
 	payment_type VARCHAR(30) NOT NULL,
 	contract_value DECIMAL(10,2) NOT NULL,
-	created_at DATE NOT NULL DEFAULT NOW(),
-	updated_at DATE,
-	deleted_at DATE,
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP,
 
 	CONSTRAINT pk_idcontract PRIMARY KEY (idcontract)
 );
@@ -77,9 +77,9 @@ CREATE TABLE contract (
 CREATE TABLE vehicle_models (
 	idvehicle_models SERIAL,
 	model_name VARCHAR(45) NOT NULL,
-	created_at DATE NOT NULL DEFAULT NOW(),
-	updated_at DATE,
-	deleted_at DATE,
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP,
 	brand_idbrand INT NOT NULL,
 
 	CONSTRAINT pk_idvehicle_models PRIMARY KEY (idvehicle_models),
@@ -95,9 +95,9 @@ CREATE TABLE employees (
 	birthday DATE NOT NULL,
 	email VARCHAR(100) NOT NULL UNIQUE,
 	password VARCHAR(100) NOT NULL,
-	created_at DATE NOT NULL DEFAULT NOW(),
-	updated_at DATE,
-	deleted_at DATE,
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP,
 	responsibility_idresponsibility INT NOT NULL,
 
 	CONSTRAINT pk_idemployees PRIMARY KEY (idemployees),
@@ -111,9 +111,9 @@ CREATE TABLE vehicle (
 	chassis_id VARCHAR(17) NOT NULL,
 	vehicle_power VARCHAR(10) NOT NULL,
 	fuel_type VARCHAR(20) NOT NULL,
-	created_at DATE NOT NULL DEFAULT NOW(),
-	updated_at DATE,
-	deleted_at DATE,
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP,
 	vehicle_models_idvehicle_models INT NOT NULL,
 	category_idcategory INT NOT NULL,
 
@@ -131,9 +131,9 @@ CREATE TABLE service_order (
 	unitary_value DECIMAL(10,2) NOT NULL,
 	total_value DECIMAL(10,2) NOT NULL,
 	equipment_purchased VARCHAR(200) NOT NULL,
-	created_at DATE NOT NULL DEFAULT NOW(),
-	updated_at DATE,
-	deleted_at DATE,
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP,
 	employees_idemployees INT NOT NULL,
 	contract_idcontract INT NOT NULL,
 
@@ -148,9 +148,9 @@ CREATE TABLE maintenance (
 	changed_parts VARCHAR(100) NOT NULL,
 	service_value DECIMAL(10,2) NOT NULL,
 	isexternal BOOLEAN NOT NULL,
-	created_at DATE NOT NULL DEFAULT NOW(),
-	updated_at DATE,
-	deleted_at DATE,
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP,
 	employees_idemployees INT,
 	service_order_idservice_order INT NOT NULL,
 	service_order_employees_employees_idemployees INT NOT NULL,
@@ -166,9 +166,9 @@ CREATE TABLE maintenance (
 
 CREATE TABLE vehicle_booking (
 	idvehicle_booking SERIAL,
-	created_at DATE NOT NULL DEFAULT NOW(),
-	updated_at DATE,
-	deleted_at DATE,
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP,
 	vehicle_idvehicle INT NOT NULL,
 	client_idclient INT NOT NULL,
 	contract_idcontract INT NOT NULL,
@@ -178,5 +178,3 @@ CREATE TABLE vehicle_booking (
 	CONSTRAINT fk_client_idclient FOREIGN KEY(client_idclient) REFERENCES client,
 	CONSTRAINT fk_contract_idcontract FOREIGN KEY(contract_idcontract) REFERENCES contract
 );
-
-
