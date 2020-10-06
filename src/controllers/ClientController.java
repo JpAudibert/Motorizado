@@ -85,6 +85,25 @@ public class ClientController implements IBasicController<Client> {
         return client;
     }
 
+    public int showAuth(String email) {
+        int clientId = 6;
+        try {
+            Statement stmt = DBConnection.getInstance().getConnection().createStatement();
+
+            String query = " SELECT idclient FROM client WHERE email = \'" + email + "\'";
+
+            result = stmt.executeQuery(query);
+
+            if (result.next()) {
+                clientId = result.getInt("idclient");
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(ClientController.class.getName()).log(Level.WARNING, null, e);
+        }
+        return clientId;
+    }
+
     @Override
     public boolean create(Client client) {
         try {

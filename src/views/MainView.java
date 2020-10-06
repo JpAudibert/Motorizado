@@ -5,11 +5,16 @@
  */
 package views;
 
+import controllers.ClientController;
+import models.Client;
+
 /**
  *
  * @author lucas
  */
 public class MainView extends javax.swing.JFrame {
+
+    ClientController clientController = new ClientController();
 
     /**
      * Creates new form MainView
@@ -17,8 +22,17 @@ public class MainView extends javax.swing.JFrame {
     public MainView() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.PNG")).getImage());
-        
+//        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.PNG")).getImage());
+
+    }
+
+    public MainView(int id) {
+        initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
+//        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.PNG")).getImage());
+        Client loggedClient = clientController.show(id);
+        jLabel1.setText("Principal - " + loggedClient.getName());
+
     }
 
     /**

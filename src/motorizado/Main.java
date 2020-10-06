@@ -14,8 +14,8 @@ public class Main {
      */
     public static void main(String[] args) {
         if (DBConnection.getInstance() != null) {
-            Login l = new Login();
-            l.setVisible(true);
+            
+            new Login().setVisible(true);
         } else {
             System.out.println("Oops buddy :|");
         }
