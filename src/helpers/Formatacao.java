@@ -1,6 +1,7 @@
 package helpers;
 
 import java.text.*;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.*;
@@ -159,5 +160,16 @@ public class Formatacao {
 
         return dataHoje;
     }
-}
 
+    public static String getStringInBase64(String value) {
+        Base64.Encoder encoder = Base64.getEncoder();
+        String base64Value = encoder.encodeToString(value.getBytes());
+        return base64Value;
+    }
+
+    public static String getBase64InString(String value) {
+        Base64.Decoder decoder = Base64.getDecoder();
+        String StringValue = new String(decoder.decode(value));
+        return StringValue;
+    }
+}
