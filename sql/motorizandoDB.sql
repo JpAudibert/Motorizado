@@ -50,7 +50,6 @@ CREATE TABLE client (
 	phone VARCHAR(15) NOT NULL,
 	birthday DATE NOT NULL,
 	email VARCHAR(100) NOT NULL UNIQUE,
-	password VARCHAR(100) NOT NULL, 
 	CNH_register VARCHAR(11) NOT NULL,
 	CNH_mirror VARCHAR(10) NOT NULL,
 	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -178,3 +177,8 @@ CREATE TABLE vehicle_booking (
 	CONSTRAINT fk_client_idclient FOREIGN KEY(client_idclient) REFERENCES client,
 	CONSTRAINT fk_contract_idcontract FOREIGN KEY(contract_idcontract) REFERENCES contract
 );
+
+
+
+
+
