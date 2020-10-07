@@ -517,7 +517,7 @@ public class ClientView extends javax.swing.JFrame {
 
             ClientController cc = new ClientController();
             
-            if(cc.update(client, ))
+            if(cc.update(client, clientID));
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
