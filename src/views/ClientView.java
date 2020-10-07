@@ -38,6 +38,8 @@ public class ClientView extends javax.swing.JFrame {
         Formatacao.formatarData(jTXTData);
         Formatacao.formatarCpf((JFormattedTextField) jTXTCpf);
         clientController.popularTabelaXXX(jTable1, "");
+        Formatacao.formatarData((JFormattedTextField) jTXTDataNascimentoEditar);
+        Formatacao.formatarCpf((JFormattedTextField) jTXTcpfEditar);
     }
 
     /**
@@ -517,7 +519,9 @@ public class ClientView extends javax.swing.JFrame {
 
             ClientController cc = new ClientController();
             
-            if(cc.update(client, ))
+            if(cc.update(client, clientID)){
+                System.out.println("Atualizou");
+            }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
