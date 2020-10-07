@@ -10,7 +10,6 @@ public class Client {
     private String phone;
     private Date birthday;
     private String email;
-    private String password;
     private String CNH_register;
     private String CNH_mirror;
     private Date created_at;
@@ -20,14 +19,13 @@ public class Client {
     public Client() {
     }
 
-    public Client(int idClient, String name, String cpf, String phone, Date birthday, String email, String password, String CNH_register, String CNH_mirror, Date created_at, Date updated_at, Date deleted_at) {
+    public Client(int idClient, String name, String cpf, String phone, Date birthday, String email, String CNH_register, String CNH_mirror, Date created_at, Date updated_at, Date deleted_at) {
         this.idClient = idClient;
         this.name = name;
         this.cpf = cpf;
         this.phone = phone;
         this.birthday = birthday;
         this.email = email;
-        this.password = password;
         this.CNH_register = CNH_register;
         this.CNH_mirror = CNH_mirror;
         this.created_at = created_at;
@@ -81,14 +79,6 @@ public class Client {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getCNH_register() {
