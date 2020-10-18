@@ -3,9 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lucas/Desktop/PROJETO%20INTEGRADOR/Motorizado/src/views/Client.java</file>
-            <file>file:/C:/Users/lucas/Desktop/PROJETO%20INTEGRADOR/Motorizado/src/motorizado/Main.java</file>
-            <file>file:/C:/Users/lucas/Desktop/PROJETO%20INTEGRADOR/Motorizado/src/views/MainView.java</file>
+            <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/views/DevolucaoView.java</file>
+            <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/views/MainView.java</file>
+            <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/views/ReservaView.java</file>
+            <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/telas/InserirReserva.java</file>
+            <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/views/EstoquereservadoView.java</file>
+            <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/telas/Buscarcontasreceber.java</file>
+            <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/views/Login.java</file>
+            <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/views/ClientView.java</file>
+            <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/views/ContasreceberView.java</file>
+            <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/telas/Inserircontasreceber.java</file>
+            <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/views/OrcamentoView.java</file>
+            <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/telas/Inserirorcamento.java</file>
         </group>
     </open-files>
 </project-private>
