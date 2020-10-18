@@ -1,10 +1,13 @@
 package interfaces;
 
 import java.util.ArrayList;
+import javax.swing.JTable;
 
 public interface IBasicController<T> {
 
-    public ArrayList<T> index();
+    public ArrayList<T> index(String criteria);
+    
+    public ArrayList<T> indexDeleted();
 
     public T show(int id);
 
@@ -17,4 +20,6 @@ public interface IBasicController<T> {
     public boolean hardDelete(int id);
     
     public boolean undoSoftDelete(int id);
+    
+    public void populateTable(JTable table, String criteria);
 }

@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/views/DevolucaoView.java</file>
             <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/views/MainView.java</file>
             <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/views/ReservaView.java</file>
@@ -15,6 +16,15 @@
             <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/telas/Inserircontasreceber.java</file>
             <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/views/OrcamentoView.java</file>
             <file>file:/C:/Users/Felipe%20Fritz/Motorizado/src/telas/Inserirorcamento.java</file>
+=======
+            <file>file:/home/deusjp/www/java-stuff/Motorizado/src/helpers/Validacao.java</file>
+            <file>file:/home/deusjp/www/java-stuff/Motorizado/src/views/Login.java</file>
+            <file>file:/home/deusjp/www/java-stuff/Motorizado/src/views/MainView.java</file>
+            <file>file:/home/deusjp/www/java-stuff/Motorizado/src/controllers/LoginController.java</file>
+            <file>file:/home/deusjp/www/java-stuff/Motorizado/src/views/ClientView.java</file>
+            <file>file:/home/deusjp/www/java-stuff/Motorizado/src/controllers/ClientController.java</file>
+            <file>file:/home/deusjp/www/java-stuff/Motorizado/src/motorizado/Main.java</file>
+>>>>>>> d14a3a156d738e9edcaac98ecc393de82477b4fc
         </group>
     </open-files>
 </project-private>

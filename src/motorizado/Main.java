@@ -14,6 +14,17 @@ public class Main {
      */
     public static void main(String[] args) {
         if (DBConnection.getInstance() != null) {
+//            Client client = new Client();
+//            client.setName("Veridiana Silva");
+//            client.setCpf("18227213006");
+//            client.setPhone("54 999742414");
+//            client.setBirthday(Formatacao.ajustaDataAMD("28/02/1954"));
+//            client.setEmail("veridiana@adelino.com");
+//            client.setCNH_register("02345678911");
+//            client.setCNH_mirror("1987654321");
+            
+//            ClientController clientController = new ClientController();
+//            clientController.create(client);
             
             new Login().setVisible(true);
         } else {

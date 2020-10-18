@@ -22,12 +22,18 @@ public class ClientController implements IBasicController<Client> {
     private ResultSet result;
 
     @Override
-    public ArrayList<Client> index() {
+    public ArrayList<Client> index(String criteria) {
         ArrayList clients = new ArrayList<Client>();
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM client WHERE deleted_at IS NULL";
+            String query = " SELECT * FROM client WHERE deleted_at IS NULL ";
+            
+            if(Validacao.notNull(criteria)){
+                query += criteria;
+            }
+            
+            System.out.println(query);
 
             result = stmt.executeQuery(query);
 
@@ -39,7 +45,39 @@ public class ClientController implements IBasicController<Client> {
                 resultClient.setPhone(result.getString("phone"));
                 resultClient.setBirthday(result.getDate("birthday"));
                 resultClient.setEmail(result.getString("email"));
-                resultClient.setPassword(result.getString("password"));
+                resultClient.setCNH_register(result.getString("cnh_register"));
+                resultClient.setCNH_mirror(result.getString("cnh_mirror"));
+                resultClient.setCreated_at(result.getDate("created_at"));
+                resultClient.setUpdated_at(result.getDate("updated_at"));
+                resultClient.setDeleted_at(result.getDate("deleted_at"));
+
+                clients.add(resultClient);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(ClientController.class.getName()).log(Level.WARNING, null, e);
+        }
+
+        return clients;
+    }
+
+    @Override
+    public ArrayList<Client> indexDeleted() {
+        ArrayList clients = new ArrayList<Client>();
+        try {
+            Statement stmt = DBConnection.getInstance().getConnection().createStatement();
+
+            String query = " SELECT * FROM client WHERE deleted_at IS NOT NULL";
+
+            result = stmt.executeQuery(query);
+
+            while (result.next()) {
+                Client resultClient = new Client();
+                resultClient.setIdClient(result.getInt("idclient"));
+                resultClient.setName(result.getString("name"));
+                resultClient.setCpf(result.getString("cpf"));
+                resultClient.setPhone(result.getString("phone"));
+                resultClient.setBirthday(result.getDate("birthday"));
+                resultClient.setEmail(result.getString("email"));
                 resultClient.setCNH_register(result.getString("cnh_register"));
                 resultClient.setCNH_mirror(result.getString("cnh_mirror"));
                 resultClient.setCreated_at(result.getDate("created_at"));
@@ -73,7 +111,6 @@ public class ClientController implements IBasicController<Client> {
                 client.setPhone(result.getString("phone"));
                 client.setBirthday(result.getDate("birthday"));
                 client.setEmail(result.getString("email"));
-                client.setPassword(Formatacao.getBase64InString(result.getString("password")));
                 client.setCNH_register(result.getString("cnh_register"));
                 client.setCNH_mirror(result.getString("cnh_mirror"));
                 client.setCreated_at(result.getDate("created_at"));
@@ -112,6 +149,14 @@ public class ClientController implements IBasicController<Client> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
+            String queryEmail = " SELECT email FROM client WHERE email = " + client.getEmail();
+
+            result = stmt.executeQuery(queryEmail);
+
+            if (result.next()) {
+                throw new Error("This is email is already in use.");
+            }
+
             if (!Validacao.validarCPF(client.getCpf())) {
                 throw new Error("Invalid CPF.");
             }
@@ -123,7 +168,6 @@ public class ClientController implements IBasicController<Client> {
                     + "\'" + client.getPhone() + "\',"
                     + "\'" + client.getBirthday() + "\',"
                     + "\'" + client.getEmail() + "\',"
-                    + "\'" + Formatacao.getStringInBase64(client.getPassword()) + "\',"
                     + "\'" + client.getCNH_register() + "\',"
                     + "\'" + client.getCNH_mirror() + "\'"
                     + ")";
@@ -143,6 +187,14 @@ public class ClientController implements IBasicController<Client> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
+            String queryEmail = " SELECT email FROM client WHERE email = " + client.getEmail();
+
+            result = stmt.executeQuery(queryEmail);
+
+            if (result.next()) {
+                throw new Error("This is email is already in use.");
+            }
+
             if (!Validacao.validarCPF(client.getCpf())) {
                 throw new Error("Invalid CPF.");
             }
@@ -153,7 +205,6 @@ public class ClientController implements IBasicController<Client> {
                     + "phone = \'" + client.getPhone() + "\',"
                     + "birthday = \'" + client.getBirthday() + "\',"
                     + "email = \'" + client.getEmail() + "\',"
-                    + "password = \'" + Formatacao.getStringInBase64(client.getPassword()) + "\',"
                     + "cnh_register = \'" + client.getCNH_register() + "\',"
                     + "cnh_mirror = \'" + client.getCNH_mirror() + "\',"
                     + "updated_at = \'" + new Timestamp(new Date().getTime()) + "\'"
@@ -225,74 +276,40 @@ public class ClientController implements IBasicController<Client> {
         return false;
     }
 
+
     /* Popula JTable */
-    public void popularTabelaXXX(JTable table, String criteria) {
+    public void populateTable(JTable table, String criteria) {
         // dados da tabela
-        Object[][] dadosTabela = null;
+        Object[][] dataTable = null;
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[6];
-        cabecalho[0] = "Código";
-        cabecalho[1] = "Nome";
-        cabecalho[2] = "Email";
-        cabecalho[3] = "CPF";
-        cabecalho[4] = "CNH";
-        cabecalho[5] = "Data de Nascimento";
+        Object[] header = new Object[7];
+        header[0] = "Código";
+        header[1] = "Nome";
+        header[2] = "Email";
+        header[3] = "CPF";
+        header[4] = "Data de Nascimento";
+        header[5] = "CNH";
+        header[6] = "Espelho CNH";
 
         // cria matriz de acordo com nº de registros da tabela
-        try {
-            result = DBConnection.getInstance().getConnection().createStatement().executeQuery(""
-                    + " SELECT count(idclient) FROM client WHERE deleted_at IS NULL ");
+        ArrayList<Client> responseData = this.index(criteria);
 
-            result.next();
+        dataTable = new Object[responseData.size()][7];
+        System.out.println(responseData.size());
 
-            dadosTabela = new Object[result.getInt(1)][6];
-            System.out.println(result.getInt(1));
-
-        } catch (Exception e) {
-            System.out.println("Erro ao consultar name: " + e);
-        }
-
-        int lin = 0;
-
-        // efetua consulta na tabela
-        try {
-            result = DBConnection.getInstance().getConnection().createStatement().executeQuery(""
-                    + " SELECT \n"
-                    + "	idclient,\n"
-                    + "	name,\n"
-                    + "	email,\n"
-                    + "	cnh_register,\n"
-                    + "	birthday,\n"
-                    + "	cpf\n"
-                    + " FROM\n"
-                    + "	client"
-                    + " WHERE deleted_at IS NULL ");
-
-            while (result.next()) {
-
-                dadosTabela[lin][0] = result.getInt("idclient");
-                dadosTabela[lin][1] = result.getString("name");
-                dadosTabela[lin][2] = result.getString("email");
-                dadosTabela[lin][3] = result.getString("cpf");
-                dadosTabela[lin][4] = result.getString("cnh_register");
-                dadosTabela[lin][5] = result.getString("birthday");
-
-                // caso a coluna precise exibir uma imagem
-//                if (resultadoQ.getBoolean("Situacao")) {
-//                    dadosTabela[lin][2] = new ImageIcon(getClass().getClassLoader().getResource("Interface/imagens/status_ativo.png"));
-//                } else {
-//                    dadosTabela[lin][2] = new ImageIcon(getClass().getClassLoader().getResource("Interface/imagens/status_inativo.png"));
-//                }
-                lin++;
-            }
-        } catch (Exception e) {
-            System.out.println("problemas para popular tabela...");
-            System.out.println(e);
+        for (int line = 0; line < responseData.size(); line++) {
+            dataTable[line][0] = responseData.get(line).getIdClient();
+            dataTable[line][1] = responseData.get(line).getName();
+            dataTable[line][2] = responseData.get(line).getEmail();
+            dataTable[line][3] = responseData.get(line).getCpf();
+            dataTable[line][4] = responseData.get(line).getBirthday();
+            dataTable[line][5] = responseData.get(line).getCNH_register();
+            dataTable[line][6] = responseData.get(line).getCNH_mirror();
         }
 
         // configuracoes adicionais no componente tabela
-        table.setModel(new DefaultTableModel(dadosTabela, cabecalho) {
+        table.setModel(new DefaultTableModel(dataTable, header) {
             @Override
             // quando retorno for FALSE, a tabela nao é editavel
             public boolean isCellEditable(int row, int column) {
