@@ -20,6 +20,7 @@ import models.Client;
 public class ClientController implements IBasicController<Client> {
 
     private ResultSet result;
+    private ArrayList<String> helper;
 
     @Override
     public ArrayList<Client> index(String criteria) {
@@ -27,12 +28,31 @@ public class ClientController implements IBasicController<Client> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM client WHERE deleted_at IS NULL ";
-            
-            if(Validacao.notNull(criteria)){
+            String query = " SELECT " +
+                           "	cl.idclient AS idclient, " +
+                           "	cl.name AS name, " +
+                           "	cl.cpf AS cpf, " +
+                           "	cl.phone AS phone, " +
+                           "	cl.birthday AS birthday, " +
+                           "	cl.email AS email, " +
+                           "	cl.cnh_register AS cnh_register, " +
+                           "	cl.cnh_mirror AS cnh_mirror " +
+                           "	cl.created_at AS created_at " +
+                           "	cl.updated_at AS updated_at " +
+                           "	cl.deleted_at AS deleted_at " +
+                           "	cl.city_idcity AS city_idcity " +
+                           "	CONCAT(ct.name, '/', st.abreviation) AS city " +
+                           " FROM " +
+                           "	client cl " +
+                           "		INNER JOIN city ct ON ct.idcity = cl.city_idcity " +
+                           "		INNER JOIN state st ON st.idstate = ct.state_idstate " +
+                           " WHERE" +
+                           "	cl.deleted_at IS NULL ";
+
+            if (Validacao.notNull(criteria)) {
                 query += criteria;
             }
-            
+
             System.out.println(query);
 
             result = stmt.executeQuery(query);
@@ -50,8 +70,11 @@ public class ClientController implements IBasicController<Client> {
                 resultClient.setCreated_at(result.getDate("created_at"));
                 resultClient.setUpdated_at(result.getDate("updated_at"));
                 resultClient.setDeleted_at(result.getDate("deleted_at"));
+                resultClient.setCity_idcity(result.getInt("city_idcity"));
 
                 clients.add(resultClient);
+                
+                helper.add(result.getString("city"));
             }
         } catch (SQLException e) {
             Logger.getLogger(ClientController.class.getName()).log(Level.WARNING, null, e);
@@ -66,7 +89,25 @@ public class ClientController implements IBasicController<Client> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM client WHERE deleted_at IS NOT NULL";
+            String query = " SELECT " +
+                           "	cl.idclient AS idclient, " +
+                           "	cl.name AS name, " +
+                           "	cl.cpf AS cpf, " +
+                           "	cl.phone AS phone, " +
+                           "	cl.birthday AS birthday, " +
+                           "	cl.email AS email, " +
+                           "	cl.cnh_register AS cnh_register, " +
+                           "	cl.cnh_mirror AS cnh_mirror " +
+                           "	cl.created_at AS created_at " +
+                           "	cl.updated_at AS updated_at " +
+                           "	cl.deleted_at AS deleted_at " +
+                           "	CONCAT(ct.name, '/', st.abreviation) AS city " +
+                           " FROM " +
+                           "	client cl " +
+                           "		INNER JOIN city ct ON ct.idcity = cl.city_idcity " +
+                           "		INNER JOIN state st ON st.idstate = ct.state_idstate " +
+                           " WHERE" +
+                           "	cl.deleted_at IS NOT NULL ";
 
             result = stmt.executeQuery(query);
 
@@ -83,6 +124,7 @@ public class ClientController implements IBasicController<Client> {
                 resultClient.setCreated_at(result.getDate("created_at"));
                 resultClient.setUpdated_at(result.getDate("updated_at"));
                 resultClient.setDeleted_at(result.getDate("deleted_at"));
+                resultClient.setCity_idcity(result.getInt("city_idcity"));
 
                 clients.add(resultClient);
             }
@@ -99,7 +141,26 @@ public class ClientController implements IBasicController<Client> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM client WHERE idclient = " + id;
+            String query = " SELECT " +
+                           "	cl.idclient AS idclient, " +
+                           "	cl.name AS name, " +
+                           "	cl.cpf AS cpf, " +
+                           "	cl.phone AS phone, " +
+                           "	cl.birthday AS birthday, " +
+                           "	cl.email AS email, " +
+                           "	cl.cnh_register AS cnh_register, " +
+                           "	cl.cnh_mirror AS cnh_mirror " +
+                           "	cl.created_at AS created_at " +
+                           "	cl.updated_at AS updated_at " +
+                           "	cl.deleted_at AS deleted_at " +
+                           "	CONCAT(ct.name, '/', st.abreviation) AS city " +
+                           " FROM " +
+                           "	client cl " +
+                           "		INNER JOIN city ct ON ct.idcity = cl.city_idcity " +
+                           "		INNER JOIN state st ON st.idstate = ct.state_idstate " +
+                           " WHERE" +
+                           "	cl.deleted_at IS NULL " + 
+                           "    cl.idclient = " + id;
 
             result = stmt.executeQuery(query);
 
@@ -116,6 +177,7 @@ public class ClientController implements IBasicController<Client> {
                 client.setCreated_at(result.getDate("created_at"));
                 client.setUpdated_at(result.getDate("updated_at"));
                 client.setDeleted_at(result.getDate("deleted_at"));
+                client.setCity_idcity(result.getInt("city_idcity"));
             }
 
         } catch (SQLException e) {
@@ -130,7 +192,7 @@ public class ClientController implements IBasicController<Client> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT idclient FROM client WHERE email = \'" + email + "\'";
+            String query = " SELECT idclient FROM client WHERE email = \'" + email + "\' AND deleted_at IS NULL";
 
             result = stmt.executeQuery(query);
 
@@ -149,7 +211,7 @@ public class ClientController implements IBasicController<Client> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String queryEmail = " SELECT email FROM client WHERE email = " + client.getEmail();
+            String queryEmail = " SELECT email FROM client WHERE email = " + client.getEmail() + " AND deleted_at IS NULL";
 
             result = stmt.executeQuery(queryEmail);
 
@@ -169,7 +231,8 @@ public class ClientController implements IBasicController<Client> {
                     + "\'" + client.getBirthday() + "\',"
                     + "\'" + client.getEmail() + "\',"
                     + "\'" + client.getCNH_register() + "\',"
-                    + "\'" + client.getCNH_mirror() + "\'"
+                    + "\'" + client.getCNH_mirror() + "\',"
+                    + "\'" + client.getCity_idcity() + "\'"
                     + ")";
 
             System.out.println(query);
@@ -187,7 +250,7 @@ public class ClientController implements IBasicController<Client> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String queryEmail = " SELECT email FROM client WHERE email = " + client.getEmail();
+            String queryEmail = " SELECT email FROM client WHERE email = " + client.getEmail() + " AND deleted_at IS NULL";
 
             result = stmt.executeQuery(queryEmail);
 
@@ -207,6 +270,7 @@ public class ClientController implements IBasicController<Client> {
                     + "email = \'" + client.getEmail() + "\',"
                     + "cnh_register = \'" + client.getCNH_register() + "\',"
                     + "cnh_mirror = \'" + client.getCNH_mirror() + "\',"
+                    + "city_idcity = \'" + client.getCity_idcity() + "\',"
                     + "updated_at = \'" + new Timestamp(new Date().getTime()) + "\'"
                     + " WHERE idclient = " + id;
 
@@ -279,11 +343,13 @@ public class ClientController implements IBasicController<Client> {
 
     /* Popula JTable */
     public void populateTable(JTable table, String criteria) {
+        int size = 8;
+        
         // dados da tabela
         Object[][] dataTable = null;
 
         // cabecalho da tabela
-        Object[] header = new Object[7];
+        Object[] header = new Object[size];
         header[0] = "Código";
         header[1] = "Nome";
         header[2] = "Email";
@@ -291,11 +357,12 @@ public class ClientController implements IBasicController<Client> {
         header[4] = "Data de Nascimento";
         header[5] = "CNH";
         header[6] = "Espelho CNH";
+        header[7] = "Cidade/UF";
 
         // cria matriz de acordo com nº de registros da tabela
         ArrayList<Client> responseData = this.index(criteria);
 
-        dataTable = new Object[responseData.size()][7];
+        dataTable = new Object[responseData.size()][size];
         System.out.println(responseData.size());
 
         for (int line = 0; line < responseData.size(); line++) {
@@ -306,6 +373,7 @@ public class ClientController implements IBasicController<Client> {
             dataTable[line][4] = responseData.get(line).getBirthday();
             dataTable[line][5] = responseData.get(line).getCNH_register();
             dataTable[line][6] = responseData.get(line).getCNH_mirror();
+            dataTable[line][7] = helper.get(line);
         }
 
         // configuracoes adicionais no componente tabela

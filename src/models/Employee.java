@@ -16,11 +16,12 @@ public class Employee {
     private Date updated_at;
     private Date deleted_at;
     private int responsibility_idresponsibility;
+    private int city_idcity;
 
     public Employee() {
     }
 
-    public Employee(int idemployees, String name, String cpf, String phone, Date birthday, String email, String password, Date created_at, Date updated_at, Date deleted_at, int responsibility_idresponsibility) {
+    public Employee(int idemployees, String name, String cpf, String phone, Date birthday, String email, String password, Date created_at, Date updated_at, Date deleted_at, int responsibility_idresponsibility, int city_idcity) {
         this.idemployees = idemployees;
         this.name = name;
         this.cpf = cpf;
@@ -32,6 +33,7 @@ public class Employee {
         this.updated_at = updated_at;
         this.deleted_at = deleted_at;
         this.responsibility_idresponsibility = responsibility_idresponsibility;
+        this.city_idcity = city_idcity;
     }
 
     public int getResponsibility_idresponsibility() {
@@ -122,6 +124,14 @@ public class Employee {
 
     public void setDeleted_at(Date deleted_at) {
         this.deleted_at = deleted_at;
+    }
+
+    public int getCity_idCity() {
+        return city_idcity;
+    }
+
+    public void setCity_idCity(int city_idCity) {
+        this.city_idcity = city_idCity;
     }
 
 }

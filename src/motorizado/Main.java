@@ -3,6 +3,7 @@ package motorizado;
 import controllers.ClientController;
 import helpers.DBConnection;
 import helpers.Formatacao;
+import helpers.Inserts;
 import java.util.ArrayList;
 import models.Client;
 import views.Login;
@@ -25,7 +26,6 @@ public class Main {
             
 //            ClientController clientController = new ClientController();
 //            clientController.create(client);
-            
             new Login().setVisible(true);
         } else {
             System.out.println("Oops buddy :|");
