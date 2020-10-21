@@ -7,6 +7,7 @@ package views;
 
 import controllers.ClientController;
 import models.Client;
+import telas.Inserircontasreceber;
 
 /**
  *
@@ -16,6 +17,7 @@ public class MainView extends javax.swing.JFrame {
 
     ClientController clientController = new ClientController();
     int id = 0;
+    private int ReservaView;
 
     /**
      * Creates new form MainView
@@ -67,14 +69,20 @@ public class MainView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
+        jMenuItem15 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -98,15 +106,30 @@ public class MainView extends javax.swing.JFrame {
 
         jBTNReturn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBTNReturn.setText("Devolução");
+        jBTNReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTNReturnActionPerformed(evt);
+            }
+        });
 
         jBTNBudget.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBTNBudget.setText("Orçamento");
+        jBTNBudget.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTNBudgetActionPerformed(evt);
+            }
+        });
 
         jBTNVehicle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBTNVehicle.setText("Veículo");
 
         jBTNReserve.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBTNReserve.setText("Reserva");
+        jBTNReserve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTNReserveActionPerformed(evt);
+            }
+        });
 
         jBTNFine.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBTNFine.setText("Multas");
@@ -149,7 +172,7 @@ public class MainView extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/home.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\src\\IMG\\home.png")); // NOI18N
         jLabel1.setText("Principal");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -187,7 +210,7 @@ public class MainView extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Calendar.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\src\\IMG\\Calendar.png")); // NOI18N
         jLabel2.setText("Lembretes / Agenda");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -217,7 +240,7 @@ public class MainView extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 261, Short.MAX_VALUE))
+                .addGap(0, 263, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -248,9 +271,6 @@ public class MainView extends javax.swing.JFrame {
 
         jMenu4.setText("Cadastro");
 
-        jMenuItem1.setText("Veículos");
-        jMenu4.add(jMenuItem1);
-
         jMenuItem2.setText("Funcionarios");
         jMenu4.add(jMenuItem2);
 
@@ -262,21 +282,55 @@ public class MainView extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem3);
 
+        jMenuItem1.setText("Veículos");
+        jMenu4.add(jMenuItem1);
+
         jMenuBar2.add(jMenu4);
 
         jMenu5.setText("Consulta");
         jMenuBar2.add(jMenu5);
 
         jMenu6.setText("Financeiro");
+
+        jMenuItem6.setText("Contas a receber");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem6);
+
+        jMenuItem10.setText("Faturamento");
+        jMenu6.add(jMenuItem10);
+
         jMenuBar2.add(jMenu6);
 
         jMenu7.setText("Locação");
         jMenuBar2.add(jMenu7);
 
         jMenu8.setText("Estoque");
+
+        jMenuItem12.setText("Disponibilidade de estoque");
+        jMenu8.add(jMenuItem12);
+
+        jMenuItem13.setText("Movimentação");
+        jMenu8.add(jMenuItem13);
+
+        jMenuItem14.setText("Reserva");
+        jMenu8.add(jMenuItem14);
+
         jMenuBar2.add(jMenu8);
 
         jMenu9.setText("Configurações");
+
+        jMenuItem15.setText("Sair");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem15);
+
         jMenuBar2.add(jMenu9);
 
         setJMenuBar(jMenuBar2);
@@ -299,6 +353,33 @@ public class MainView extends javax.swing.JFrame {
         this.setVisible(false);
         new ClientView(this.id).setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jBTNReserveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNReserveActionPerformed
+        // TODO add your handling code here:
+        new ReservaView().setVisible(true);
+    }//GEN-LAST:event_jBTNReserveActionPerformed
+
+    private void jBTNReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNReturnActionPerformed
+        // TODO add your handling code here:
+        new DevolucaoView().setVisible(true);
+    }//GEN-LAST:event_jBTNReturnActionPerformed
+
+    private void jBTNBudgetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNBudgetActionPerformed
+        // TODO add your handling code here:
+        new OrcamentoView().setVisible(true);
+        
+        
+    }//GEN-LAST:event_jBTNBudgetActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        new ContasreceberView().setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,9 +437,15 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -366,4 +453,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     // End of variables declaration//GEN-END:variables
+
+  
 }

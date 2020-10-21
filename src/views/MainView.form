@@ -41,11 +41,6 @@
             <Property name="text" type="java.lang.String" value="Cadastro"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ve&#xed;culos"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Funcionarios"/>
@@ -59,6 +54,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ve&#xed;culos"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
@@ -70,6 +70,21 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Financeiro"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Contas a receber"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Faturamento"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu7">
           <Properties>
@@ -80,11 +95,38 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Estoque"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem12">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Disponibilidade de estoque"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem13">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Movimenta&#xe7;&#xe3;o"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem14">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reserva"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu9">
           <Properties>
             <Property name="text" type="java.lang.String" value="Configura&#xe7;&#xf5;es"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem15">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sair"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem15ActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
@@ -225,6 +267,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Devolu&#xe7;&#xe3;o"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBTNReturnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jBTNBudget">
               <Properties>
@@ -233,6 +278,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Or&#xe7;amento"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBTNBudgetActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jBTNVehicle">
               <Properties>
@@ -249,6 +297,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reserva"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBTNReserveActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jBTNFine">
               <Properties>
@@ -319,7 +370,7 @@
                       <Font name="Tahoma" size="18" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/IMG/home.png"/>
+                      <Image iconType="2" name="C:\Users\Felipe Fritz\Motorizado\src\IMG\home.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Principal"/>
                   </Properties>
@@ -347,7 +398,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="261" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="263" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -387,7 +438,7 @@
                       <Font name="Tahoma" size="18" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/IMG/Calendar.png"/>
+                      <Image iconType="2" name="C:\Users\Felipe Fritz\Motorizado\src\IMG\Calendar.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Lembretes / Agenda"/>
                   </Properties>
