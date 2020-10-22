@@ -32,4 +32,6 @@ public interface IIncrementedController<T> {
     public boolean undoSoftDelete(int id);
     
     public void populateTable(JTable table, String criteria);
+    
+    public void populateTableLazy(JTable table, String criteria);
 }

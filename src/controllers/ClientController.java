@@ -3,7 +3,7 @@ package controllers;
 import helpers.DBConnection;
 import helpers.Formatacao;
 import helpers.Validacao;
-import interfaces.IBasicController;
+import interfaces.IIncrementedController;
 import java.sql.Timestamp;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import models.Client;
 
-public class ClientController implements IBasicController<Client> {
+public class ClientController implements IIncrementedController<Client> {
 
     private ResultSet result;
     private ArrayList<String> helper;
@@ -28,26 +28,26 @@ public class ClientController implements IBasicController<Client> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT " +
-                           "	cl.idclient AS idclient, " +
-                           "	cl.name AS name, " +
-                           "	cl.cpf AS cpf, " +
-                           "	cl.phone AS phone, " +
-                           "	cl.birthday AS birthday, " +
-                           "	cl.email AS email, " +
-                           "	cl.cnh_register AS cnh_register, " +
-                           "	cl.cnh_mirror AS cnh_mirror " +
-                           "	cl.created_at AS created_at " +
-                           "	cl.updated_at AS updated_at " +
-                           "	cl.deleted_at AS deleted_at " +
-                           "	cl.city_idcity AS city_idcity " +
-                           "	CONCAT(ct.name, '/', st.abreviation) AS city " +
-                           " FROM " +
-                           "	client cl " +
-                           "		INNER JOIN city ct ON ct.idcity = cl.city_idcity " +
-                           "		INNER JOIN state st ON st.idstate = ct.state_idstate " +
-                           " WHERE" +
-                           "	cl.deleted_at IS NULL ";
+            String query = " SELECT "
+                    + "	cl.idclient AS idclient, "
+                    + "	cl.name AS name, "
+                    + "	cl.cpf AS cpf, "
+                    + "	cl.phone AS phone, "
+                    + "	cl.birthday AS birthday, "
+                    + "	cl.email AS email, "
+                    + "	cl.cnh_register AS cnh_register, "
+                    + "	cl.cnh_mirror AS cnh_mirror "
+                    + "	cl.created_at AS created_at "
+                    + "	cl.updated_at AS updated_at "
+                    + "	cl.deleted_at AS deleted_at "
+                    + "	cl.city_idcity AS city_idcity "
+                    + "	CONCAT(ct.name, '/', st.abreviation) AS city "
+                    + " FROM "
+                    + "	client cl "
+                    + "		INNER JOIN city ct ON ct.idcity = cl.city_idcity "
+                    + "		INNER JOIN state st ON st.idstate = ct.state_idstate "
+                    + " WHERE"
+                    + "	cl.deleted_at IS NULL ";
 
             if (Validacao.notNull(criteria)) {
                 query += criteria;
@@ -73,7 +73,7 @@ public class ClientController implements IBasicController<Client> {
                 resultClient.setCity_idcity(result.getInt("city_idcity"));
 
                 clients.add(resultClient);
-                
+
                 helper.add(result.getString("city"));
             }
         } catch (SQLException e) {
@@ -84,30 +84,35 @@ public class ClientController implements IBasicController<Client> {
     }
 
     @Override
+    public ArrayList<Client> indexLazy(String criteria, int skip, int limit) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public ArrayList<Client> indexDeleted() {
         ArrayList clients = new ArrayList<Client>();
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT " +
-                           "	cl.idclient AS idclient, " +
-                           "	cl.name AS name, " +
-                           "	cl.cpf AS cpf, " +
-                           "	cl.phone AS phone, " +
-                           "	cl.birthday AS birthday, " +
-                           "	cl.email AS email, " +
-                           "	cl.cnh_register AS cnh_register, " +
-                           "	cl.cnh_mirror AS cnh_mirror " +
-                           "	cl.created_at AS created_at " +
-                           "	cl.updated_at AS updated_at " +
-                           "	cl.deleted_at AS deleted_at " +
-                           "	CONCAT(ct.name, '/', st.abreviation) AS city " +
-                           " FROM " +
-                           "	client cl " +
-                           "		INNER JOIN city ct ON ct.idcity = cl.city_idcity " +
-                           "		INNER JOIN state st ON st.idstate = ct.state_idstate " +
-                           " WHERE" +
-                           "	cl.deleted_at IS NOT NULL ";
+            String query = " SELECT "
+                    + "	cl.idclient AS idclient, "
+                    + "	cl.name AS name, "
+                    + "	cl.cpf AS cpf, "
+                    + "	cl.phone AS phone, "
+                    + "	cl.birthday AS birthday, "
+                    + "	cl.email AS email, "
+                    + "	cl.cnh_register AS cnh_register, "
+                    + "	cl.cnh_mirror AS cnh_mirror "
+                    + "	cl.created_at AS created_at "
+                    + "	cl.updated_at AS updated_at "
+                    + "	cl.deleted_at AS deleted_at "
+                    + "	CONCAT(ct.name, '/', st.abreviation) AS city "
+                    + " FROM "
+                    + "	client cl "
+                    + "		INNER JOIN city ct ON ct.idcity = cl.city_idcity "
+                    + "		INNER JOIN state st ON st.idstate = ct.state_idstate "
+                    + " WHERE"
+                    + "	cl.deleted_at IS NOT NULL ";
 
             result = stmt.executeQuery(query);
 
@@ -141,26 +146,26 @@ public class ClientController implements IBasicController<Client> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT " +
-                           "	cl.idclient AS idclient, " +
-                           "	cl.name AS name, " +
-                           "	cl.cpf AS cpf, " +
-                           "	cl.phone AS phone, " +
-                           "	cl.birthday AS birthday, " +
-                           "	cl.email AS email, " +
-                           "	cl.cnh_register AS cnh_register, " +
-                           "	cl.cnh_mirror AS cnh_mirror " +
-                           "	cl.created_at AS created_at " +
-                           "	cl.updated_at AS updated_at " +
-                           "	cl.deleted_at AS deleted_at " +
-                           "	CONCAT(ct.name, '/', st.abreviation) AS city " +
-                           " FROM " +
-                           "	client cl " +
-                           "		INNER JOIN city ct ON ct.idcity = cl.city_idcity " +
-                           "		INNER JOIN state st ON st.idstate = ct.state_idstate " +
-                           " WHERE" +
-                           "	cl.deleted_at IS NULL " + 
-                           "    cl.idclient = " + id;
+            String query = " SELECT "
+                    + "	cl.idclient AS idclient, "
+                    + "	cl.name AS name, "
+                    + "	cl.cpf AS cpf, "
+                    + "	cl.phone AS phone, "
+                    + "	cl.birthday AS birthday, "
+                    + "	cl.email AS email, "
+                    + "	cl.cnh_register AS cnh_register, "
+                    + "	cl.cnh_mirror AS cnh_mirror "
+                    + "	cl.created_at AS created_at "
+                    + "	cl.updated_at AS updated_at "
+                    + "	cl.deleted_at AS deleted_at "
+                    + "	CONCAT(ct.name, '/', st.abreviation) AS city "
+                    + " FROM "
+                    + "	client cl "
+                    + "		INNER JOIN city ct ON ct.idcity = cl.city_idcity "
+                    + "		INNER JOIN state st ON st.idstate = ct.state_idstate "
+                    + " WHERE"
+                    + "	cl.deleted_at IS NULL "
+                    + "    cl.idclient = " + id;
 
             result = stmt.executeQuery(query);
 
@@ -211,12 +216,12 @@ public class ClientController implements IBasicController<Client> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String queryEmail = " SELECT email FROM client WHERE email = " + client.getEmail() + " AND deleted_at IS NULL";
+            String queryEmail = " SELECT email FROM client WHERE email = '" + client.getEmail() + "' AND deleted_at IS NULL";
 
             result = stmt.executeQuery(queryEmail);
 
             if (result.next()) {
-                throw new Error("This is email is already in use.");
+                throw new Error("This email is already in use.");
             }
 
             if (!Validacao.validarCPF(client.getCpf())) {
@@ -250,7 +255,7 @@ public class ClientController implements IBasicController<Client> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String queryEmail = " SELECT email FROM client WHERE email = " + client.getEmail() + " AND deleted_at IS NULL";
+            String queryEmail = " SELECT email FROM client WHERE email = '" + client.getEmail() + "' AND deleted_at IS NULL";
 
             result = stmt.executeQuery(queryEmail);
 
@@ -344,7 +349,7 @@ public class ClientController implements IBasicController<Client> {
     /* Popula JTable */
     public void populateTable(JTable table, String criteria) {
         int size = 8;
-        
+
         // dados da tabela
         Object[][] dataTable = null;
 
@@ -439,6 +444,11 @@ public class ClientController implements IBasicController<Client> {
 //                return this;
 //            }
 //        });
+    }
+
+    @Override
+    public void populateTableLazy(JTable table, String criteria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
