@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.util.ArrayList;
+import javax.swing.JTable;
 
 public interface IAutomaticallyInsertedController<T> {
 
@@ -13,4 +14,6 @@ public interface IAutomaticallyInsertedController<T> {
     public boolean update(T object, int id);
 
     public boolean delete(int id);
+    
+    public void populateTable(JTable table, String criteria);
 }

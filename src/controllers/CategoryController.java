@@ -116,7 +116,7 @@ public class CategoryController implements IBasicController<Category> {
             result = stmt.executeQuery(queryCategoryName);
 
             if (result.next()) {
-                throw new Error("This category is already exists.");
+                throw new Error("This category already exists.");
             }
 
             if (!Validacao.notNull(category.getCategory_name())) {
@@ -148,7 +148,7 @@ public class CategoryController implements IBasicController<Category> {
             result = stmt.executeQuery(queryCategoryName);
 
             if (result.next()) {
-                throw new Error("This category is already in use.");
+                throw new Error("This category already in use.");
             }
 
             String query = " UPDATE category SET "
@@ -225,6 +225,7 @@ public class CategoryController implements IBasicController<Category> {
     @Override
     public void populateTable(JTable table, String criteria) {
         int size = 2;
+        criteria = " AND category_name ILIKE '%" + criteria + "%'";
 
         // dados da tabela
         Object[][] dataTable = null;

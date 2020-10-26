@@ -2,31 +2,36 @@ package controllers;
 
 import helpers.DBConnection;
 import helpers.Validacao;
-import interfaces.IBasicController;
+import interfaces.IAutomaticallyInsertedController;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import models.Brand;
+import models.City;
 
-public class BrandController implements IBasicController<Brand> {
+public class CityController implements IAutomaticallyInsertedController<City> {
 
     private ResultSet result;
+    private ArrayList<String> helper;
 
     @Override
-    public ArrayList<Brand> index(String criteria) {
-        ArrayList brands = new ArrayList<Brand>();
+    public ArrayList<City> index(String criteria) {
+        ArrayList cities = new ArrayList<City>();
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM brand WHERE deleted_at IS NULL ";
+            String query = " SELECT "
+                    + "	ct.idcity,"
+                    + "	ct.name,"
+                    + "	ct.state_idstate,"
+                    + "	st.abreviation"
+                    + "FROM city ct "
+                    + "	INNER JOIN state st ON st.idstate = ct.state_idstate ";
 
             if (Validacao.notNull(criteria)) {
                 query += criteria;
@@ -37,95 +42,67 @@ public class BrandController implements IBasicController<Brand> {
             result = stmt.executeQuery(query);
 
             while (result.next()) {
-                Brand resultBrand = new Brand();
-                resultBrand.setIdBrand(result.getInt("idbrand"));
-                resultBrand.setName(result.getString("name"));
-                resultBrand.setCreated_at(result.getDate("created_at"));
-                resultBrand.setUpdated_at(result.getDate("updated_at"));
-                resultBrand.setDeleted_at(result.getDate("deleted_at"));
+                City resultCity = new City();
+                resultCity.setIdCity(result.getInt("idcity"));
+                resultCity.setName(result.getString("name"));
+                resultCity.setState_idState(result.getInt("state_idstate"));
 
-                brands.add(resultBrand);
+                cities.add(resultCity);
+
+                helper.add(result.getString("abreviation"));
             }
         } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(CityController.class.getName()).log(Level.WARNING, null, e);
         }
 
-        return brands;
+        return cities;
     }
 
     @Override
-    public ArrayList<Brand> indexDeleted() {
-        ArrayList brands = new ArrayList<Brand>();
+    public City show(int id) {
+        City city = null;
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM brand WHERE deleted_at IS NOT NULL ";
-
-            result = stmt.executeQuery(query);
-
-            while (result.next()) {
-                Brand resultBrand = new Brand();
-                resultBrand.setIdBrand(result.getInt("idbrand"));
-                resultBrand.setName(result.getString("name"));
-                resultBrand.setCreated_at(result.getDate("created_at"));
-                resultBrand.setUpdated_at(result.getDate("updated_at"));
-                resultBrand.setDeleted_at(result.getDate("deleted_at"));
-
-                brands.add(resultBrand);
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
-        }
-
-        return brands;
-    }
-
-    @Override
-    public Brand show(int id) {
-        Brand brand = null;
-        try {
-            Statement stmt = DBConnection.getInstance().getConnection().createStatement();
-
-            String query = " SELECT * FROM brand WHERE deleted_at IS NULL idbrand = " + id;
+            String query = " SELECT * FROM city WHERE idcity = " + id;
 
             result = stmt.executeQuery(query);
 
             if (result.next()) {
-                brand = new Brand();
-                brand.setIdBrand(result.getInt("idbrand"));
-                brand.setName(result.getString("name"));
-                brand.setCreated_at(result.getDate("created_at"));
-                brand.setUpdated_at(result.getDate("updated_at"));
-                brand.setDeleted_at(result.getDate("deleted_at"));
+                city = new City();
+                city.setIdCity(result.getInt("idcity"));
+                city.setName(result.getString("name"));
+                city.setState_idState(result.getInt("state_idstate"));
             }
 
         } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(CityController.class.getName()).log(Level.WARNING, null, e);
         }
 
-        return brand;
+        return city;
     }
 
     @Override
-    public boolean create(Brand brand) {
+    public boolean create(City city) {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String queryName = " SELECT name FROM brand WHERE name = '" + brand.getName() + "' AND deleted_at IS NULL";
+            String queryName = " SELECT name FROM city WHERE name = '" + city.getName() + "'";
 
             result = stmt.executeQuery(queryName);
 
             if (result.next()) {
-                throw new Error("This brand already exists.");
+                throw new Error("This city already exists.");
             }
 
-            if (!Validacao.notNull(brand.getName())) {
+            if (!Validacao.notNull(city.getName())) {
                 throw new Error("Invalid Name.");
             }
 
-            String query = " INSERT INTO brand VALUES("
+            String query = " INSERT INTO city VALUES("
                     + "DEFAULT,"
-                    + "\'" + brand.getName() + "\'"
+                    + "\'" + city.getName() + "\'"
+                    + "\'" + city.getState_idState() + "\'"
                     + ")";
 
             System.out.println(query);
@@ -133,35 +110,34 @@ public class BrandController implements IBasicController<Brand> {
             return stmt.execute(query);
 
         } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(CityController.class.getName()).log(Level.WARNING, null, e);
         }
         return false;
     }
 
     @Override
-    public boolean update(Brand brand, int id) {
+    public boolean update(City city, int id) {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String queryName = " SELECT name FROM brand WHERE name = '" + brand.getName() + "' AND deleted_at IS NULL";
+            String queryName = " SELECT name FROM city WHERE name = '" + city.getName() + "'";
 
             result = stmt.executeQuery(queryName);
 
             if (result.next()) {
-                throw new Error("This brand is already in use.");
+                throw new Error("This city is already in use.");
             }
 
-            String query = " UPDATE brand SET "
-                    + "name = \'" + brand.getName() + "\',"
-                    + "updated_at = \'" + new Timestamp(new Date().getTime()) + "\'"
-                    + " WHERE idbrand = " + id;
+            String query = " UPDATE city SET "
+                    + "name = \'" + city.getName() + "\'"
+                    + " WHERE idcity = " + id;
 
             System.out.println(query);
 
             return stmt.execute(query);
 
         } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(CityController.class.getName()).log(Level.WARNING, null, e);
         }
         return false;
     }
@@ -169,63 +145,25 @@ public class BrandController implements IBasicController<Brand> {
     @Override
     public boolean delete(int id) {
         try {
-            Statement stmt = DBConnection.getInstance().getConnection().createStatement();
-
-            String query = " UPDATE brand SET "
-                    + " deleted_at = \'" + new Timestamp(new Date().getTime()) + "\' "
-                    + " WHERE idbrand = " + id;
-
-            System.out.println(query);
-
-            return stmt.execute(query);
-
-        } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
-        }
-        return false;
-    }
-
-    @Override
-    public boolean hardDelete(int id) {
-        try {
             Statement stmt = DBConnection
                     .getInstance()
                     .getConnection()
                     .createStatement();
 
-            String query = " DELETE FROM brand WHERE idbrand = " + id;
+            String query = " DELETE FROM city WHERE idcity = " + id;
 
             stmt.execute(query);
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-
-    @Override
-    public boolean undoSoftDelete(int id) {
-        try {
-            Statement stmt = DBConnection.getInstance().getConnection().createStatement();
-
-            String query = " UPDATE brand SET "
-                    + " deleted_at = NULL "
-                    + " WHERE idbrand = " + id;
-
-            System.out.println(query);
-
-            return stmt.execute(query);
-
-        } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(CityController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
     @Override
     public void populateTable(JTable table, String criteria) {
-        int size = 2;
-        criteria = " AND name ILIKE '%" + criteria + "%'";
+        int size = 3;
+        criteria = " WHERE ct.name ILIKE '%" + criteria + "%'";
 
         // dados da tabela
         Object[][] dataTable = null;
@@ -233,17 +171,19 @@ public class BrandController implements IBasicController<Brand> {
         // cabecalho da tabela
         Object[] header = new Object[size];
         header[0] = "Código";
-        header[1] = "Nome";
+        header[1] = "Nome da cidade";
+        header[2] = "Estado";
 
         // cria matriz de acordo com nº de registros da tabela
-        ArrayList<Brand> responseData = this.index(criteria);
+        ArrayList<City> responseData = this.index(criteria);
 
         dataTable = new Object[responseData.size()][size];
         System.out.println(responseData.size());
 
         for (int line = 0; line < responseData.size(); line++) {
-            dataTable[line][0] = responseData.get(line).getIdBrand();
+            dataTable[line][0] = responseData.get(line).getIdCity();
             dataTable[line][1] = responseData.get(line).getName();
+            dataTable[line][2] = helper.get(line);
         }
 
         // configuracoes adicionais no componente tabela

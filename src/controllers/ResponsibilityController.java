@@ -14,19 +14,20 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import models.Brand;
+import models.Category;
+import models.Responsibility;
 
-public class BrandController implements IBasicController<Brand> {
+public class ResponsibilityController implements IBasicController<Responsibility> {
 
     private ResultSet result;
 
     @Override
-    public ArrayList<Brand> index(String criteria) {
-        ArrayList brands = new ArrayList<Brand>();
+    public ArrayList<Responsibility> index(String criteria) {
+        ArrayList responsibilities = new ArrayList<Responsibility>();
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM brand WHERE deleted_at IS NULL ";
+            String query = " SELECT * FROM responsibility WHERE deleted_at IS NULL ";
 
             if (Validacao.notNull(criteria)) {
                 query += criteria;
@@ -37,95 +38,97 @@ public class BrandController implements IBasicController<Brand> {
             result = stmt.executeQuery(query);
 
             while (result.next()) {
-                Brand resultBrand = new Brand();
-                resultBrand.setIdBrand(result.getInt("idbrand"));
-                resultBrand.setName(result.getString("name"));
-                resultBrand.setCreated_at(result.getDate("created_at"));
-                resultBrand.setUpdated_at(result.getDate("updated_at"));
-                resultBrand.setDeleted_at(result.getDate("deleted_at"));
+                Responsibility resultResponsibility = new Responsibility();
+                resultResponsibility.setIdresponsibility(result.getInt("idresponsibility"));
+                resultResponsibility.setSector(result.getString("sector"));
+                resultResponsibility.setCreated_at(result.getDate("created_at"));
+                resultResponsibility.setUpdated_at(result.getDate("updated_at"));
+                resultResponsibility.setDeleted_at(result.getDate("deleted_at"));
 
-                brands.add(resultBrand);
+                responsibilities.add(resultResponsibility);
             }
         } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(ResponsibilityController.class.getName()).log(Level.WARNING, null, e);
         }
 
-        return brands;
+        return responsibilities;
     }
 
     @Override
-    public ArrayList<Brand> indexDeleted() {
-        ArrayList brands = new ArrayList<Brand>();
+    public ArrayList<Responsibility> indexDeleted() {
+        ArrayList responsibilities = new ArrayList<Responsibility>();
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM brand WHERE deleted_at IS NOT NULL ";
+            String query = " SELECT * FROM responsibility WHERE deleted_at IS NOT NULL ";
+
+            System.out.println(query);
 
             result = stmt.executeQuery(query);
 
             while (result.next()) {
-                Brand resultBrand = new Brand();
-                resultBrand.setIdBrand(result.getInt("idbrand"));
-                resultBrand.setName(result.getString("name"));
-                resultBrand.setCreated_at(result.getDate("created_at"));
-                resultBrand.setUpdated_at(result.getDate("updated_at"));
-                resultBrand.setDeleted_at(result.getDate("deleted_at"));
+                Responsibility resultResponsibility = new Responsibility();
+                resultResponsibility.setIdresponsibility(result.getInt("idresponsibility"));
+                resultResponsibility.setSector(result.getString("sector"));
+                resultResponsibility.setCreated_at(result.getDate("created_at"));
+                resultResponsibility.setUpdated_at(result.getDate("updated_at"));
+                resultResponsibility.setDeleted_at(result.getDate("deleted_at"));
 
-                brands.add(resultBrand);
+                responsibilities.add(resultResponsibility);
             }
         } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(ResponsibilityController.class.getName()).log(Level.WARNING, null, e);
         }
 
-        return brands;
+        return responsibilities;
     }
 
     @Override
-    public Brand show(int id) {
-        Brand brand = null;
+    public Responsibility show(int id) {
+        Responsibility responsibility = null;
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM brand WHERE deleted_at IS NULL idbrand = " + id;
+            String query = " SELECT * FROM responsibility WHERE deleted_at IS NULL idresponsibility = " + id;
 
             result = stmt.executeQuery(query);
 
             if (result.next()) {
-                brand = new Brand();
-                brand.setIdBrand(result.getInt("idbrand"));
-                brand.setName(result.getString("name"));
-                brand.setCreated_at(result.getDate("created_at"));
-                brand.setUpdated_at(result.getDate("updated_at"));
-                brand.setDeleted_at(result.getDate("deleted_at"));
+                responsibility = new Responsibility();
+                responsibility.setIdresponsibility(result.getInt("idresponsibility"));
+                responsibility.setSector(result.getString("sector"));
+                responsibility.setCreated_at(result.getDate("created_at"));
+                responsibility.setUpdated_at(result.getDate("updated_at"));
+                responsibility.setDeleted_at(result.getDate("deleted_at"));
             }
 
         } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(ResponsibilityController.class.getName()).log(Level.WARNING, null, e);
         }
 
-        return brand;
+        return responsibility;
     }
 
     @Override
-    public boolean create(Brand brand) {
+    public boolean create(Responsibility responsibility) {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String queryName = " SELECT name FROM brand WHERE name = '" + brand.getName() + "' AND deleted_at IS NULL";
+            String querySectorName = " SELECT sector FROM responsibility WHERE sector = '" + responsibility.getSector()+ "' AND deleted_at IS NULL";
 
-            result = stmt.executeQuery(queryName);
+            result = stmt.executeQuery(querySectorName);
 
             if (result.next()) {
-                throw new Error("This brand already exists.");
+                throw new Error("This sector already exists.");
             }
 
-            if (!Validacao.notNull(brand.getName())) {
-                throw new Error("Invalid Name.");
+            if (!Validacao.notNull(responsibility.getSector())) {
+                throw new Error("Invalid Sector Name.");
             }
 
-            String query = " INSERT INTO brand VALUES("
+            String query = " INSERT INTO category VALUES("
                     + "DEFAULT,"
-                    + "\'" + brand.getName() + "\'"
+                    + "\'" + responsibility.getSector()+ "\'"
                     + ")";
 
             System.out.println(query);
@@ -133,35 +136,35 @@ public class BrandController implements IBasicController<Brand> {
             return stmt.execute(query);
 
         } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(ResponsibilityController.class.getName()).log(Level.WARNING, null, e);
         }
         return false;
     }
 
     @Override
-    public boolean update(Brand brand, int id) {
+    public boolean update(Responsibility responsibility, int id) {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String queryName = " SELECT name FROM brand WHERE name = '" + brand.getName() + "' AND deleted_at IS NULL";
+            String querySectorName = " SELECT sector FROM responsibility WHERE sector = '" + responsibility.getSector()+ "' AND deleted_at IS NULL";
 
-            result = stmt.executeQuery(queryName);
+            result = stmt.executeQuery(querySectorName);
 
             if (result.next()) {
-                throw new Error("This brand is already in use.");
+                throw new Error("This sector already in use.");
             }
 
-            String query = " UPDATE brand SET "
-                    + "name = \'" + brand.getName() + "\',"
+            String query = " UPDATE responsibility SET "
+                    + "sector = \'" + responsibility.getSector()+ "\',"
                     + "updated_at = \'" + new Timestamp(new Date().getTime()) + "\'"
-                    + " WHERE idbrand = " + id;
+                    + " WHERE idresponsibility = " + id;
 
             System.out.println(query);
 
             return stmt.execute(query);
 
         } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(ResponsibilityController.class.getName()).log(Level.WARNING, null, e);
         }
         return false;
     }
@@ -171,16 +174,16 @@ public class BrandController implements IBasicController<Brand> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " UPDATE brand SET "
+            String query = " UPDATE responsibility SET "
                     + " deleted_at = \'" + new Timestamp(new Date().getTime()) + "\' "
-                    + " WHERE idbrand = " + id;
+                    + " WHERE idresponsibility = " + id;
 
             System.out.println(query);
 
             return stmt.execute(query);
 
         } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(ResponsibilityController.class.getName()).log(Level.WARNING, null, e);
         }
         return false;
     }
@@ -193,12 +196,12 @@ public class BrandController implements IBasicController<Brand> {
                     .getConnection()
                     .createStatement();
 
-            String query = " DELETE FROM brand WHERE idbrand = " + id;
+            String query = " DELETE FROM responsibility WHERE idresponsibility = " + id;
 
             stmt.execute(query);
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ResponsibilityController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -208,16 +211,16 @@ public class BrandController implements IBasicController<Brand> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " UPDATE brand SET "
+            String query = " UPDATE responsibility SET "
                     + " deleted_at = NULL "
-                    + " WHERE idbrand = " + id;
+                    + " WHERE idresponsibility = " + id;
 
             System.out.println(query);
 
             return stmt.execute(query);
 
         } catch (SQLException e) {
-            Logger.getLogger(BrandController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(ResponsibilityController.class.getName()).log(Level.WARNING, null, e);
         }
         return false;
     }
@@ -225,7 +228,7 @@ public class BrandController implements IBasicController<Brand> {
     @Override
     public void populateTable(JTable table, String criteria) {
         int size = 2;
-        criteria = " AND name ILIKE '%" + criteria + "%'";
+        criteria = " AND sector ILIKE '%" + criteria + "%'";
 
         // dados da tabela
         Object[][] dataTable = null;
@@ -233,17 +236,17 @@ public class BrandController implements IBasicController<Brand> {
         // cabecalho da tabela
         Object[] header = new Object[size];
         header[0] = "Código";
-        header[1] = "Nome";
+        header[1] = "Nome do Setor";
 
         // cria matriz de acordo com nº de registros da tabela
-        ArrayList<Brand> responseData = this.index(criteria);
+        ArrayList<Responsibility> responseData = this.index(criteria);
 
         dataTable = new Object[responseData.size()][size];
         System.out.println(responseData.size());
 
         for (int line = 0; line < responseData.size(); line++) {
-            dataTable[line][0] = responseData.get(line).getIdBrand();
-            dataTable[line][1] = responseData.get(line).getName();
+            dataTable[line][0] = responseData.get(line).getIdresponsibility();
+            dataTable[line][1] = responseData.get(line).getSector();
         }
 
         // configuracoes adicionais no componente tabela
