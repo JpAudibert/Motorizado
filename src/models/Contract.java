@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Contract {
 
-    private int idcontract;
+    private int idContract;
     private Date contract_date;
     private Date contract_cancel_date;
     private int penalty;
@@ -17,8 +17,8 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(int idcontract, Date contract_date, Date contract_cancel_date, int penalty, String payment_type, double contract_value, Date created_at, Date updated_at, Date deleted_at) {
-        this.idcontract = idcontract;
+    public Contract(int idContract, Date contract_date, Date contract_cancel_date, int penalty, String payment_type, double contract_value, Date created_at, Date updated_at, Date deleted_at) {
+        this.idContract = idContract;
         this.contract_date = contract_date;
         this.contract_cancel_date = contract_cancel_date;
         this.penalty = penalty;
@@ -29,12 +29,12 @@ public class Contract {
         this.deleted_at = deleted_at;
     }
 
-    public int getIdcontract() {
-        return idcontract;
+    public int getIdContract() {
+        return idContract;
     }
 
-    public void setIdcontract(int idcontract) {
-        this.idcontract = idcontract;
+    public void setIdContract(int idContract) {
+        this.idContract = idContract;
     }
 
     public Date getContract_date() {

@@ -10,29 +10,29 @@ public class Client {
     private String phone;
     private Date birthday;
     private String email;
-    private String password;
     private String CNH_register;
     private String CNH_mirror;
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;
+    private int city_idcity;
 
     public Client() {
     }
 
-    public Client(int idClient, String name, String cpf, String phone, Date birthday, String email, String password, String CNH_register, String CNH_mirror, Date created_at, Date updated_at, Date deleted_at) {
+    public Client(int idClient, String name, String cpf, String phone, Date birthday, String email, String CNH_register, String CNH_mirror, Date created_at, Date updated_at, Date deleted_at, int city_idcity) {
         this.idClient = idClient;
         this.name = name;
         this.cpf = cpf;
         this.phone = phone;
         this.birthday = birthday;
         this.email = email;
-        this.password = password;
         this.CNH_register = CNH_register;
         this.CNH_mirror = CNH_mirror;
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.deleted_at = deleted_at;
+        this.city_idcity = city_idcity;
     }
 
     public int getIdClient() {
@@ -83,14 +83,6 @@ public class Client {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getCNH_register() {
         return CNH_register;
     }
@@ -129,6 +121,14 @@ public class Client {
 
     public void setDeleted_at(Date deleted_at) {
         this.deleted_at = deleted_at;
+    }
+
+    public int getCity_idcity() {
+        return city_idcity;
+    }
+
+    public void setCity_idcity(int city_idcity) {
+        this.city_idcity = city_idcity;
     }
 
 }

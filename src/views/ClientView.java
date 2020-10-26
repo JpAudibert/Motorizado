@@ -16,9 +16,9 @@ import models.Client;
  * @author lucas
  */
 public class ClientView extends javax.swing.JFrame {
-    
+
     ClientController clientController = new ClientController();
-    private int clientID; 
+    private int clientID;
 
     /**
      * Creates new form Client
@@ -28,8 +28,8 @@ public class ClientView extends javax.swing.JFrame {
 //        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.PNG")).getImage());
         Formatacao.formatarData(jTXTData);
         Formatacao.formatarCpf((JFormattedTextField) jTXTCpf);
-        clientController.popularTabelaXXX(jTable1, "");
-        
+        clientController.populateTable(jTable1, "");
+
     }
 
     public ClientView(int id) {
@@ -37,7 +37,7 @@ public class ClientView extends javax.swing.JFrame {
 //        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.PNG")).getImage());
         Formatacao.formatarData(jTXTData);
         Formatacao.formatarCpf((JFormattedTextField) jTXTCpf);
-        clientController.popularTabelaXXX(jTable1, "");
+        clientController.populateTable(jTable1, "");
         Formatacao.formatarData((JFormattedTextField) jTXTDataNascimentoEditar);
         Formatacao.formatarCpf((JFormattedTextField) jTXTcpfEditar);
     }
@@ -69,15 +69,15 @@ public class ClientView extends javax.swing.JFrame {
         jTXTCNG1 = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTXTNameSearch = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTXTCpfSearch = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jFormattedTXTBirthdaySearch = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jTXTCnhSeacrh = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        jTXTEmailSearch = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -265,11 +265,11 @@ public class ClientView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTXTNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTXTCpfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
@@ -279,14 +279,14 @@ public class ClientView extends javax.swing.JFrame {
                         .addComponent(jLabel9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jFormattedTextField2)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+                    .addComponent(jFormattedTXTBirthdaySearch)
+                    .addComponent(jTXTCnhSeacrh, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTXTEmailSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
@@ -307,25 +307,25 @@ public class ClientView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3)
+                    .addComponent(jTXTNameSearch)
                     .addComponent(jLabel8)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTXTBirthdaySearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTXTEmailSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTXTCnhSeacrh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2)
                         .addComponent(jButton3)
                         .addComponent(jButton4))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTXTCpfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consulta", jPanel1);
@@ -411,7 +411,7 @@ public class ClientView extends javax.swing.JFrame {
                     .addComponent(jTXTDataNascimentoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Editar", jPanel4);
@@ -424,7 +424,7 @@ public class ClientView extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -435,7 +435,7 @@ public class ClientView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -465,11 +465,11 @@ public class ClientView extends javax.swing.JFrame {
             client.setCNH_register(this.jTXTCNG.getText());
             client.setCNH_mirror(this.jTXTCNG1.getText());
             client.setEmail(this.jTXTEmail.getText());
-            client.setPassword("123");
 
-            ClientController cc = new ClientController();
-            if (cc.create(client)) {
+            if (clientController.create(client)) {
                 System.out.println("Inseriu");
+                jTabbedPane1.setSelectedIndex(1);
+
             } else {
                 System.out.println("Deu erro!");
             }
@@ -480,9 +480,29 @@ public class ClientView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        String criteria = "";
 
-        clientController.popularTabelaXXX(jTable1, "");
+        if (Validacao.notNull(this.jTXTNameSearch.getText())) {
+            criteria += " AND name LIKE \'%" + this.jTXTNameSearch.getText() + "%\'";
+        }
+
+        if (Validacao.notNull(this.jTXTCpfSearch.getText())) {
+            criteria += " AND cpf LIKE \'%" + this.jTXTCpfSearch.getText() + "%\'";
+        }
+
+        if (Validacao.notNull(this.jTXTEmailSearch.getText())) {
+            criteria += " AND email LIKE \'%" + this.jTXTEmailSearch.getText() + "%\'";
+        }
+
+        if (Validacao.notNull(this.jTXTCnhSeacrh.getText())) {
+            criteria += " AND cnh_register LIKE \'%" + this.jTXTCnhSeacrh.getText() + "%\'";
+        }
+
+        if (Validacao.notNull(this.jTXTCnhSeacrh.getText())) {
+            criteria += " AND birthday LIKE \'%" + this.jFormattedTXTBirthdaySearch.getText() + "%\'";
+        }
+
+        clientController.populateTable(jTable1, criteria);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -492,36 +512,34 @@ public class ClientView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
+
         this.jTXTCNHEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 4)));
         this.jTXTNomeEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 1)));
         this.jTXTEmailEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 2)));
         this.jTXTcpfEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 3)));
         this.jTXTDataNascimentoEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 5)));
         this.clientID = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
-        
-        
- 
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        
+
         Client client = new Client();
 
-            client.setName(this.jTXTNomeEditar.getText());
-            client.setBirthday(Formatacao.ajustaDataAMD(this.jTXTDataNascimentoEditar.getText()));
-            client.setCpf(this.jTXTcpfEditar.getText());
-            client.setCNH_register(this.jTXTCNHEditar.getText());
-            client.setCNH_mirror("123");
-            client.setEmail(this.jTXTEmailEditar.getText());
-            client.setPassword("123");
+        client.setName(this.jTXTNomeEditar.getText());
+        client.setBirthday(Formatacao.ajustaDataAMD(this.jTXTDataNascimentoEditar.getText()));
+        client.setCpf(this.jTXTcpfEditar.getText());
+        client.setCNH_register(this.jTXTCNHEditar.getText());
+        client.setCNH_mirror("123");
+        client.setEmail(this.jTXTEmailEditar.getText());
 
-            ClientController cc = new ClientController();
-            
-            if(cc.update(client, clientID)){
-                System.out.println("Atualizou");
-            }
+        ClientController cc = new ClientController();
+
+        if (cc.update(client, clientID)) {
+            System.out.println("Atualizou");
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -566,7 +584,7 @@ public class ClientView extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFormattedTXTBirthdaySearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -591,19 +609,19 @@ public class ClientView extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jTXTCNG;
     private javax.swing.JFormattedTextField jTXTCNG1;
     private javax.swing.JFormattedTextField jTXTCNHEditar;
+    private javax.swing.JTextField jTXTCnhSeacrh;
     private javax.swing.JFormattedTextField jTXTCpf;
+    private javax.swing.JTextField jTXTCpfSearch;
     private javax.swing.JFormattedTextField jTXTData;
     private javax.swing.JTextField jTXTDataNascimentoEditar;
     private javax.swing.JTextField jTXTEmail;
     private javax.swing.JTextField jTXTEmailEditar;
+    private javax.swing.JTextField jTXTEmailSearch;
+    private javax.swing.JTextField jTXTNameSearch;
     private javax.swing.JTextField jTXTNome;
     private javax.swing.JTextField jTXTNomeEditar;
     private javax.swing.JFormattedTextField jTXTcpfEditar;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
