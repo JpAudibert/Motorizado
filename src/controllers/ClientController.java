@@ -47,7 +47,8 @@ public class ClientController implements IIncrementedController<Client> {
                     + "		INNER JOIN city ct ON ct.idcity = cl.city_idcity "
                     + "		INNER JOIN state st ON st.idstate = ct.state_idstate "
                     + " WHERE"
-                    + "	cl.deleted_at IS NULL ";
+                    + "	cl.deleted_at IS NULL"
+                    + " AND name ILIKE '%" + criteria + "%'";
 
             if (Validacao.notNull(criteria)) {
                 query += criteria;
@@ -112,7 +113,7 @@ public class ClientController implements IIncrementedController<Client> {
                     + "		INNER JOIN city ct ON ct.idcity = cl.city_idcity "
                     + "		INNER JOIN state st ON st.idstate = ct.state_idstate "
                     + " WHERE"
-                    + "	cl.deleted_at IS NOT NULL ";
+                    + "	cl.deleted_at IS NOT NULL";
 
             result = stmt.executeQuery(query);
 
