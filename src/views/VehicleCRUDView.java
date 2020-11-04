@@ -20,20 +20,17 @@ public class VehicleCRUDView extends javax.swing.JFrame {
     public VehicleCRUDView() {
         initComponents();
         CombosDAO cdao = new CombosDAO();
-        
+
         cdao.popularCombo("Category", jComboBox1);
         cdao.popularCombo("Vehicle_models", jComboBox2);
-        
+
         combo.removeAllItems();
 
         ComboItem item = new ComboItem();
         item.setCodigo(0);
         item.setDescricao("Selecione");
-        combo.addItem(item);
-        
+        combo.addItem(item.getDescricao());
 
-        
-        
     }
 
     /**

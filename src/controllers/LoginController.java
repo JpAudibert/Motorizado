@@ -21,7 +21,7 @@ public class LoginController {
                     .getConnection()
                     .createStatement();
 
-            String query = " SELECT idclient, password FROM client WHERE email = '" + email + "'";
+            String query = " SELECT idemployees, password FROM employees WHERE email = '" + email + "'";
 
             result = stmt.executeQuery(query);
 

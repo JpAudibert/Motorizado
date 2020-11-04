@@ -153,7 +153,6 @@ public class StateController implements IAutomaticallyInsertedController<State> 
     @Override
     public void populateTable(JTable table, String criteria) {
         int size = 3;
-        criteria = " WHERE name ILIKE '%" + criteria + "%'";
 
         // dados da tabela
         Object[][] dataTable = null;

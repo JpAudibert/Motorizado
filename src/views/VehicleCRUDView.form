@@ -83,10 +83,8 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jComboBox1" pref="99" max="32767" attributes="0"/>
-                              <Component id="jComboBox2" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jComboBox1" max="32767" attributes="0"/>
+                          <Component id="jComboBox2" max="32767" attributes="0"/>
                           <Component id="jButton1" pref="108" max="32767" attributes="0"/>
                           <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
                       </Group>
