@@ -19,12 +19,14 @@ public class SearchClientID extends javax.swing.JFrame {
      */
     Inserirorcamento inserirorcamentoNovo;
     InserirReserva inserirReservaNovo;
+
     public SearchClientID(Inserirorcamento inserirorcamentoNovo) {
         initComponents();
         this.inserirorcamentoNovo = inserirorcamentoNovo;
         ClientController cc = new ClientController();
         cc.populateTable(jTable1, null);
     }
+
     public SearchClientID(InserirReserva inserirReservaNovo) {
         initComponents();
         this.inserirReservaNovo = inserirReservaNovo;
@@ -120,29 +122,28 @@ public class SearchClientID extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String pesquisa = "";
-        
-        if (Validacao.notNull(jTXTNome.getText())){
-            pesquisa += this.jTXTNome.getText();
-        }
-        ClientController cc = new ClientController();
-        cc.populateTable(jTable1, pesquisa);
 
-        
-        
+        if (Validacao.notNull(jTXTNome.getText())) {
+            pesquisa += this.jTXTNome.getText();
+            ClientController cc = new ClientController();
+            cc.populateTable(jTable1, pesquisa);
+
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String valueAt = String.valueOf(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 0));
         this.inserirorcamentoNovo.setClientID(valueAt);
-        
-         this.dispose();
+
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
