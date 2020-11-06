@@ -83,9 +83,6 @@ public class MainView extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
-        jMenu10 = new javax.swing.JMenu();
-        jMenu11 = new javax.swing.JMenu();
-        jMenu12 = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
 
@@ -106,11 +103,6 @@ public class MainView extends javax.swing.JFrame {
 
         jBTNRent.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBTNRent.setText("Retirada");
-        jBTNRent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBTNRentActionPerformed(evt);
-            }
-        });
 
         jBTNReturn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBTNReturn.setText("Devolução");
@@ -180,6 +172,7 @@ public class MainView extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\src\\IMG\\home.png")); // NOI18N
         jLabel1.setText("Principal");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -209,7 +202,7 @@ public class MainView extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 360, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -217,6 +210,7 @@ public class MainView extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\src\\IMG\\Calendar.png")); // NOI18N
         jLabel2.setText("Lembretes / Agenda");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -337,15 +331,6 @@ public class MainView extends javax.swing.JFrame {
         });
         jMenu9.add(jMenuItem15);
 
-        jMenu10.setText("Registrar Marca");
-        jMenu9.add(jMenu10);
-
-        jMenu11.setText("Registrar Veículo");
-        jMenu9.add(jMenu11);
-
-        jMenu12.setText("Registrar Categoria");
-        jMenu9.add(jMenu12);
-
         jMenuBar2.add(jMenu9);
 
         setJMenuBar(jMenuBar2);
@@ -396,10 +381,6 @@ public class MainView extends javax.swing.JFrame {
         new ContasreceberView().setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void jBTNRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNRentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBTNRentActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -445,9 +426,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu11;
-    private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;

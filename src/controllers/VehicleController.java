@@ -43,7 +43,7 @@ public class VehicleController implements IIncrementedController<Vehicle> {
                     + "	ve.deleted_at IS NULL AND "
                     + "	ca.deleted_at IS NULL AND "
                     + "	vm.deleted_at IS NULL AND "
-                    + "	br.deleted_at IS NULL ";
+                    + "	br.deleted_at IS NULL";
 
             if (Validacao.notNull(criteria)) {
                 query += criteria;
