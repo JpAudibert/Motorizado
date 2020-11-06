@@ -238,7 +238,6 @@ public class ContractController implements IIncrementedController<Contract> {
     @Override
     public void populateTable(JTable table, String criteria) {
         int size = 6;
-        criteria = " AND name ILIKE '%" + criteria + "%'";
 
         // dados da tabela
         Object[][] dataTable = null;

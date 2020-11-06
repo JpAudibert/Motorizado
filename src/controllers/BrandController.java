@@ -225,7 +225,6 @@ public class BrandController implements IBasicController<Brand> {
     @Override
     public void populateTable(JTable table, String criteria) {
         int size = 2;
-        criteria = " AND name ILIKE '%" + criteria + "%'";
 
         // dados da tabela
         Object[][] dataTable = null;

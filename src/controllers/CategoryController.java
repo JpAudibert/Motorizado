@@ -225,7 +225,6 @@ public class CategoryController implements IBasicController<Category> {
     @Override
     public void populateTable(JTable table, String criteria) {
         int size = 2;
-        criteria = " AND category_name ILIKE '%" + criteria + "%'";
 
         // dados da tabela
         Object[][] dataTable = null;

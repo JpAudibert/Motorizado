@@ -248,7 +248,6 @@ public class VehicleModelController implements IBasicController<VehicleModel> {
     @Override
     public void populateTable(JTable table, String criteria) {
         int size = 3;
-        criteria = " AND model_name ILIKE '%" + criteria + "%'";
 
         // dados da tabela
         Object[][] dataTable = null;

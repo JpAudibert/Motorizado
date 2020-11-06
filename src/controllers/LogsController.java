@@ -12,26 +12,20 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import models.City;
+import models.Logs;
+import models.State;
 
-public class CityController implements IAutomaticallyInsertedController<City> {
+public class LogsController implements IAutomaticallyInsertedController<Logs> {
 
     private ResultSet result;
-    private ArrayList<String> helper;
-
+    
     @Override
-    public ArrayList<City> index(String criteria) {
-        ArrayList cities = new ArrayList<City>();
+    public ArrayList<Logs> index(String criteria) {
+        ArrayList logs = new ArrayList<State>();
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT "
-                    + "	ct.idcity,"
-                    + "	ct.name,"
-                    + "	ct.state_idstate,"
-                    + "	st.abreviation"
-                    + "FROM city ct "
-                    + "	INNER JOIN state st ON st.idstate = ct.state_idstate ";
+            String query = " SELECT * FROM logs ";
 
             if (Validacao.notNull(criteria)) {
                 query += criteria;
@@ -42,67 +36,59 @@ public class CityController implements IAutomaticallyInsertedController<City> {
             result = stmt.executeQuery(query);
 
             while (result.next()) {
-                City resultCity = new City();
-                resultCity.setIdCity(result.getInt("idcity"));
-                resultCity.setName(result.getString("name"));
-                resultCity.setState_idState(result.getInt("state_idstate"));
+                Logs resultLogs = new Logs();
+                resultLogs.setIdLogs(result.getInt("idlogs"));
+                resultLogs.setLogType(result.getString("log_type"));
+                resultLogs.setOrigin(result.getString("origin"));
+                resultLogs.setDescription(result.getString("description"));
+                resultLogs.setIdFromOrigin(result.getInt("id_from_origin"));
 
-                cities.add(resultCity);
-
-                helper.add(result.getString("abreviation"));
+                logs.add(resultLogs);
             }
         } catch (SQLException e) {
-            Logger.getLogger(CityController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(StateController.class.getName()).log(Level.WARNING, null, e);
         }
 
-        return cities;
+        return logs;
     }
 
     @Override
-    public City show(int id) {
-        City city = null;
+    public Logs show(int id) {
+        Logs logs = null;
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM city WHERE idcity = " + id;
+            String query = " SELECT * FROM logs WHERE idlogs = " + id;
 
             result = stmt.executeQuery(query);
 
             if (result.next()) {
-                city = new City();
-                city.setIdCity(result.getInt("idcity"));
-                city.setName(result.getString("name"));
-                city.setState_idState(result.getInt("state_idstate"));
+                logs = new Logs();
+                logs.setIdLogs(result.getInt("idlogs"));
+                logs.setLogType(result.getString("log_type"));
+                logs.setOrigin(result.getString("origin"));
+                logs.setDescription(result.getString("description"));
+                logs.setIdFromOrigin(result.getInt("id_from_origin"));
             }
 
         } catch (SQLException e) {
-            Logger.getLogger(CityController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(StateController.class.getName()).log(Level.WARNING, null, e);
         }
 
-        return city;
+        return logs;
     }
 
     @Override
-    public boolean create(City city) {
+    public boolean create(Logs logs) {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String queryName = " SELECT name FROM city WHERE name = '" + city.getName() + "'";
-
-            result = stmt.executeQuery(queryName);
-
-            if (result.next()) {
-                throw new Error("This city already exists.");
-            }
-
-            if (!Validacao.notNull(city.getName())) {
-                throw new Error("Invalid Name.");
-            }
-
-            String query = " INSERT INTO city VALUES("
+            String query = " INSERT INTO logs VALUES("
                     + "DEFAULT,"
-                    + "\'" + city.getName() + "\'"
-                    + "\'" + city.getState_idState() + "\'"
+                    + "\'" + logs.getLogType()+ "\',"
+                    + "\'" + logs.getOrigin()+ "\',"
+                    + "\'" + logs.getDescription()+ "\',"
+                    + "\'" + logs.getIdFromOrigin()+ "\'"
                     + ")";
 
             System.out.println(query);
@@ -110,34 +96,29 @@ public class CityController implements IAutomaticallyInsertedController<City> {
             return stmt.execute(query);
 
         } catch (SQLException e) {
-            Logger.getLogger(CityController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(StateController.class.getName()).log(Level.WARNING, null, e);
         }
         return false;
     }
 
     @Override
-    public boolean update(City city, int id) {
+    public boolean update(Logs logs, int id) {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String queryName = " SELECT name FROM city WHERE name = '" + city.getName() + "'";
-
-            result = stmt.executeQuery(queryName);
-
-            if (result.next()) {
-                throw new Error("This city is already in use.");
-            }
-
-            String query = " UPDATE city SET "
-                    + "name = \'" + city.getName() + "\'"
-                    + " WHERE idcity = " + id;
+            String query = " UPDATE logs SET "
+                    + "log_type = \'" + logs.getLogType()+ "\',"
+                    + "origin = \'" + logs.getOrigin()+ "\',"
+                    + "description = \'" + logs.getDescription()+ "\',"
+                    + "id_from_origin = \'" + logs.getIdFromOrigin()+ "\'"
+                    + " WHERE idlogsw = " + id;
 
             System.out.println(query);
 
             return stmt.execute(query);
 
         } catch (SQLException e) {
-            Logger.getLogger(CityController.class.getName()).log(Level.WARNING, null, e);
+            Logger.getLogger(StateController.class.getName()).log(Level.WARNING, null, e);
         }
         return false;
     }
@@ -150,19 +131,19 @@ public class CityController implements IAutomaticallyInsertedController<City> {
                     .getConnection()
                     .createStatement();
 
-            String query = " DELETE FROM city WHERE idcity = " + id;
+            String query = " DELETE FROM logs WHERE idlogs = " + id;
 
             stmt.execute(query);
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(CityController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StateController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
     @Override
     public void populateTable(JTable table, String criteria) {
-        int size = 3;
+        int size = 5;
 
         // dados da tabela
         Object[][] dataTable = null;
@@ -170,19 +151,23 @@ public class CityController implements IAutomaticallyInsertedController<City> {
         // cabecalho da tabela
         Object[] header = new Object[size];
         header[0] = "Código";
-        header[1] = "Nome da cidade";
-        header[2] = "Estado";
+        header[1] = "Tipo do Log";
+        header[2] = "Origem";
+        header[3] = "Descrição";
+        header[4] = "Id da origem";
 
         // cria matriz de acordo com nº de registros da tabela
-        ArrayList<City> responseData = this.index(criteria);
+        ArrayList<Logs> responseData = this.index(criteria);
 
         dataTable = new Object[responseData.size()][size];
         System.out.println(responseData.size());
 
         for (int line = 0; line < responseData.size(); line++) {
-            dataTable[line][0] = responseData.get(line).getIdCity();
-            dataTable[line][1] = responseData.get(line).getName();
-            dataTable[line][2] = helper.get(line);
+            dataTable[line][0] = responseData.get(line).getIdLogs();
+            dataTable[line][1] = responseData.get(line).getLogType();
+            dataTable[line][2] = responseData.get(line).getOrigin();
+            dataTable[line][3] = responseData.get(line).getDescription();
+            dataTable[line][4] = responseData.get(line).getIdFromOrigin();
         }
 
         // configuracoes adicionais no componente tabela
@@ -249,5 +234,5 @@ public class CityController implements IAutomaticallyInsertedController<City> {
 //            }
 //        });
     }
-
+    
 }

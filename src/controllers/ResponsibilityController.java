@@ -228,7 +228,6 @@ public class ResponsibilityController implements IBasicController<Responsibility
     @Override
     public void populateTable(JTable table, String criteria) {
         int size = 2;
-        criteria = " AND sector ILIKE '%" + criteria + "%'";
 
         // dados da tabela
         Object[][] dataTable = null;
