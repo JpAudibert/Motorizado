@@ -6,26 +6,28 @@
 package views;
 
 import controllers.BrandController;
+import controllers.CategoryController;
 import helpers.Validacao;
 import java.awt.Dialog;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import models.Brand;
+import models.Category;
 
 /**
  *
  * @author lucas
  */
-public class BrandCRUDView extends javax.swing.JFrame {
+public class ResponsibilityCRUDView extends javax.swing.JFrame {
 
     /**
      * Creates new form BrandCRUDView
      */
-    public BrandCRUDView() {
+    public ResponsibilityCRUDView() {
         initComponents();
 
-        BrandController bc = new BrandController();
+        CategoryController bc = new CategoryController();
         bc.populateTable(jTable1, null);
     }
 
@@ -66,11 +68,11 @@ public class BrandCRUDView extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Nome:");
+        jLabel1.setText("Setor:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(45, 44, 41, 17);
+        jLabel1.setBounds(30, 40, 38, 17);
         jPanel1.add(jTextField1);
-        jTextField1.setBounds(104, 44, 260, 20);
+        jTextField1.setBounds(90, 40, 260, 20);
 
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +81,7 @@ public class BrandCRUDView extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(210, 244, 77, 23);
+        jButton1.setBounds(210, 210, 77, 23);
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -88,18 +90,18 @@ public class BrandCRUDView extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(45, 244, 75, 23);
+        jButton2.setBounds(50, 210, 75, 23);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Id:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(45, 101, 17, 17);
+        jLabel2.setBounds(30, 100, 17, 17);
         jPanel1.add(jTextField2);
-        jTextField2.setBounds(104, 101, 35, 20);
+        jTextField2.setBounds(90, 100, 35, 20);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.png"))); // NOI18N
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(210, 60, 370, 200);
+        jLabel5.setBounds(240, 50, 350, 200);
 
         jTabbedPane1.addTab("Registrar", jPanel1);
 
@@ -238,7 +240,7 @@ public class BrandCRUDView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        BrandController brandc = new BrandController();
+        CategoryController bc = new CategoryController();
         int id = Integer.parseInt(this.jTextField2.getText());
         Date suaData = new Date();
         String name = this.jTextField1.getText();
@@ -248,8 +250,8 @@ public class BrandCRUDView extends javax.swing.JFrame {
 
                 Calendar calendario = Calendar.getInstance();
                 calendario.setTime(suaData);
-                Brand brand1 = new Brand(id, name, suaData, suaData, suaData);
-                brandc.create(brand1);
+                Category ca = new Category(id, name, suaData, suaData, suaData);
+                bc.create(ca);
 
             } else {
                 JOptionPane.showConfirmDialog(null, "Preencha o codigo da marca!");
@@ -319,20 +321,23 @@ public class BrandCRUDView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BrandCRUDView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ResponsibilityCRUDView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BrandCRUDView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ResponsibilityCRUDView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BrandCRUDView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ResponsibilityCRUDView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BrandCRUDView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ResponsibilityCRUDView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BrandCRUDView().setVisible(true);
+                new ResponsibilityCRUDView().setVisible(true);
             }
         });
     }
