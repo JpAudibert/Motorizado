@@ -151,7 +151,8 @@ public class EmployeeController implements IIncrementedController<Employee> {
                     + "		INNER JOIN state st ON st.idstate = ct.state_idstate  "
                     + "		INNER JOIN responsibility res ON res.idresponsibility = em.responsibility_idresponsibility "
                     + " WHERE"
-                    + "	em.deleted_at IS NULL";
+                    + "	em.deleted_at IS NULL"
+                    + " AND idemployees = " + id;
 
             result = stmt.executeQuery(query);
 
