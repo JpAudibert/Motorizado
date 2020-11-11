@@ -26,11 +26,12 @@ public class CategoryCRUDView extends javax.swing.JFrame {
      */
     public CategoryCRUDView() {
         initComponents();
-
-        CategoryController bc = new CategoryController();
-        bc.populateTable(jTable1, null);
+       // CategoryController bc = new CategoryController();
+       // bc.populateTable(jTable1, null);
+        
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,7 +100,7 @@ public class CategoryCRUDView extends javax.swing.JFrame {
         jPanel1.add(jTextField2);
         jTextField2.setBounds(85, 117, 35, 20);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
         jPanel1.add(jLabel5);
         jLabel5.setBounds(240, 70, 350, 200);
 

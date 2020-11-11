@@ -27,8 +27,8 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
     public VehicleModelCRUDView() {
         initComponents();
 
-        CategoryController bc = new CategoryController();
-        bc.populateTable(jTable1, null);
+        //CategoryController bc = new CategoryController();
+        //bc.populateTable(jTable1, null);
     }
 
     /**
@@ -112,7 +112,7 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
         jPanel1.add(jComboBox1);
         jComboBox1.setBounds(207, 153, 133, 20);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Carro.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Carro.png")); // NOI18N
         jPanel1.add(jLabel7);
         jLabel7.setBounds(130, 120, 280, 190);
 
@@ -265,6 +265,7 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         CategoryController bc = new CategoryController();
         int id = Integer.parseInt(this.jTextField2.getText());
         Date suaData = new Date();
@@ -318,6 +319,7 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
         // TODO add your handling code here:
 
         BrandController bc = new BrandController();

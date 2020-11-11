@@ -141,10 +141,15 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         jButton3.setBounds(680, 300, 92, 28);
 
         jButton4.setText("Cancelar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4);
         jButton4.setBounds(560, 300, 75, 28);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Maintenance.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Maintenance.png")); // NOI18N
         jPanel1.add(jLabel6);
         jLabel6.setBounds(550, 50, 260, 240);
 
@@ -306,10 +311,15 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         jButton7.setBounds(679, 288, 92, 28);
 
         jButton8.setText("Cancelar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton8);
         jButton8.setBounds(558, 288, 75, 28);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Maintenance.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Maintenance.png")); // NOI18N
         jPanel3.add(jLabel12);
         jLabel12.setBounds(550, 50, 260, 240);
 
@@ -328,6 +338,16 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments

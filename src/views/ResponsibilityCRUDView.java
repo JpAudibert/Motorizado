@@ -27,8 +27,8 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
     public ResponsibilityCRUDView() {
         initComponents();
 
-        CategoryController bc = new CategoryController();
-        bc.populateTable(jTable1, null);
+        //CategoryController bc = new CategoryController();
+        //bc.populateTable(jTable1, null);
     }
 
     /**
@@ -81,7 +81,7 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(210, 210, 77, 23);
+        jButton1.setBounds(160, 210, 100, 23);
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +90,7 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(50, 210, 75, 23);
+        jButton2.setBounds(50, 210, 90, 23);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Id:");
@@ -99,7 +99,7 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
         jPanel1.add(jTextField2);
         jTextField2.setBounds(90, 100, 35, 20);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
         jPanel1.add(jLabel5);
         jLabel5.setBounds(240, 50, 350, 200);
 

@@ -68,6 +68,7 @@ public class ClientCRUDView extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jTXTCNG1 = new javax.swing.JFormattedTextField();
         jLabel17 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTXTNameSearch = new javax.swing.JTextField();
@@ -95,8 +96,8 @@ public class ClientCRUDView extends javax.swing.JFrame {
         jTXTDataNascimentoEditar = new javax.swing.JTextField();
         jTXTcpfEditar = new javax.swing.JFormattedTextField();
         jTXTCNHEditar = new javax.swing.JFormattedTextField();
-        jButton5 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -130,14 +131,14 @@ public class ClientCRUDView extends javax.swing.JFrame {
         jTXTNome.setBounds(107, 17, 200, 27);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Registar");
+        jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton1);
-        jButton1.setBounds(625, 220, 120, 60);
+        jButton1.setBounds(780, 310, 110, 30);
         jPanel2.add(jTXTData);
         jTXTData.setBounds(616, 21, 110, 18);
 
@@ -170,9 +171,19 @@ public class ClientCRUDView extends javax.swing.JFrame {
         jPanel2.add(jTXTCNG1);
         jTXTCNG1.setBounds(616, 115, 110, 22);
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.png"))); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
         jPanel2.add(jLabel17);
         jLabel17.setBounds(80, 150, 350, 210);
+
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton5.setText("Registar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton5);
+        jButton5.setBounds(630, 190, 120, 60);
 
         jTabbedPane1.addTab("Registro", jPanel2);
 
@@ -320,14 +331,14 @@ public class ClientCRUDView extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("salvar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
+
+        jButton6.setText("salvar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
-
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -358,8 +369,8 @@ public class ClientCRUDView extends javax.swing.JFrame {
                 .addGap(78, 78, 78)
                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123))
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,13 +393,13 @@ public class ClientCRUDView extends javax.swing.JFrame {
                     .addComponent(jTXTDataNascimentoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Editar", jPanel4);
@@ -429,6 +440,7 @@ public class ClientCRUDView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
 
         if (Validacao.notNull(this.jTXTEmail.getText()) && Validacao.notNull(this.jTXTCpf.getText())
                 && Validacao.notNull(this.jTXTNome.getText()) && Validacao.notNull(this.jTXTData.getText())
@@ -480,7 +492,8 @@ public class ClientCRUDView extends javax.swing.JFrame {
         }
 
         clientController.populateTable(jTable1, criteria);
-
+         new SearchClientByID().setVisible(true);
+     
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTXTCNHEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTXTCNHEditarActionPerformed
@@ -500,23 +513,12 @@ public class ClientCRUDView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-
-        Client client = new Client();
-
-        client.setName(this.jTXTNomeEditar.getText());
-        client.setBirthday(Formatacao.ajustaDataAMD(this.jTXTDataNascimentoEditar.getText()));
-        client.setCpf(this.jTXTcpfEditar.getText());
-        client.setCNH_register(this.jTXTCNHEditar.getText());
-        client.setCNH_mirror("123");
-        client.setEmail(this.jTXTEmailEditar.getText());
-
-        ClientController cc = new ClientController();
-
-        if (cc.update(client, clientID)) {
-            System.out.println("Atualizou");
-        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -563,6 +565,7 @@ public class ClientCRUDView extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JFormattedTextField jFormattedTXTBirthdaySearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

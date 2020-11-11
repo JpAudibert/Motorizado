@@ -50,6 +50,7 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -108,14 +109,19 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jComboBox1.setBounds(232, 245, 128, 20);
 
         jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1);
-        jButton1.setBounds(433, 332, 75, 23);
+        jButton1.setBounds(433, 332, 100, 23);
 
         jButton2.setText("Cadastrar");
         jPanel2.add(jButton2);
         jButton2.setBounds(592, 332, 92, 23);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Contract 1.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Contract 1.png")); // NOI18N
         jPanel2.add(jLabel6);
         jLabel6.setBounds(400, 10, 280, 380);
 
@@ -147,11 +153,23 @@ public class ContractCRUDView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton3.setText("Cancelar");
+        jButton3.setText("Consultar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Editar");
 
         jButton6.setText("Remover");
+
+        jButton7.setText("Cancelar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -159,9 +177,11 @@ public class ContractCRUDView extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 727, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(191, 191, 191)
-                .addComponent(jButton3)
-                .addGap(68, 68, 68)
+                .addGap(109, 109, 109)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jButton7)
+                .addGap(34, 34, 34)
                 .addComponent(jButton6)
                 .addGap(64, 64, 64)
                 .addComponent(jButton4)
@@ -175,7 +195,8 @@ public class ContractCRUDView extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
-                    .addComponent(jButton6))
+                    .addComponent(jButton6)
+                    .addComponent(jButton7))
                 .addGap(0, 20, Short.MAX_VALUE))
         );
 
@@ -233,6 +254,11 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jComboBox2.setBounds(232, 245, 128, 20);
 
         jButton5.setText("Cancelar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel7.add(jButton5);
         jButton5.setBounds(433, 332, 75, 23);
 
@@ -240,7 +266,7 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jPanel7.add(Editar);
         Editar.setBounds(592, 332, 92, 23);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Contract 1.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Contract 1.png")); // NOI18N
         jPanel7.add(jLabel12);
         jLabel12.setBounds(400, 10, 280, 380);
 
@@ -259,6 +285,26 @@ public class ContractCRUDView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        new SearchContractByClient().setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,6 +349,7 @@ public class ContractCRUDView extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
