@@ -27,22 +27,24 @@ public class ContractCRUDView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTXTDataInicial = new javax.swing.JFormattedTextField();
         jTXTDataFinal = new javax.swing.JFormattedTextField();
         jTXTMulta = new javax.swing.JFormattedTextField();
         jTXTValor = new javax.swing.JFormattedTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -86,11 +88,6 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jPanel2.add(jLabel3);
         jLabel3.setBounds(40, 186, 49, 22);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Forma de pagamento:");
-        jPanel2.add(jLabel4);
-        jLabel4.setBounds(40, 241, 174, 22);
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Valor total:");
         jPanel2.add(jLabel5);
@@ -103,10 +100,6 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jTXTMulta.setBounds(152, 186, 150, 28);
         jPanel2.add(jTXTValor);
         jTXTValor.setBounds(145, 298, 150, 28);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(232, 245, 128, 20);
 
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -121,9 +114,21 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jPanel2.add(jButton2);
         jButton2.setBounds(592, 332, 92, 23);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Contract 1.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Contract 1.png"))); // NOI18N
         jPanel2.add(jLabel6);
         jLabel6.setBounds(400, 10, 280, 380);
+
+        jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCheckBox1.setText("Cartão");
+        jPanel2.add(jCheckBox1);
+        jCheckBox1.setBounds(40, 250, 81, 23);
+
+        jCheckBox2.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCheckBox2.setText("Boleto");
+        jPanel2.add(jCheckBox2);
+        jCheckBox2.setBounds(210, 240, 75, 31);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -265,8 +270,6 @@ public class ContractCRUDView extends javax.swing.JFrame {
         Editar.setText("Editar");
         jPanel7.add(Editar);
         Editar.setBounds(592, 332, 92, 23);
-
-        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Contract 1.png")); // NOI18N
         jPanel7.add(jLabel12);
         jLabel12.setBounds(400, 10, 280, 380);
 
@@ -343,6 +346,8 @@ public class ContractCRUDView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Editar;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -350,7 +355,8 @@ public class ContractCRUDView extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -358,7 +364,6 @@ public class ContractCRUDView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

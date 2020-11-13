@@ -5,6 +5,11 @@
  */
 package views;
 
+import helpers.Formatacao;
+import helpers.Validacao;
+import javax.swing.JOptionPane;
+import models.Maintenance;
+
 /**
  *
  * @author lucas
@@ -16,6 +21,7 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
      */
     public MaintenanceCRUDView() {
         initComponents();
+
     }
 
     /**
@@ -114,6 +120,12 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         jCheckBox1.setText("Funcionario tercerizado");
         jPanel1.add(jCheckBox1);
         jCheckBox1.setBounds(47, 216, 207, 31);
+
+        jTXTTipoManutençao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTXTTipoManutençaoActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTXTTipoManutençao);
         jTXTTipoManutençao.setBounds(253, 33, 213, 28);
         jPanel1.add(jTXTFuncionario);
@@ -137,6 +149,11 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         jTXTValor.setBounds(614, 33, 128, 28);
 
         jButton3.setText("Registrar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3);
         jButton3.setBounds(680, 300, 92, 28);
 
@@ -148,8 +165,6 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         });
         jPanel1.add(jButton4);
         jButton4.setBounds(560, 300, 75, 28);
-
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Maintenance.png")); // NOI18N
         jPanel1.add(jLabel6);
         jLabel6.setBounds(550, 50, 260, 240);
 
@@ -318,8 +333,6 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         });
         jPanel3.add(jButton8);
         jButton8.setBounds(558, 288, 75, 28);
-
-        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Maintenance.png")); // NOI18N
         jPanel3.add(jLabel12);
         jLabel12.setBounds(550, 50, 260, 240);
 
@@ -348,6 +361,60 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Maintenance maintenance = new Maintenance();
+        Boolean ok = true;
+        
+        if (Validacao.notNull(this.jTXTTipoManutençao.getText())){
+            maintenance.setMaintenance_type(this.jTXTTipoManutençao.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha o tipo de manutenção!");
+            this.jTXTTipoManutençao.requestFocus();
+            ok = false;
+        }
+        if (Validacao.notNull(this.jTXTFuncionario.getText())){
+            maintenance.setEmployees_idemployees(Integer.parseInt(this.jTXTFuncionario.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha o id do funcionario!");
+            this.jTXTFuncionario.requestFocus();
+            ok = false;
+        }
+        if (Validacao.notNull(this.jTXTVeiculo.getText())){
+            maintenance.setVehicle_idvehicle(Integer.parseInt(this.jTXTVeiculo.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha o id do veiculo!!");
+            this.jTXTVeiculo.requestFocus();
+        }
+        if (Validacao.notNull(this.jTXTPecas.getText())){
+            maintenance.setChanged_parts(this.jTXTPecas.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha as peças trocadas");
+            this.jTXTPecas.requestFocus();
+        }
+        if (Validacao.notNull(this.jTXTValor.getText())){
+            Double aux = Double.parseDouble(this.jTXTValor.getText());
+            String a;
+            a = Formatacao.formatarDecimal(aux);
+            maintenance.setService_value(Double.parseDouble(a));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o valor do serviço!");
+            this.jTXTValor.requestFocus();
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTXTTipoManutençaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTXTTipoManutençaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTXTTipoManutençaoActionPerformed
 
     /**
      * @param args the command line arguments
