@@ -78,7 +78,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -165,7 +165,7 @@ public class Login extends javax.swing.JFrame {
                //int clientId = clientController.showAuth(emailLogin);
                 //System.out.println(clientId);
 
-                //new MainView(clientId).setVisible(true);
+                new MainView(1).setVisible(true);
             } else {
                 //                this.warning.setText("Email ou Senha incorretos");
                 //                this.warning.setVisible(true);

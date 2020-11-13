@@ -17,12 +17,12 @@ public class Main {
      */
     public static void main(String[] args) {
         if (DBConnection.getInstance() != null) {
-//            Inserts.insertStates();
-//            Inserts.insertCities();
-//            Inserts.insertResponsibilities();
+    /*       Inserts.insertStates();
+            Inserts.insertCities();
+            Inserts.insertResponsibilities();
             
             Employee employee = new Employee();
-            employee.setName("Joao Pedro Basso Audibert");
+            employee.setName("Pedro Basso Audibert");
             employee.setCpf("18227213006");
             employee.setPhone("54 999742414");
             employee.setBirthday(Formatacao.ajustaDataAMD("16/05/2001"));
@@ -32,7 +32,7 @@ public class Main {
             employee.setCity_idcity(2);
             EmployeeController employeeController = new EmployeeController();
             employeeController.create(employee);
-            new Login().setVisible(true);
+          */ new Login().setVisible(true);
         } else {
             System.out.println("Oops buddy :|");
         }
