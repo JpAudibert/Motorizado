@@ -1,6 +1,7 @@
 package views;
 
 import controllers.ClientController;
+import controllers.EmployeeController;
 import controllers.LoginController;
 import helpers.Formatacao;
 import helpers.Validacao;
@@ -152,7 +153,7 @@ public class Login extends javax.swing.JFrame {
 
     private void JBTNAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBTNAcessarActionPerformed
         LoginController loginController = new LoginController();
-        ClientController clientController = new ClientController();
+        EmployeeController employeeController = new EmployeeController();
         String emailLogin = this.jTXTUser.getText();
         String passwordLogin = this.jTXTPass.getText();
         if (!Validacao.notNull(emailLogin) || !Validacao.notNull(passwordLogin)) {
@@ -162,10 +163,10 @@ public class Login extends javax.swing.JFrame {
             if (loginController.authenticate(emailLogin, passwordLogin)) {
                 System.out.println("Logou");
                 this.setVisible(false);
-               //int clientId = clientController.showAuth(emailLogin);
-                //System.out.println(clientId);
+                int clientId = employeeController.showAuth(emailLogin);
+                System.out.println(clientId);
 
-                new MainView(1).setVisible(true);
+                new MainView(clientId).setVisible(true);
             } else {
                 //                this.warning.setText("Email ou Senha incorretos");
                 //                this.warning.setVisible(true);
