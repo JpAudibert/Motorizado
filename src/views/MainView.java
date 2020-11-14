@@ -34,8 +34,8 @@ public class MainView extends javax.swing.JFrame {
         this.id = id;
         setExtendedState(MAXIMIZED_BOTH);
 //        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.PNG")).getImage());
-        Client loggedClient = clientController.show(id);
-        jLabel1.setText("Principal - " + loggedClient.getName());
+//        Client loggedClient = clientController.show(id);
+//        jLabel1.setText("Principal - " + loggedClient.getName());
 
     }
 

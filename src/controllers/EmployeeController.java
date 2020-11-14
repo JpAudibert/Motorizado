@@ -219,12 +219,12 @@ public class EmployeeController implements IIncrementedController<Employee> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT idemployee FROM employee WHERE email = \'" + email + "\' AND deleted_at IS NULL";
+            String query = " SELECT idemployees FROM employees WHERE email = \'" + email + "\' AND deleted_at IS NULL";
 
             result = stmt.executeQuery(query);
 
             if (result.next()) {
-                employeeId = result.getInt("idemployee");
+                employeeId = result.getInt("idemployees");
             }
 
         } catch (SQLException e) {
