@@ -270,6 +270,8 @@ public class ContractCRUDView extends javax.swing.JFrame {
         Editar.setText("Editar");
         jPanel7.add(Editar);
         Editar.setBounds(592, 332, 92, 23);
+
+        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucas\\Desktop\\PROJETO INTEGRADOR\\Motorizado\\src\\IMG\\Contract 1.png")); // NOI18N
         jPanel7.add(jLabel12);
         jLabel12.setBounds(400, 10, 280, 380);
 

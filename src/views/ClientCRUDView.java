@@ -8,6 +8,7 @@ package views;
 import controllers.ClientController;
 import helpers.Formatacao;
 import helpers.Validacao;
+import java.util.Date;
 import javax.swing.JFormattedTextField;
 import models.Client;
 
@@ -492,7 +493,7 @@ public class ClientCRUDView extends javax.swing.JFrame {
         }
 
         clientController.populateTable(jTable1, criteria);
-         new SearchClientByID().setVisible(true);
+        new SearchClientByID().setVisible(true);
      
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -515,6 +516,26 @@ public class ClientCRUDView extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        Client c = new Client();
+        String[] split = this.jTXTDataNascimentoEditar.getText().split("/");
+        
+        int dia = Integer.parseInt(split[0]);
+        int mes = Integer.parseInt(split[1]);
+        int ano = Integer.parseInt(split[2]);
+        
+        Date date = new Date(ano, mes, dia);
+        
+        c.setBirthday(date);
+        c.setCNH_register(this.jTXTCNHEditar.getText());
+        c.setCpf(this.jTXTcpfEditar.getText());
+        c.setName(this.jTXTNomeEditar.getText());
+        c.setEmail(this.jTXTEmailEditar.getText());
+        
+        ClientController cc = new ClientController();
+        cc.update(c, this.clientID);
+        
+        
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

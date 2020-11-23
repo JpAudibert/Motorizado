@@ -5,7 +5,11 @@
  */
 package views;
 
+import controllers.EmployeeController;
 import helpers.Formatacao;
+import helpers.Validacao;
+import javax.swing.JOptionPane;
+import models.Employee;
 
 /**
  *
@@ -44,7 +48,7 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         jTXTEmail = new javax.swing.JTextField();
         jTXTCpf = new javax.swing.JFormattedTextField();
         jTXTTelefone = new javax.swing.JFormattedTextField();
-        jTextField1 = new javax.swing.JTextField();
+        jTXTCidade = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -126,8 +130,8 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         jTXTCpf.setBounds(177, 99, 231, 28);
         jPanel2.add(jTXTTelefone);
         jTXTTelefone.setBounds(177, 174, 160, 28);
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(177, 232, 40, 28);
+        jPanel2.add(jTXTCidade);
+        jTXTCidade.setBounds(177, 232, 40, 28);
 
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -153,12 +157,15 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         jLabel6.setBounds(49, 364, 54, 22);
         jPanel2.add(jPasswordField1);
         jPasswordField1.setBounds(177, 364, 183, 28);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
         jPanel2.add(jLabel7);
         jLabel7.setBounds(470, 110, 320, 160);
 
         jButton7.setText("Cadastrar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton7);
         jButton7.setBounds(500, 362, 102, 33);
 
@@ -315,8 +322,6 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel17.setText("Senha:");
 
-        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -435,6 +440,11 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        SearchCityByID sa = new SearchCityByID(this);
+        sa.setVisible(true);
+
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTXTEmailEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTXTEmailEditarActionPerformed
@@ -455,6 +465,71 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        boolean ok = true;
+        Employee employee = new Employee();
+        
+        if(Validacao.notNull(this.jTXTNome.getText())){
+            employee.setName(this.jTXTNome.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o nome do empregado!");
+            this.jTXTNome.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTCpf.getText())){
+            employee.setCpf(this.jTXTCpf.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o CPF!");
+            this.jTXTCpf.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTEmail.getText())){
+            employee.setEmail(this.jTXTEmail.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o Email!");
+            this.jTXTEmail.requestFocus();
+            ok = false;
+        }
+        if (Validacao.notNull(this.jTXTCidade.getText())){
+            employee.setCity_idcity(Integer.parseInt(this.jTXTCidade.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Busque a cidade!");
+            SearchCityByID sa = new SearchCityByID(this);
+            sa.setVisible(true);
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTTelefone.getText())){
+            employee.setPhone(this.jTXTTelefone.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o telefone!");
+            this.jTXTTelefone.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jPasswordField1.getText())){
+            employee.setPassword(this.jPasswordField1.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com a senha!");
+            ok = false;
+        }
+        
+        EmployeeController ec = new EmployeeController();
+        
+        if(ok){
+            ec.create(employee);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Verificar entradas de dados!");
+        }
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -528,6 +603,7 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JFormattedTextField jTXTCPFConsultar;
     private javax.swing.JFormattedTextField jTXTCPFEditar;
+    private javax.swing.JTextField jTXTCidade;
     private javax.swing.JTextField jTXTCidadeEditar;
     private javax.swing.JFormattedTextField jTXTCpf;
     private javax.swing.JTextField jTXTEmail;
@@ -541,6 +617,14 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jTXTTelefoneEditar;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-}
+
+
+    public void definirValor (int id){
+        this.jTXTCidade.setText(id+"");
+        this.jTXTEmail.requestFocus();
+    }
+            
+            
+    }
+
