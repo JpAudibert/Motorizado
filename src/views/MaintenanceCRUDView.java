@@ -5,6 +5,7 @@
  */
 package views;
 
+import controllers.MaintenanceController;
 import helpers.Formatacao;
 import helpers.Validacao;
 import javax.swing.JOptionPane;
@@ -19,6 +20,8 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
     /**
      * Creates new form MaintenanceCRUDView
      */
+    
+    int id;
     public MaintenanceCRUDView() {
         initComponents();
 
@@ -134,10 +137,20 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         jTXTVeiculo.setBounds(260, 311, 33, 28);
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
         jButton1.setBounds(342, 265, 96, 28);
 
         jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
         jButton2.setBounds(342, 311, 96, 28);
 
@@ -176,6 +189,11 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         jLabel13.setText("Funcionario responsavel:");
 
         jButton9.setText("Buscar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel14.setText("Veiculo:");
@@ -312,6 +330,11 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         jTXTVeiculoEditar.setBounds(260, 310, 33, 28);
 
         jButton5.setText("Buscar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton5);
         jButton5.setBounds(342, 265, 96, 28);
 
@@ -399,6 +422,7 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, "Preencha o id do veiculo!!");
             this.jTXTVeiculo.requestFocus();
+            ok = false;
         }
         if (Validacao.notNull(this.jTXTPecas.getText())){
             maintenance.setChanged_parts(this.jTXTPecas.getText());
@@ -406,6 +430,7 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, "Preencha as peças trocadas");
             this.jTXTPecas.requestFocus();
+            ok=false;
         }
         if (Validacao.notNull(this.jTXTValor.getText())){
             Double aux = Double.parseDouble(this.jTXTValor.getText());
@@ -416,8 +441,15 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, "Entre com o valor do serviço!");
             this.jTXTValor.requestFocus();
+            ok=false;
         }
         
+        
+        if(ok){
+            MaintenanceController mc = new MaintenanceController();
+        
+            mc.create(maintenance);
+        }
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -428,12 +460,108 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
+        this.id = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
+        this.jTXTTipoManutençaoEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 1)));
+        this.jTXTPecasEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 2)));
+        this.jTXTValorEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 3)));
+        
+        
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        
+        Maintenance maintenance = new Maintenance();
+        Boolean ok = true;
+        
+        if (Validacao.notNull(this.jTXTTipoManutençaoEditar.getText())){
+            maintenance.setMaintenance_type(this.jTXTTipoManutençaoEditar.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha o tipo de manutenção!");
+            this.jTXTTipoManutençaoEditar.requestFocus();
+            ok = false;
+        }
+        if (Validacao.notNull(this.jTXTFuncionarioEditar.getText())){
+            maintenance.setEmployees_idemployees(Integer.parseInt(this.jTXTFuncionarioEditar.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha o id do funcionario!");
+            this.jTXTFuncionarioEditar.requestFocus();
+            ok = false;
+        }
+        if (Validacao.notNull(this.jTXTVeiculoEditar.getText())){
+            maintenance.setVehicle_idvehicle(Integer.parseInt(this.jTXTVeiculoEditar.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha o id do veiculo!!");
+            this.jTXTVeiculoEditar.requestFocus();
+            ok = false;
+        }
+        if (Validacao.notNull(this.jTXTPecasEditar.getText())){
+            maintenance.setChanged_parts(this.jTXTPecasEditar.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha as peças trocadas");
+            this.jTXTPecasEditar.requestFocus();
+            ok=false;
+        }
+        if (Validacao.notNull(this.jTXTValorEditar.getText())){
+            Double aux = Double.parseDouble(this.jTXTValorEditar.getText());
+            String a;
+            a = Formatacao.formatarDecimal(aux);
+            maintenance.setService_value(Double.parseDouble(a));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o valor do serviço!");
+            this.jTXTValorEditar.requestFocus();
+            ok=false;
+        }
+        
+        
+        if(ok){
+            MaintenanceController mc = new MaintenanceController();
+        
+            mc.update(maintenance,id);
+        }
+        
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new SearchEmployeeByID(this).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        new SearchEmployeeByID(this).setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void preencherCamposFuncionario(String id){
+        this.jTXTFuncionario.setText(id);
+        this.jTXTFuncionarioConsultar.setText(id);
+        this.jTXTFuncionarioEditar.setText(id);
+    }
+    
+    public void preencherCamposVeiculos(String id){
+        this.jTXTVeiculo.setText(id);
+        this.jTXTVeiculoConsutar.setText(id);
+        this.jTXTVeiculoEditar.setText(id);
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */

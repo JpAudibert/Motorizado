@@ -112,7 +112,7 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
         jPanel1.add(jComboBox1);
         jComboBox1.setBounds(207, 153, 133, 20);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Carro.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucas\\Desktop\\PROJETO INTEGRADOR\\Motorizado\\src\\IMG\\Carro.png")); // NOI18N
         jPanel1.add(jLabel7);
         jLabel7.setBounds(130, 120, 280, 190);
 

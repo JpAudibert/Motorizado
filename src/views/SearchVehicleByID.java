@@ -5,6 +5,9 @@
  */
 package views;
 
+import controllers.VehicleController;
+import helpers.Validacao;
+
 /**
  *
  * @author lucas
@@ -14,8 +17,18 @@ public class SearchVehicleByID extends javax.swing.JFrame {
     /**
      * Creates new form SearchVehicleByID
      */
+    MaintenanceCRUDView maintenanceCRUDView;
     public SearchVehicleByID() {
         initComponents();
+        VehicleController vc = new VehicleController();
+        vc.populateTable(jTable, null);
+    }
+    
+    public SearchVehicleByID(MaintenanceCRUDView maintenanceCRUDView) {
+        initComponents();
+        VehicleController vc = new VehicleController();
+        vc.populateTable(jTable, null);
+        this.maintenanceCRUDView = maintenanceCRUDView;
     }
 
     /**
@@ -67,8 +80,18 @@ public class SearchVehicleByID extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable);
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Selecionar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Cancelar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +161,35 @@ public class SearchVehicleByID extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String criteria = "";
+        if (Validacao.notNull(this.jTXTID.getText())){
+            criteria += " AND id LIKE \'%" + this.jTXTID.getText() + "%\'";
+        }
+        
+        if (Validacao.notNull(this.jTXTPlaca.getText())){
+            criteria += " AND placa LIKE \'%" + this.jTXTPlaca.getText() + "%\'";
+        }
+        
+        VehicleController vc = new VehicleController();
+        vc.populateTable(jTable, criteria);
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        String id =  String.valueOf(jTable.getValueAt(jTable.getSelectedRow(), 0));
+        
+        if (this.maintenanceCRUDView.isActive()){
+            this.maintenanceCRUDView.preencherCamposVeiculos(id);
+            this.dispose();
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
