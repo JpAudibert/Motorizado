@@ -46,8 +46,6 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -81,7 +79,7 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(160, 210, 100, 23);
+        jButton1.setBounds(340, 170, 100, 23);
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -90,16 +88,7 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(50, 210, 90, 23);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Id:");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(30, 100, 17, 17);
-        jPanel1.add(jTextField2);
-        jTextField2.setBounds(90, 100, 35, 20);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
+        jButton2.setBounds(130, 170, 90, 23);
         jPanel1.add(jLabel5);
         jLabel5.setBounds(240, 50, 350, 200);
 
@@ -241,16 +230,17 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         CategoryController bc = new CategoryController();
-        int id = Integer.parseInt(this.jTextField2.getText());
+
         Date suaData = new Date();
         String name = this.jTextField1.getText();
 
         if (Validacao.notNull(this.jTextField1.getText())) {
-            if (Validacao.notNull(this.jTextField2.getText())) {
+            if (true) {
 
                 Calendar calendario = Calendar.getInstance();
                 calendario.setTime(suaData);
-                Category ca = new Category(id, name, suaData, suaData, suaData);
+                Category ca = new Category();
+                ca.setCategory_name(this.jTextField1.getText());
                 bc.create(ca);
 
             } else {
@@ -349,7 +339,6 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -360,7 +349,6 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables

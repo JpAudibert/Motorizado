@@ -5,6 +5,14 @@
  */
 package views;
 
+import controllers.ContractController;
+import controllers.EmployeeController;
+import helpers.Validacao;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import models.Contract;
+import models.Employee;
+
 /**
  *
  * @author lucas
@@ -14,8 +22,12 @@ public class ContractCRUDView extends javax.swing.JFrame {
     /**
      * Creates new form ContractCRUDView
      */
+    
+    int contractID;
     public ContractCRUDView() {
         initComponents();
+        ContractController cc = new ContractController();
+        cc.populateTable(jTable1, null);
     }
 
     /**
@@ -57,16 +69,16 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jTXTDataInicialEditar = new javax.swing.JFormattedTextField();
         jTXTDataFinalEditar = new javax.swing.JFormattedTextField();
         jTXTMultaEditar = new javax.swing.JFormattedTextField();
         jTXTValorEditar = new javax.swing.JFormattedTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
         Editar = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        jCheckBoxCartaoEditar = new javax.swing.JCheckBox();
+        jCheckBoxBoletoEditar = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +123,11 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jButton1.setBounds(433, 332, 100, 23);
 
         jButton2.setText("Cadastrar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2);
         jButton2.setBounds(592, 332, 92, 23);
 
@@ -166,6 +183,11 @@ public class ContractCRUDView extends javax.swing.JFrame {
         });
 
         jButton4.setText("Editar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Remover");
 
@@ -236,11 +258,6 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jPanel7.add(jLabel9);
         jLabel9.setBounds(40, 186, 49, 22);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel10.setText("Forma de pagamento:");
-        jPanel7.add(jLabel10);
-        jLabel10.setBounds(40, 241, 174, 22);
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("Valor total:");
         jPanel7.add(jLabel11);
@@ -254,10 +271,6 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jPanel7.add(jTXTValorEditar);
         jTXTValorEditar.setBounds(145, 298, 150, 28);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel7.add(jComboBox2);
-        jComboBox2.setBounds(232, 245, 128, 20);
-
         jButton5.setText("Cancelar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,12 +281,29 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jButton5.setBounds(433, 332, 75, 23);
 
         Editar.setText("Editar");
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
         jPanel7.add(Editar);
         Editar.setBounds(592, 332, 92, 23);
 
         jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucas\\Desktop\\PROJETO INTEGRADOR\\Motorizado\\src\\IMG\\Contract 1.png")); // NOI18N
         jPanel7.add(jLabel12);
         jLabel12.setBounds(400, 10, 280, 380);
+
+        jCheckBoxCartaoEditar.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBoxCartaoEditar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCheckBoxCartaoEditar.setText("Cartão");
+        jPanel7.add(jCheckBoxCartaoEditar);
+        jCheckBoxCartaoEditar.setBounds(40, 240, 77, 31);
+
+        jCheckBoxBoletoEditar.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBoxBoletoEditar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCheckBoxBoletoEditar.setText("Boleto");
+        jPanel7.add(jCheckBoxBoletoEditar);
+        jCheckBoxBoletoEditar.setBounds(170, 240, 75, 31);
 
         jTabbedPane1.addTab("Editar", jPanel7);
 
@@ -293,7 +323,8 @@ public class ContractCRUDView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        new SearchContractByClient().setVisible(true);
+        ContractController cc = new ContractController();
+        cc.populateTable(jTable1, null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -310,6 +341,158 @@ public class ContractCRUDView extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        boolean ok = true;
+        Contract ct = new Contract();
+        
+        if(Validacao.notNull(this.jTXTDataInicial.getText())){
+            String[] split = this.jTXTDataFinal.getText().split("/");
+            int dia = Integer.parseInt(split[0]);
+            int mes = Integer.parseInt(split[1]);
+            int ano = Integer.parseInt(split[2]);
+            Date data = new Date(ano, mes, dia);
+            
+            ct.setContract_date(data);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com a data inicial do contrato!");
+            this.jTXTDataInicial.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTDataFinal.getText())){
+            String[] split = this.jTXTDataFinal.getText().split("/");
+            int dia = Integer.parseInt(split[0]);
+            int mes = Integer.parseInt(split[1]);
+            int ano = Integer.parseInt(split[2]);
+            Date data = new Date(ano, mes, dia);
+            
+            ct.setContract_cancel_date(data);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com a data final do contrato!");
+           this.jTXTDataFinal.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTValor.getText())){
+            ct.setContract_value(Double.parseDouble(this.jTXTValor.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o valor do contrato");
+            this.jTXTValor.requestFocus();
+            ok = false;
+        }
+        if (Validacao.notNull(this.jTXTMulta.getText())){
+            ct.setPenalty(Integer.parseInt(this.jTXTMulta.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o valor da multa");
+            ok = false;
+        }
+        if(jCheckBox1.isSelected()){
+            ct.setPayment_type("Cartão");
+        }
+        else if (jCheckBox2.isSelected()){
+            ct.setPayment_type("Boleto");
+        }
+        
+        ContractController cc = new ContractController();
+        
+        if(ok){
+            cc.create(ct);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Verificar entradas de dados!");
+        }
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.jTXTValorEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 5)));
+        this.jTXTDataInicialEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 1)));
+        this.jTXTDataFinalEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 2)));
+        this.jTXTMultaEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 3)));
+        this.contractID = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
+
+        
+        jTabbedPane1.requestFocus();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        // TODO add your handling code here:
+        boolean ok = true;
+        Contract ct = new Contract();
+        
+        if(Validacao.notNull(this.jTXTDataInicialEditar.getText())){
+            String[] split = this.jTXTDataFinalEditar.getText().split("/");
+            int dia = Integer.parseInt(split[0]);
+            int mes = Integer.parseInt(split[1]);
+            int ano = Integer.parseInt(split[2]);
+            Date data = new Date(ano, mes, dia);
+            
+            ct.setContract_date(data);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com a data inicial do contrato!");
+            this.jTXTDataInicialEditar.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTDataFinalEditar.getText())){
+            String[] split = this.jTXTDataFinalEditar.getText().split("/");
+            int dia = Integer.parseInt(split[0]);
+            int mes = Integer.parseInt(split[1]);
+            int ano = Integer.parseInt(split[2]);
+            Date data = new Date(ano, mes, dia);
+            
+            ct.setContract_cancel_date(data);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com a data final do contrato!");
+           this.jTXTDataFinalEditar.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTValorEditar.getText())){
+            ct.setContract_value(Double.parseDouble(this.jTXTValorEditar.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o valor do contrato");
+            this.jTXTValorEditar.requestFocus();
+            ok = false;
+        }
+        if (Validacao.notNull(this.jTXTMultaEditar.getText())){
+            ct.setPenalty(Integer.parseInt(this.jTXTMultaEditar.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o valor da multa");
+            ok = false;
+        }
+        if(jCheckBoxCartaoEditar.isSelected()){
+            ct.setPayment_type("Cartão");
+        }
+        else if (jCheckBoxBoletoEditar.isSelected()){
+            ct.setPayment_type("Boleto");
+        }
+        
+        ContractController cc = new ContractController();
+        
+        if(ok){
+            cc.update(ct, contractID);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Verificar entradas de dados!");
+        }
+        
+        
+        
+    }//GEN-LAST:event_EditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,9 +542,9 @@ public class ContractCRUDView extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JCheckBox jCheckBoxBoletoEditar;
+    private javax.swing.JCheckBox jCheckBoxCartaoEditar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;

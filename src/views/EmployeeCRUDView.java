@@ -20,11 +20,15 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
     /**
      * Creates new form EmployeeCRUDView
      */
+    
+    int employeeID;
     public EmployeeCRUDView() {
         initComponents();
         Formatacao.formatarCpf(jTXTCpf);
         Formatacao.formatarCpf(jTXTCPFEditar);
         Formatacao.formatarCpf(jTXTCPFConsultar);
+        EmployeeController ec = new EmployeeController();
+        ec.populateTable(jTable1, null);
     }
 
     /**
@@ -69,6 +73,7 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTXTCPFConsultar = new javax.swing.JFormattedTextField();
+        jButton8 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -86,6 +91,7 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jPasswordFieldEditar = new javax.swing.JPasswordField();
         jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -220,6 +226,13 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jButton8.setText("Editar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -237,17 +250,21 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
                             .addComponent(jTXTNomeConsultar)
                             .addComponent(jTXTTelefoneConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTXTEmailConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTXTCPFConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTXTCPFConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(123, 123, 123))
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(86, 86, 86))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))))
             .addComponent(jScrollPane1)
         );
         jPanel4Layout.setVerticalGroup(
@@ -268,8 +285,9 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jTXTEmailConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -318,15 +336,29 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         });
 
         jButton6.setText("Editar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel17.setText("Senha:");
+
+        jLabel19.setText("Nova senha obrigatória");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 864, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(195, 195, 195)
+                .addComponent(jLabel19)
+                .addContainerGap(557, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -357,14 +389,17 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createSequentialGroup()
                             .addComponent(jLabel17)
                             .addGap(74, 74, 74)
-                            .addComponent(jPasswordFieldEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(140, 140, 140)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPasswordFieldEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(390, Short.MAX_VALUE)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel19)
+                .addGap(42, 42, 42))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -396,15 +431,11 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel15)
                         .addComponent(jTXTEmailEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(37, 37, 37)
+                    .addGap(39, 39, 39)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel17)
-                                .addComponent(jPasswordFieldEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel17)
+                        .addComponent(jPasswordFieldEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 3, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -453,11 +484,27 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        SearchCityByID sa = new SearchCityByID(this);
+        sa.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        new SearchEmployeeByID().setVisible(true);
+        String criteria = "";
+        if(Validacao.notNull(this.jTXTCPFConsultar.getText())){
+            criteria += criteria += " AND cpf LIKE \'%" + this.jTXTCPFConsultar.getText() + "%\'";
+        }
+        if (Validacao.notNull(this.jTXTEmailConsultar.getText())){
+            criteria += " AND email LIKE \'%" + this.jTXTEmailConsultar.getText() + "%\'";
+        }
+        if (Validacao.notNull(this.jTXTNomeConsultar.getText())){
+            criteria += " AND name LIKE \'%" + this.jTXTNomeConsultar.getText() + "%\'";
+        }
+        if (Validacao.notNull(this.jTXTTelefoneConsultar.getText())){
+            criteria += " AND phone LIKE \'%" + this.jTXTTelefoneConsultar.getText() + "%\'";
+        }
+        
+        EmployeeController ec = new EmployeeController();
+        ec.populateTable(jTable1, criteria);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -531,6 +578,82 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        this.jTXTNomeEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 1)));
+        this.jTXTEmailEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 4)));
+        this.jTXTCPFEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 2)));
+        this.jTXTTelefoneEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 3)));
+        this.jTXTCidadeEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 8)));
+        this.employeeID= Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        
+        boolean ok = true;
+        Employee employee = new Employee();
+        
+        if(Validacao.notNull(this.jTXTNomeEditar.getText())){
+            employee.setName(this.jTXTNomeEditar.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o nome do empregado!");
+            this.jTXTNomeEditar.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTCPFEditar.getText())){
+            employee.setCpf(this.jTXTCPFEditar.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o CPF!");
+            this.jTXTCPFEditar.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTEmailEditar.getText())){
+            employee.setEmail(this.jTXTEmailEditar.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o Email!");
+            this.jTXTEmail.requestFocus();
+            ok = false;
+        }
+        if (Validacao.notNull(this.jTXTCidadeEditar.getText())){
+            employee.setCity_idcity(Integer.parseInt(this.jTXTCidadeEditar.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Busque a cidade!");
+            SearchCityByID sa = new SearchCityByID(this);
+            sa.setVisible(true);
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTTelefoneEditar.getText())){
+            employee.setPhone(this.jTXTTelefoneEditar.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o telefone!");
+            this.jTXTTelefone.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jPasswordFieldEditar.getText())){
+            employee.setPassword(this.jPasswordFieldEditar.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com a senha!");
+            ok = false;
+        }
+        
+        EmployeeController ec = new EmployeeController();
+        
+        if(ok){
+            ec.update(employee, employeeID);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Verificar entradas de dados!");
+        }
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -574,6 +697,7 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -584,6 +708,7 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -622,7 +747,7 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
 
     public void definirValor (int id){
         this.jTXTCidade.setText(id+"");
-        this.jTXTEmail.requestFocus();
+        this.jTXTCidadeEditar.setText(id+"");
     }
             
             

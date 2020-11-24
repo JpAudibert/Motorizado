@@ -190,6 +190,11 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         jLabel15.setText("Valor:");
 
         jButton11.setText("Editar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("Remover");
 
@@ -322,6 +327,11 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         jTXTValorEditar.setBounds(614, 33, 128, 28);
 
         jButton7.setText("Registrar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton7);
         jButton7.setBounds(679, 288, 92, 28);
 
@@ -415,6 +425,14 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
     private void jTXTTipoManutençaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTXTTipoManutençaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTXTTipoManutençaoActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
