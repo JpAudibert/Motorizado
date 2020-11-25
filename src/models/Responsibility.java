@@ -61,4 +61,12 @@ public class Responsibility {
         this.deleted_at = deleted_at;
     }
 
+    public void setsetSector(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void create(Responsibility re) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

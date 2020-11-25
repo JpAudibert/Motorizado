@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import models.Category;
+import models.Responsibility;
 
 public class CategoryController implements IBasicController<Category> {
 
@@ -308,6 +309,10 @@ public class CategoryController implements IBasicController<Category> {
 //                return this;
 //            }
 //        });
+    }
+
+    public void create(Responsibility res) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

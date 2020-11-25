@@ -59,6 +59,10 @@ public class Category {
     public void setDeleted_at(Date deleted_at) {
         this.deleted_at = deleted_at;
     }
+
+    public void setsetSector(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

@@ -54,7 +54,6 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jTXTValor = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
@@ -130,10 +129,6 @@ public class ContractCRUDView extends javax.swing.JFrame {
         });
         jPanel2.add(jButton2);
         jButton2.setBounds(592, 332, 92, 23);
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Contract 1.png"))); // NOI18N
-        jPanel2.add(jLabel6);
-        jLabel6.setBounds(400, 10, 280, 380);
 
         jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -288,8 +283,6 @@ public class ContractCRUDView extends javax.swing.JFrame {
         });
         jPanel7.add(Editar);
         Editar.setBounds(592, 332, 92, 23);
-
-        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucas\\Desktop\\PROJETO INTEGRADOR\\Motorizado\\src\\IMG\\Contract 1.png")); // NOI18N
         jPanel7.add(jLabel12);
         jLabel12.setBounds(400, 10, 280, 380);
 
@@ -344,6 +337,7 @@ public class ContractCRUDView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
         
         boolean ok = true;
         Contract ct = new Contract();
@@ -550,7 +544,6 @@ public class ContractCRUDView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

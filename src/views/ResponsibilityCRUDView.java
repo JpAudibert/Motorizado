@@ -7,6 +7,7 @@ package views;
 
 import controllers.BrandController;
 import controllers.CategoryController;
+import controllers.ResponsibilityController;
 import helpers.Validacao;
 import java.awt.Dialog;
 import java.util.Calendar;
@@ -14,6 +15,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import models.Brand;
 import models.Category;
+import models.Responsibility;
 
 /**
  *
@@ -229,19 +231,21 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        CategoryController bc = new CategoryController();
-
+        //CategoryController bc = new CategoryController();
+        ResponsibilityController bc = new ResponsibilityController();
         Date suaData = new Date();
-        String name = this.jTextField1.getText();
-
+        String setor = this.jTextField1.getText();
+        
         if (Validacao.notNull(this.jTextField1.getText())) {
             if (true) {
 
                 Calendar calendario = Calendar.getInstance();
                 calendario.setTime(suaData);
-                Category ca = new Category();
-                ca.setCategory_name(this.jTextField1.getText());
-                bc.create(ca);
+                Responsibility re = new Responsibility();
+                re.setSector(this.jTextField1.getText());
+                bc.create(re);
+                
+
 
             } else {
                 JOptionPane.showConfirmDialog(null, "Preencha o codigo da marca!");
@@ -252,6 +256,7 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
         }
 
         dispose();
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -353,3 +358,5 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
+
+
