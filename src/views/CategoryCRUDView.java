@@ -100,7 +100,7 @@ public class CategoryCRUDView extends javax.swing.JFrame {
         jPanel1.add(jTextField2);
         jTextField2.setBounds(85, 117, 35, 20);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucas\\Desktop\\PROJETO INTEGRADOR\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
         jPanel1.add(jLabel5);
         jLabel5.setBounds(240, 70, 350, 200);
 

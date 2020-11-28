@@ -7,6 +7,7 @@ package views;
 
 import helpers.ComboItem;
 import helpers.CombosDAO;
+import helpers.Formatacao;
 
 /**
  *
@@ -19,17 +20,52 @@ public class VehicleCRUDView extends javax.swing.JFrame {
      */
     public VehicleCRUDView() {
         initComponents();
+        Formatacao.formatarData(this.jTXTAnoFab);
+        Formatacao.formatarData(this.jTXTAnoFabProcurar);
+        Formatacao.formatarData(this.jTXTAnoFabEditar);
+        
+        
         CombosDAO cdao = new CombosDAO();
 
         cdao.popularCombo("Category", jComboBox1);
         cdao.popularCombo("Vehicle_models", jComboBox2);
+        cdao.popularCombo("Category", jComboCategoriaEditar);
+        cdao.popularCombo("Category", jComboCategoriaPesquisar);
+        cdao.popularCombo("Vahicle_models", jComboModeloEditar);
+        cdao.popularCombo("Vahicle_models", jComboModeloPesquisar);
+        
 
         combo.removeAllItems();
 
-        ComboItem item = new ComboItem();
-        item.setCodigo(0);
-        item.setDescricao("Selecione");
-        combo.addItem(item.getDescricao());
+        ComboItem[] item = new ComboItem[5];
+        item[0] = new ComboItem();
+        item[0].setCodigo(0);
+        item[0].setDescricao("Selecione");
+        item[1] = new ComboItem();
+        item[1].setCodigo(1);
+        item[1].setDescricao("Gasolina");
+        item[2] = new ComboItem();
+        item[2].setCodigo(2);
+        item[2].setDescricao("Diesel");
+        item[3] = new ComboItem();
+        item[3].setCodigo(3);
+        item[3].setDescricao("Alcool");
+        item[4] = new ComboItem();
+        item[4].setCodigo(4);
+        item[4].setDescricao("Flex");
+        
+        
+        combo.addItem(item[0].getDescricao());
+        combo.addItem(item[1].getDescricao());
+        combo.addItem(item[2].getDescricao());
+        combo.addItem(item[3].getDescricao());
+        combo.addItem(item[4].getDescricao());
+        comboCombustivelEditar.addItem(item[0].getDescricao());
+        comboCombustivelEditar.addItem(item[1].getDescricao());
+        comboCombustivelEditar.addItem(item[2].getDescricao());
+        comboCombustivelEditar.addItem(item[3].getDescricao());
+        comboCombustivelEditar.addItem(item[4].getDescricao());
+        
 
     }
 
@@ -51,7 +87,6 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTXTAnoFab = new javax.swing.JTextField();
         jTXTPlaca = new javax.swing.JTextField();
         jTXTChassi = new javax.swing.JTextField();
         jTXTPower = new javax.swing.JTextField();
@@ -61,6 +96,7 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         combo = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
+        jTXTAnoFab = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -69,13 +105,13 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jComboCategoriaPesquisar = new javax.swing.JComboBox<>();
         jComboModeloPesquisar = new javax.swing.JComboBox<>();
-        jTXTAnoFabProcurar = new javax.swing.JTextField();
         jTXTPlacaProcurar = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
+        jTXTAnoFabProcurar = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jComboModeloEditar = new javax.swing.JComboBox<>();
@@ -87,13 +123,13 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         comboCombustivelEditar = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTXTAnoFabEditar = new javax.swing.JTextField();
         jTXTPlacaEditar = new javax.swing.JTextField();
         jTXTChassiEditar = new javax.swing.JTextField();
         jTXTPowerEditar = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jComboCategoriaEditar = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
+        jTXTAnoFabEditar = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,8 +171,6 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         jLabel8.setText("Modelo:");
         jPanel1.add(jLabel8);
         jLabel8.setBounds(486, 78, 63, 22);
-        jPanel1.add(jTXTAnoFab);
-        jTXTAnoFab.setBounds(251, 35, 112, 20);
         jPanel1.add(jTXTPlaca);
         jTXTPlaca.setBounds(251, 82, 112, 20);
         jPanel1.add(jTXTChassi);
@@ -174,9 +208,11 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         jPanel1.add(combo);
         combo.setBounds(251, 210, 112, 20);
 
-        jLabel19.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Carro.png")); // NOI18N
+        jLabel19.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucas\\Desktop\\PROJETO INTEGRADOR\\Motorizado\\src\\IMG\\Carro.png")); // NOI18N
         jPanel1.add(jLabel19);
         jLabel19.setBounds(250, 260, 420, 100);
+        jPanel1.add(jTXTAnoFab);
+        jTXTAnoFab.setBounds(250, 30, 109, 20);
 
         jTabbedPane1.addTab("Cadastrar", jPanel1);
 
@@ -233,9 +269,9 @@ public class VehicleCRUDView extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTXTAnoFabProcurar)
-                    .addComponent(jTXTPlacaProcurar, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTXTPlacaProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTXTAnoFabProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
@@ -347,11 +383,11 @@ public class VehicleCRUDView extends javax.swing.JFrame {
                     .addComponent(jLabel14))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTXTAnoFabEditar)
                     .addComponent(jTXTPlacaEditar)
                     .addComponent(jTXTChassiEditar)
                     .addComponent(jTXTPowerEditar)
-                    .addComponent(comboCombustivelEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboCombustivelEditar, 0, 112, Short.MAX_VALUE)
+                    .addComponent(jTXTAnoFabEditar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
@@ -371,8 +407,8 @@ public class VehicleCRUDView extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(jLabel15)
-                    .addComponent(jTXTAnoFabEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboCategoriaEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboCategoriaEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTXTAnoFabEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
@@ -527,9 +563,9 @@ public class VehicleCRUDView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTXTAnoFab;
-    private javax.swing.JTextField jTXTAnoFabEditar;
-    private javax.swing.JTextField jTXTAnoFabProcurar;
+    private javax.swing.JFormattedTextField jTXTAnoFab;
+    private javax.swing.JFormattedTextField jTXTAnoFabEditar;
+    private javax.swing.JFormattedTextField jTXTAnoFabProcurar;
     private javax.swing.JTextField jTXTChassi;
     private javax.swing.JTextField jTXTChassiEditar;
     private javax.swing.JTextField jTXTPlaca;

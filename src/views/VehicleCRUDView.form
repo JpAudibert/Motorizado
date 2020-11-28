@@ -157,13 +157,6 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTXTAnoFab">
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="251" y="35" width="112" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
             <Component class="javax.swing.JTextField" name="jTXTPlaca">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -274,12 +267,19 @@
             <Component class="javax.swing.JLabel" name="jLabel19">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Felipe Fritz\Motorizado\Motorizado\src\IMG\Carro.png"/>
+                  <Image iconType="2" name="C:\Users\lucas\Desktop\PROJETO INTEGRADOR\Motorizado\src\IMG\Carro.png"/>
                 </Property>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="250" y="260" width="420" height="100"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="jTXTAnoFab">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="250" y="30" width="109" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -325,9 +325,9 @@
                               <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTXTAnoFabProcurar" max="32767" attributes="0"/>
-                              <Component id="jTXTPlacaProcurar" pref="190" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTXTPlacaProcurar" min="-2" pref="190" max="-2" attributes="0"/>
+                              <Component id="jTXTAnoFabProcurar" min="-2" pref="108" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -445,8 +445,6 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTXTAnoFabProcurar">
-                </Component>
                 <Component class="javax.swing.JTextField" name="jTXTPlacaProcurar">
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton3">
@@ -487,6 +485,8 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="jTXTAnoFabProcurar">
                 </Component>
               </SubComponents>
             </Container>
@@ -535,11 +535,11 @@
                           </Group>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTXTAnoFabEditar" alignment="0" max="32767" attributes="0"/>
                               <Component id="jTXTPlacaEditar" alignment="0" max="32767" attributes="0"/>
                               <Component id="jTXTChassiEditar" alignment="0" max="32767" attributes="0"/>
                               <Component id="jTXTPowerEditar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="comboCombustivelEditar" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="comboCombustivelEditar" alignment="0" pref="112" max="32767" attributes="0"/>
+                              <Component id="jTXTAnoFabEditar" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="182" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -564,8 +564,8 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTXTAnoFabEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jComboCategoriaEditar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTXTAnoFabEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -683,8 +683,6 @@
                     <Property name="text" type="java.lang.String" value="Modelo:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTXTAnoFabEditar">
-                </Component>
                 <Component class="javax.swing.JTextField" name="jTXTPlacaEditar">
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTXTChassiEditar">
@@ -721,6 +719,8 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Placa:"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="jTXTAnoFabEditar">
                 </Component>
               </SubComponents>
             </Container>

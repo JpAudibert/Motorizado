@@ -7,6 +7,7 @@ package views;
 
 import controllers.BrandController;
 import controllers.CategoryController;
+import helpers.CombosDAO;
 import helpers.Validacao;
 import java.awt.Dialog;
 import java.util.Calendar;
@@ -26,9 +27,10 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
      */
     public VehicleModelCRUDView() {
         initComponents();
+        CombosDAO cdao = new CombosDAO();
+        cdao.popularCombo("Category", jComboBox1);
+        cdao.popularCombo("Category", jComboBox2);
 
-        //CategoryController bc = new CategoryController();
-        //bc.populateTable(jTable1, null);
     }
 
     /**
@@ -46,8 +48,6 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -96,21 +96,14 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
         jPanel1.add(jButton2);
         jButton2.setBounds(160, 260, 75, 23);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Id:");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(102, 96, 17, 17);
-        jPanel1.add(jTextField2);
-        jTextField2.setBounds(207, 96, 35, 20);
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Categoria:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(102, 153, 63, 17);
+        jLabel5.setBounds(100, 110, 63, 17);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(207, 153, 133, 20);
+        jComboBox1.setBounds(210, 110, 133, 20);
 
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucas\\Desktop\\PROJETO INTEGRADOR\\Motorizado\\src\\IMG\\Carro.png")); // NOI18N
         jPanel1.add(jLabel7);
@@ -267,16 +260,16 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         CategoryController bc = new CategoryController();
-        int id = Integer.parseInt(this.jTextField2.getText());
         Date suaData = new Date();
         String name = this.jTextField1.getText();
 
         if (Validacao.notNull(this.jTextField1.getText())) {
-            if (Validacao.notNull(this.jTextField2.getText())) {
+            if (true) {
 
                 Calendar calendario = Calendar.getInstance();
                 calendario.setTime(suaData);
-                Category ca = new Category(id, name, suaData, suaData, suaData);
+                Category ca = new Category();
+                ca.setCategory_name(name);
                 bc.create(ca);
 
             } else {
@@ -382,7 +375,6 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -395,7 +387,6 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
