@@ -18,6 +18,7 @@ public class SearchEmployeeByID extends javax.swing.JFrame {
      * Creates new form SearchEmployeeByID
      */
     MaintenanceCRUDView maintenanceCRUDView;
+    ServiceOrderCRUDView serviceOrderCRUDView;
     public SearchEmployeeByID() {
         initComponents();
         EmployeeController ec = new EmployeeController();
@@ -29,6 +30,13 @@ public class SearchEmployeeByID extends javax.swing.JFrame {
         EmployeeController ec = new EmployeeController();
         ec.populateTable(jTable1, null);
         this.maintenanceCRUDView = maintenanceCRUDView;
+    }
+    
+    public SearchEmployeeByID(ServiceOrderCRUDView serviceOrderCRUDView) {
+        initComponents();
+        EmployeeController ec = new EmployeeController();
+        ec.populateTable(jTable1, null);
+        this.serviceOrderCRUDView = serviceOrderCRUDView;
     }
 
     /**
@@ -179,11 +187,15 @@ public class SearchEmployeeByID extends javax.swing.JFrame {
             this.dispose();
         }
         
+        if(this.serviceOrderCRUDView.isActive()){
+            this.serviceOrderCRUDView.PreencherCamposFuncionarios(id);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String criteria = "";
+        String criteria = null;
         
         
         if(Validacao.notNull(this.jTXTCPF.getText())){

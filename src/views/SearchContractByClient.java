@@ -17,8 +17,17 @@ public class SearchContractByClient extends javax.swing.JFrame {
     /**
      * Creates new form SearchClientID
      */
+    ServiceOrderCRUDView serviceOrderCRUDView;
+    
     public SearchContractByClient() {
         initComponents();
+    }
+    
+    public SearchContractByClient(ServiceOrderCRUDView serviceOrderCRUDView) {
+        initComponents();
+        this.serviceOrderCRUDView = serviceOrderCRUDView;
+        ClientController cc = new ClientController();
+        cc.populateTable(jTable1, null);
     }
 
     /**
@@ -119,9 +128,11 @@ public class SearchContractByClient extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String valueAt = String.valueOf(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 0));
-
-
-        this.dispose();
+        
+        if (this.serviceOrderCRUDView.isActive()){
+            this.serviceOrderCRUDView.PreencherCamposContratos(valueAt);
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {

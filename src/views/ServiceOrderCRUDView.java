@@ -5,6 +5,13 @@
  */
 package views;
 
+import controllers.ServiceOrderController;
+import helpers.Formatacao;
+import helpers.Validacao;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import models.ServiceOrder;
+
 /**
  *
  * @author lucas
@@ -14,8 +21,22 @@ public class ServiceOrderCRUDView extends javax.swing.JFrame {
     /**
      * Creates new form ServiceOrderCRUDView
      */
+    int serviceOrderID;
+
     public ServiceOrderCRUDView() {
         initComponents();
+        Formatacao.formatarData(this.jTXTDataEm);
+        Formatacao.formatarDecimal(jTXTValorUnit);
+        Formatacao.formatarDecimal(jTXTValorTotal);
+        Formatacao.formatarData(jTXTDataEmEditar);
+        Formatacao.formatarDecimal(jTXTValorTotalConsultar);
+        Formatacao.formatarDecimal(jTXTValorUnitEditar);
+        Formatacao.formatarDecimal(jTXTValorUnitEditar);
+        Formatacao.formatarDecimal(jTXTValorTotalEditar);
+
+        ServiceOrderController controller = new ServiceOrderController();
+        controller.populateTable(jTable1, null);
+
     }
 
     /**
@@ -29,31 +50,169 @@ public class ServiceOrderCRUDView extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTXTDataEm = new javax.swing.JFormattedTextField();
+        JTXTDocument = new javax.swing.JTextField();
+        jTXTValorUnit = new javax.swing.JTextField();
+        jTXTValorTotal = new javax.swing.JTextField();
+        jTXTFuncionarioID = new javax.swing.JTextField();
+        jTXTEquipamento = new javax.swing.JTextField();
+        jTXTContractID = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jTXTDesc = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jTXTFuncIDConsultar = new javax.swing.JTextField();
+        jTXTDescConsultar = new javax.swing.JTextField();
+        jTXTValorTotalConsultar = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jTXTDataEmEditar = new javax.swing.JFormattedTextField();
+        jTXTDescEditar = new javax.swing.JTextField();
+        jTXTValorUnitEditar = new javax.swing.JTextField();
+        jTXTValorTotalEditar = new javax.swing.JTextField();
+        jTXTFuncionarioIDEditar = new javax.swing.JTextField();
+        jTXTEquipamentoEditar = new javax.swing.JTextField();
+        jTXTContractIDEditar = new javax.swing.JTextField();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        JTXTDocumentEditar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTabbedPane1FocusGained(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(null);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 769, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 429, Short.MAX_VALUE)
-        );
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Descrição:");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(37, 27, 80, 22);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Valor unitário:");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(37, 71, 111, 22);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(37, 441, 0, 0);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Valor total:");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(37, 115, 87, 22);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Data de emissão:");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(434, 27, 136, 22);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("Funcionario:");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(434, 71, 96, 22);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("Documento:");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(374, 210, 110, 22);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Equipamento comprado:");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(37, 159, 193, 22);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucas\\Desktop\\PROJETO INTEGRADOR\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(37, 213, 300, 222);
+        jPanel1.add(jTXTDataEm);
+        jTXTDataEm.setBounds(588, 27, 124, 28);
+        jPanel1.add(JTXTDocument);
+        JTXTDocument.setBounds(520, 210, 188, 28);
+        jPanel1.add(jTXTValorUnit);
+        jTXTValorUnit.setBounds(208, 71, 188, 28);
+        jPanel1.add(jTXTValorTotal);
+        jTXTValorTotal.setBounds(208, 110, 188, 28);
+        jPanel1.add(jTXTFuncionarioID);
+        jTXTFuncionarioID.setBounds(540, 70, 30, 28);
+        jPanel1.add(jTXTEquipamento);
+        jTXTEquipamento.setBounds(240, 159, 472, 28);
+        jPanel1.add(jTXTContractID);
+        jTXTContractID.setBounds(540, 110, 30, 30);
+
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(590, 70, 65, 30);
+
+        jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
+        jButton2.setBounds(590, 110, 65, 30);
+
+        jButton3.setText("Registrar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3);
+        jButton3.setBounds(540, 310, 120, 40);
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel21.setText("Contrato:");
+        jPanel1.add(jLabel21);
+        jLabel21.setBounds(434, 115, 74, 22);
+        jPanel1.add(jTXTDesc);
+        jTXTDesc.setBounds(212, 27, 188, 28);
 
         jTabbedPane1.addTab("Registrar", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -68,32 +227,217 @@ public class ServiceOrderCRUDView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 109, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel2.add(jScrollPane1);
+        jScrollPane1.setBounds(0, 96, 773, 330);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setText("Descrição:");
+        jPanel2.add(jLabel10);
+        jLabel10.setBounds(40, 10, 80, 22);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel11.setText("Valor Total:");
+        jPanel2.add(jLabel11);
+        jLabel11.setBounds(40, 50, 110, 22);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel12.setText("Funcionario:");
+        jPanel2.add(jLabel12);
+        jLabel12.setBounds(420, 10, 96, 22);
+        jPanel2.add(jTXTFuncIDConsultar);
+        jTXTFuncIDConsultar.setBounds(530, 10, 30, 20);
+        jPanel2.add(jTXTDescConsultar);
+        jTXTDescConsultar.setBounds(150, 10, 210, 20);
+        jPanel2.add(jTXTValorTotalConsultar);
+        jTXTValorTotalConsultar.setBounds(150, 50, 210, 20);
+
+        jButton4.setText("Buscar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton4);
+        jButton4.setBounds(590, 10, 73, 23);
+
+        jButton5.setText("Excluir");
+        jPanel2.add(jButton5);
+        jButton5.setBounds(590, 50, 63, 23);
+
+        jButton6.setText("Editar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton6);
+        jButton6.setBounds(680, 50, 61, 23);
+
+        jButton7.setText("Consultar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton7);
+        jButton7.setBounds(440, 50, 100, 23);
 
         jTabbedPane1.addTab("Consultar/Remover", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setText("Descrição:");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setText("Valor unitário:");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel15.setText("Valor total:");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel16.setText("Data de emissão:");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel17.setText("Funcionario:");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel18.setText("Contrato:");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel19.setText("Equipamento comprado:");
+
+        jLabel20.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucas\\Desktop\\PROJETO INTEGRADOR\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
+
+        jButton8.setText("Buscar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("Buscar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jButton10.setText("Salvar");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel22.setText("Documento:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 769, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(115, 115, 115))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(JTXTDocumentEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel15)
+                            .addGap(84, 84, 84)
+                            .addComponent(jTXTValorTotalEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(38, 38, 38)
+                            .addComponent(jLabel18)
+                            .addGap(32, 32, 32)
+                            .addComponent(jTXTContractIDEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton9))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel19)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTXTEquipamentoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel14)
+                                .addComponent(jLabel13))
+                            .addGap(60, 60, 60)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jTXTDescEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(38, 38, 38)
+                                    .addComponent(jLabel16)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTXTDataEmEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jTXTValorUnitEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(38, 38, 38)
+                                    .addComponent(jLabel17)
+                                    .addGap(10, 10, 10)
+                                    .addComponent(jTXTFuncionarioIDEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton8))))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 429, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel13)
+                        .addComponent(jLabel16)
+                        .addComponent(jTXTDataEmEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTXTDescEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTXTFuncionarioIDEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jTXTValorUnitEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17))))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTXTValorTotalEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTXTContractIDEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel18))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jTXTEquipamentoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(JTXTDocumentEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94))))
         );
 
         jTabbedPane1.addTab("Editar", jPanel3);
@@ -106,11 +450,202 @@ public class ServiceOrderCRUDView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        SearchEmployeeByID searchEmployeeByID = new SearchEmployeeByID(this);
+        searchEmployeeByID.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        SearchContractByClient searchContractByClient = new SearchContractByClient(this);
+        searchContractByClient.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        SearchEmployeeByID searchEmployeeByID = new SearchEmployeeByID(this);
+        searchEmployeeByID.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        SearchContractByClient searchContractByClient = new SearchContractByClient(this);
+        searchContractByClient.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        String criteria = null;
+        if (Validacao.notNull(this.jTXTFuncIDConsultar.getText())) {
+            criteria += " AND name LIKE \'%" + this.jTXTFuncIDConsultar.getText() + "%\'";
+        }
+        if (Validacao.notNull(this.jTXTDescConsultar.getText())) {
+            criteria += " AND name LIKE \'%" + this.jTXTDescConsultar.getText() + "%\'";
+        }
+        if (Validacao.notNull(this.jTXTValorTotalConsultar.getText())) {
+            criteria += " AND name LIKE \'%" + Formatacao.formatarDecimal(Double.parseDouble(this.jTXTValorTotalConsultar.getText())) + "%\'";
+        }
+
+        ServiceOrderController controller = new ServiceOrderController();
+        controller.populateTable(jTable1, criteria);
+
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        ServiceOrder serviceOrder = new ServiceOrder();
+
+        if (Validacao.notNull(this.jTXTContractID.getText())) {
+            serviceOrder.setContract_idcontract(Integer.parseInt(this.jTXTContractID.getText()));
+        }
+        if (Validacao.notNull(this.JTXTDocument.getText())) {
+            serviceOrder.setObject_document(this.JTXTDocument.getText());
+        }
+
+        if (Validacao.notNull(this.jTXTFuncionarioID.getText())) {
+            serviceOrder.setEmployees_idemployees(Integer.parseInt(this.jTXTFuncionarioID.getText()));
+            if (Validacao.notNull(this.jTXTDesc.getText())) {
+                serviceOrder.setDescription(this.jTXTDesc.getText());
+                if (Validacao.notNull(this.jTXTDataEm.getText())) {
+                    String[] split = this.jTXTDataEm.getText().split("/");
+                    Date emission_date = new Date();
+                    emission_date.setMonth(Integer.parseInt(split[1]));
+                    emission_date.setDate(Integer.parseInt(split[0]));
+                    emission_date.setYear(Integer.parseInt(split[2]));
+                    serviceOrder.setEmission_date(emission_date);
+                    if (Validacao.notNull(this.jTXTValorUnit.getText())) {
+                        String valorUnitario = this.jTXTValorUnit.getText();
+                        String formatarDecimal = Formatacao.formatarDecimal(Double.valueOf(valorUnitario));
+                        serviceOrder.setUnitary_value(Double.parseDouble(formatarDecimal));
+                        if (Validacao.notNull(this.jTXTValorTotal.getText())) {
+                            String valorUnitario1 = this.jTXTValorTotal.getText();
+                            String formatarDecimal1 = Formatacao.formatarDecimal(Double.valueOf(valorUnitario));
+                            serviceOrder.setTotal_value(Double.parseDouble(formatarDecimal));
+                            if (Validacao.notNull(this.jTXTEquipamento.getText())) {
+                                serviceOrder.setEquipment_purchased(this.jTXTEquipamento.getText());
+                                ServiceOrderController controller = new ServiceOrderController();
+                                controller.create(serviceOrder);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Entre com o o equipamento comprado!");
+                                this.jTXTValorTotal.requestFocus();
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Entre com o valor total!");
+                            this.jTXTValorTotal.requestFocus();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Entre com o valor unitário!");
+                        this.jTXTValorUnit.requestFocus();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Entre com a data de emissão!");
+                    this.jTXTDataEm.requestFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Entre com a descrição da ordem de serviço!");
+                this.JTXTDocument.requestFocus();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Entre com o ID do funcionario!");
+            this.jTXTFuncionarioID.requestFocus();
+        }
+
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
+        // TODO add your handling code here:
+        ServiceOrderController controller = new ServiceOrderController();
+        controller.populateTable(jTable1, null);
+
+    }//GEN-LAST:event_jTabbedPane1FocusGained
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+
+        this.jTXTDescEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 1)));
+        this.jTXTDataEmEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 2)));
+        this.JTXTDocumentEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 3)));
+        this.jTXTValorUnitEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 4)));
+        this.jTXTValorTotalEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 5)));
+        this.jTXTEquipamentoEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 6)));
+        this.serviceOrderID = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
+
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        ServiceOrder serviceOrder = new ServiceOrder();
+
+        if (Validacao.notNull(this.jTXTContractIDEditar.getText())) {
+            serviceOrder.setContract_idcontract(Integer.parseInt(this.jTXTContractIDEditar.getText()));
+        }
+        if (Validacao.notNull(this.JTXTDocumentEditar.getText())) {
+            serviceOrder.setObject_document(this.JTXTDocumentEditar.getText());
+        }
+
+        if (Validacao.notNull(this.jTXTFuncionarioIDEditar.getText())) {
+            serviceOrder.setEmployees_idemployees(Integer.parseInt(this.jTXTFuncionarioIDEditar.getText()));
+            if (Validacao.notNull(this.jTXTDescEditar.getText())) {
+                serviceOrder.setDescription(this.jTXTDescEditar.getText());
+                if (Validacao.notNull(this.jTXTDataEmEditar.getText())) {
+                    String[] split = this.jTXTDataEmEditar.getText().split("/");
+                    Date emission_date = new Date();
+                    emission_date.setMonth(Integer.parseInt(split[1]));
+                    emission_date.setDate(Integer.parseInt(split[0]));
+                    emission_date.setYear(Integer.parseInt(split[2]));
+                    serviceOrder.setEmission_date(emission_date);
+                    if (Validacao.notNull(this.jTXTValorUnitEditar.getText())) {
+                        String valorUnitario = this.jTXTValorUnitEditar.getText();
+                        String formatarDecimal = Formatacao.formatarDecimal(Double.valueOf(valorUnitario));
+                        serviceOrder.setUnitary_value(Double.parseDouble(formatarDecimal));
+                        if (Validacao.notNull(this.jTXTValorTotalEditar.getText())) {
+                            String valorUnitario1 = this.jTXTValorTotalEditar.getText();
+                            String formatarDecimal1 = Formatacao.formatarDecimal(Double.valueOf(valorUnitario));
+                            serviceOrder.setTotal_value(Double.parseDouble(formatarDecimal));
+                            if (Validacao.notNull(this.jTXTEquipamentoEditar.getText())) {
+                                serviceOrder.setEquipment_purchased(this.jTXTEquipamentoEditar.getText());
+                                ServiceOrderController controller = new ServiceOrderController();
+                                controller.update(serviceOrder, this.serviceOrderID);
+                                controller.populateTable(jTable1, null);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Entre com o o equipamento comprado!");
+                                this.jTXTValorTotalEditar.requestFocus();
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Entre com o valor total!");
+                            this.jTXTValorTotalEditar.requestFocus();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Entre com o valor unitário!");
+                        this.jTXTValorUnitEditar.requestFocus();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Entre com a data de emissão!");
+                    this.jTXTDataEmEditar.requestFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Entre com a descrição da ordem de serviço!");
+                this.jTXTDescEditar.requestFocus();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Entre com o ID do funcionario!");
+            this.jTXTFuncionarioIDEditar.requestFocus();
+        }
+
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,11 +682,75 @@ public class ServiceOrderCRUDView extends javax.swing.JFrame {
         });
     }
 
+    public void PreencherCamposFuncionarios(String id) {
+        this.jTXTFuncionarioID.setText(id);
+        this.jTXTFuncIDConsultar.setText(id);
+        this.jTXTFuncionarioIDEditar.setText(id);
+
+    }
+
+    public void PreencherCamposContratos(String id) {
+        this.jTXTContractID.setText(id);
+        this.jTXTContractIDEditar.setText(id);
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField JTXTDocument;
+    private javax.swing.JTextField JTXTDocumentEditar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTXTContractID;
+    private javax.swing.JTextField jTXTContractIDEditar;
+    private javax.swing.JFormattedTextField jTXTDataEm;
+    private javax.swing.JFormattedTextField jTXTDataEmEditar;
+    private javax.swing.JTextField jTXTDesc;
+    private javax.swing.JTextField jTXTDescConsultar;
+    private javax.swing.JTextField jTXTDescEditar;
+    private javax.swing.JTextField jTXTEquipamento;
+    private javax.swing.JTextField jTXTEquipamentoEditar;
+    private javax.swing.JTextField jTXTFuncIDConsultar;
+    private javax.swing.JTextField jTXTFuncionarioID;
+    private javax.swing.JTextField jTXTFuncionarioIDEditar;
+    private javax.swing.JTextField jTXTValorTotal;
+    private javax.swing.JTextField jTXTValorTotalConsultar;
+    private javax.swing.JTextField jTXTValorTotalEditar;
+    private javax.swing.JTextField jTXTValorUnit;
+    private javax.swing.JTextField jTXTValorUnitEditar;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
