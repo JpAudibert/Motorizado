@@ -18,6 +18,7 @@ public class SearchContractByClient extends javax.swing.JFrame {
      * Creates new form SearchClientID
      */
     ServiceOrderCRUDView serviceOrderCRUDView;
+    VehicleBookingView bookingView;
     
     public SearchContractByClient() {
         initComponents();
@@ -26,6 +27,13 @@ public class SearchContractByClient extends javax.swing.JFrame {
     public SearchContractByClient(ServiceOrderCRUDView serviceOrderCRUDView) {
         initComponents();
         this.serviceOrderCRUDView = serviceOrderCRUDView;
+        ClientController cc = new ClientController();
+        cc.populateTable(jTable1, null);
+    }
+    
+    public SearchContractByClient(VehicleBookingView bookingView) {
+        initComponents();
+        this.bookingView = bookingView;
         ClientController cc = new ClientController();
         cc.populateTable(jTable1, null);
     }
@@ -131,6 +139,11 @@ public class SearchContractByClient extends javax.swing.JFrame {
         
         if (this.serviceOrderCRUDView.isActive()){
             this.serviceOrderCRUDView.PreencherCamposContratos(valueAt);
+            this.dispose();
+        }
+        
+        if (this.bookingView.isActive()){
+            this.bookingView.PreencherCampoContrato(valueAt);
             this.dispose();
         }
     }//GEN-LAST:event_jButton2ActionPerformed

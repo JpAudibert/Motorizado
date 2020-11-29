@@ -17,6 +17,7 @@ public class SearchVehicleByID extends javax.swing.JFrame {
     /**
      * Creates new form SearchVehicleByID
      */
+    VehicleBookingView bookingView;
     MaintenanceCRUDView maintenanceCRUDView;
     public SearchVehicleByID() {
         initComponents();
@@ -29,6 +30,13 @@ public class SearchVehicleByID extends javax.swing.JFrame {
         VehicleController vc = new VehicleController();
         vc.populateTable(jTable, null);
         this.maintenanceCRUDView = maintenanceCRUDView;
+    }
+    
+    public SearchVehicleByID(VehicleBookingView bookingView) {
+        initComponents();
+        VehicleController vc = new VehicleController();
+        vc.populateTable(jTable, null);
+        this.bookingView = bookingView;
     }
 
     /**
@@ -186,6 +194,10 @@ public class SearchVehicleByID extends javax.swing.JFrame {
         
         if (this.maintenanceCRUDView.isActive()){
             this.maintenanceCRUDView.preencherCamposVeiculos(id);
+            this.dispose();
+        }
+        if (this.bookingView.isActive()){
+            this.bookingView.PreencherCampoVeiculo(id);
             this.dispose();
         }
         

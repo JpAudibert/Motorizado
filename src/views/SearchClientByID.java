@@ -17,8 +17,19 @@ public class SearchClientByID extends javax.swing.JFrame {
     /**
      * Creates new form SearchClientID
      */
+    VehicleBookingView bookingView;
+    
     public SearchClientByID() {
         initComponents();
+        ClientController cc = new ClientController();
+        cc.populateTable(jTable1, null);
+    }
+    
+    public SearchClientByID(VehicleBookingView bookingView) {
+        initComponents();
+        this.bookingView = bookingView;
+        ClientController cc = new ClientController();
+        cc.populateTable(jTable1, null);
     }
 
 
@@ -135,6 +146,10 @@ public class SearchClientByID extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String valueAt = String.valueOf(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 0));
+        
+        if (this.bookingView.isActive()){
+            this.bookingView.PreencherCampoCliente(valueAt);
+        }
 
 
         this.dispose();

@@ -488,13 +488,13 @@ public class ServiceOrderCRUDView extends javax.swing.JFrame {
         // TODO add your handling code here:
         String criteria = null;
         if (Validacao.notNull(this.jTXTFuncIDConsultar.getText())) {
-            criteria += " AND name LIKE \'%" + this.jTXTFuncIDConsultar.getText() + "%\'";
+            criteria += " AND employees_idemployees LIKE \'%" + this.jTXTFuncIDConsultar.getText() + "%\'";
         }
         if (Validacao.notNull(this.jTXTDescConsultar.getText())) {
-            criteria += " AND name LIKE \'%" + this.jTXTDescConsultar.getText() + "%\'";
+            criteria += " AND description LIKE \'%" + this.jTXTDescConsultar.getText() + "%\'";
         }
         if (Validacao.notNull(this.jTXTValorTotalConsultar.getText())) {
-            criteria += " AND name LIKE \'%" + Formatacao.formatarDecimal(Double.parseDouble(this.jTXTValorTotalConsultar.getText())) + "%\'";
+            criteria += " AND total_value LIKE \'%" + Formatacao.formatarDecimal(Double.parseDouble(this.jTXTValorTotalConsultar.getText())) + "%\'";
         }
 
         ServiceOrderController controller = new ServiceOrderController();
