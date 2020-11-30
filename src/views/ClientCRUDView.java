@@ -171,8 +171,6 @@ public class ClientCRUDView extends javax.swing.JFrame {
         jLabel11.setBounds(459, 112, 108, 22);
         jPanel2.add(jTXTCNG1);
         jTXTCNG1.setBounds(616, 115, 110, 22);
-
-        jLabel17.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
         jPanel2.add(jLabel17);
         jLabel17.setBounds(80, 150, 350, 210);
 
@@ -331,8 +329,6 @@ public class ClientCRUDView extends javax.swing.JFrame {
                 jTXTCNHEditarActionPerformed(evt);
             }
         });
-
-        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
 
         jButton6.setText("salvar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {

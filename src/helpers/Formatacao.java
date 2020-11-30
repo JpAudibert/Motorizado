@@ -51,9 +51,23 @@ public class Formatacao {
     public static JFormattedTextField getData() {
         return getFormatado("##/##/####");
     }
+    
+    public static void formatarDataAno(JFormattedTextField campo){
+         try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("####");
+            campo.setFormatterFactory(null);
+            campo.setFormatterFactory(new DefaultFormatterFactory(m));
+            campo.setValue(null);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
 
     public static JFormattedTextField getDataHora() {
         return getFormatado("##/##/#### ##:##");
+        
     }
 
     public void formatoDecimal(JTextField campo) {

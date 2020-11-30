@@ -5,9 +5,13 @@
  */
 package views;
 
+import controllers.VehicleController;
 import helpers.ComboItem;
 import helpers.CombosDAO;
 import helpers.Formatacao;
+import helpers.Validacao;
+import javax.swing.JOptionPane;
+import models.Vehicle;
 
 /**
  *
@@ -18,24 +22,26 @@ public class VehicleCRUDView extends javax.swing.JFrame {
     /**
      * Creates new form VeihcleCRUDView
      */
+    int vehicleID;
+    
     public VehicleCRUDView() {
         initComponents();
-        Formatacao.formatarData(this.jTXTAnoFab);
-        Formatacao.formatarData(this.jTXTAnoFabProcurar);
-        Formatacao.formatarData(this.jTXTAnoFabEditar);
+        Formatacao.formatarDataAno(jTXTAnoFab);
+        Formatacao.formatarDataAno(jTXTAnoFabEditar);
+        Formatacao.formatarDataAno(jTXTAnoFabProcurar);
         
         
         CombosDAO cdao = new CombosDAO();
 
-        cdao.popularCombo("Category", jComboBox1);
-        cdao.popularCombo("Vehicle_models", jComboBox2);
+        cdao.popularCombo("Category", jComboBoxCat);
+        cdao.popularCombo("Vehicle_models", jComboBoxModel);
         cdao.popularCombo("Category", jComboCategoriaEditar);
         cdao.popularCombo("Category", jComboCategoriaPesquisar);
         cdao.popularCombo("Vahicle_models", jComboModeloEditar);
         cdao.popularCombo("Vahicle_models", jComboModeloPesquisar);
         
 
-        combo.removeAllItems();
+        jComboBoxCombustivel.removeAllItems();
 
         ComboItem[] item = new ComboItem[5];
         item[0] = new ComboItem();
@@ -55,11 +61,11 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         item[4].setDescricao("Flex");
         
         
-        combo.addItem(item[0].getDescricao());
-        combo.addItem(item[1].getDescricao());
-        combo.addItem(item[2].getDescricao());
-        combo.addItem(item[3].getDescricao());
-        combo.addItem(item[4].getDescricao());
+        jComboBoxCombustivel.addItem(item[0].getDescricao());
+        jComboBoxCombustivel.addItem(item[1].getDescricao());
+        jComboBoxCombustivel.addItem(item[2].getDescricao());
+        jComboBoxCombustivel.addItem(item[3].getDescricao());
+        jComboBoxCombustivel.addItem(item[4].getDescricao());
         comboCombustivelEditar.addItem(item[0].getDescricao());
         comboCombustivelEditar.addItem(item[1].getDescricao());
         comboCombustivelEditar.addItem(item[2].getDescricao());
@@ -84,19 +90,19 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTXTPlaca = new javax.swing.JTextField();
         jTXTChassi = new javax.swing.JTextField();
         jTXTPower = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBoxCat = new javax.swing.JComboBox<>();
+        jComboBoxModel = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        combo = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         jTXTAnoFab = new javax.swing.JFormattedTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jComboBoxCombustivel = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -157,11 +163,6 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(63, 162, 72, 22);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Tipo de combustivel:");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(63, 206, 165, 22);
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Categoria:");
         jPanel1.add(jLabel7);
@@ -178,13 +179,13 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         jPanel1.add(jTXTPower);
         jTXTPower.setBounds(251, 166, 112, 20);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(576, 35, 108, 20);
+        jComboBoxCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBoxCat);
+        jComboBoxCat.setBounds(576, 35, 108, 20);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(576, 82, 108, 20);
+        jComboBoxModel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBoxModel);
+        jComboBoxModel.setBounds(576, 82, 108, 20);
 
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -204,15 +205,20 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         jPanel1.add(jButton2);
         jButton2.setBounds(576, 209, 108, 23);
 
-        combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(combo);
-        combo.setBounds(251, 210, 112, 20);
-
         jLabel19.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucas\\Desktop\\PROJETO INTEGRADOR\\Motorizado\\src\\IMG\\Carro.png")); // NOI18N
         jPanel1.add(jLabel19);
         jLabel19.setBounds(250, 260, 420, 100);
         jPanel1.add(jTXTAnoFab);
         jTXTAnoFab.setBounds(250, 30, 109, 20);
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel21.setText("Tipo de combustivel:");
+        jPanel1.add(jLabel21);
+        jLabel21.setBounds(60, 210, 165, 22);
+
+        jComboBoxCombustivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBoxCombustivel);
+        jComboBoxCombustivel.setBounds(250, 210, 112, 20);
 
         jTabbedPane1.addTab("Cadastrar", jPanel1);
 
@@ -235,6 +241,11 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         jComboModeloPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton3.setText("Editar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Remover");
 
@@ -397,7 +408,7 @@ public class VehicleCRUDView extends javax.swing.JFrame {
                     .addComponent(jComboCategoriaEditar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboModeloEditar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
                 .addGap(62, 62, 62))
         );
         jPanel5Layout.setVerticalGroup(
@@ -465,10 +476,148 @@ public class VehicleCRUDView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Vehicle vehicle = new Vehicle();
+        
+        
+        
+        if (Validacao.notNull(this.jTXTAnoFab.getText())){
+            vehicle.setManufaturing_year(Integer.parseInt(this.jTXTAnoFab.getText()));
+            if (Validacao.notNull(this.jTXTPlaca.getText())){
+                vehicle.setTransit_board(this.jTXTPlaca.getText());
+                if (Validacao.notNull(jTXTChassi.getText())){
+                    vehicle.setChassis_id(jTXTChassi.getText());
+                    if(Validacao.notNull(this.jTXTPower.getText())){
+                        vehicle.setVehicle_power(this.jTXTPower.getText());
+                        int selectedIndex = this.jComboBoxCombustivel.getSelectedIndex();
+                        System.out.println(selectedIndex);
+                        switch (selectedIndex) {
+                            case 0:
+                                vehicle.setFuel_type("Gasolina");
+                            case 1:
+                                vehicle.setFuel_type("Gasolina");
+                                break;
+                            case 2:
+                                vehicle.setFuel_type("Diesel");
+                                break;
+                            case 3:
+                                vehicle.setFuel_type("Alcool");
+                                break;
+                            case 4:
+                                vehicle.setFuel_type("Flex");
+                                break;
+                            default:
+                                break;
+                        }
+                        
+                        
+                        
+                        int selectedIndex1 = jComboBoxCat.getSelectedIndex();
+                        vehicle.setCategory_idcategory(selectedIndex1);
+                        
+                        int selectedIndex2 = jComboBoxModel.getSelectedIndex();
+                        vehicle.setVehicle_models_idvehicle_models(selectedIndex2);
+                        
+
+                        
+                        
+                        VehicleController controller = new VehicleController();
+                        controller.create(vehicle);
+                   
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Entre com a potencia do veiculo!");
+                        this.jTXTPower.requestFocus();
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Entre com o chassi do veiculo!");
+                    this.jTXTChassi.requestFocus();
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Entre com a placa do veiculo!");
+                this.jTXTPlaca.requestFocus();
+            } 
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o ano de fabricação do veiculo!");
+            this.jTXTAnoFab.requestFocus();
+        }
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         // TODO add your handling code here:
+        Vehicle vehicle = new Vehicle();
+        
+        
+        
+        if (Validacao.notNull(this.jTXTAnoFabEditar.getText())){
+            vehicle.setManufaturing_year(Integer.parseInt(this.jTXTAnoFabEditar.getText()));
+            if (Validacao.notNull(this.jTXTPlacaEditar.getText())){
+                vehicle.setTransit_board(this.jTXTPlacaEditar.getText());
+                if (Validacao.notNull(jTXTChassiEditar.getText())){
+                    vehicle.setChassis_id(jTXTChassiEditar.getText());
+                    if(Validacao.notNull(this.jTXTPowerEditar.getText())){
+                        vehicle.setVehicle_power(this.jTXTPowerEditar.getText());
+                        int selectedIndex = this.comboCombustivelEditar.getSelectedIndex();
+                        System.out.println(selectedIndex);
+                        switch (selectedIndex) {
+                            case 0:
+                                vehicle.setFuel_type("Gasolina");
+                            case 1:
+                                vehicle.setFuel_type("Gasolina");
+                                break;
+                            case 2:
+                                vehicle.setFuel_type("Diesel");
+                                break;
+                            case 3:
+                                vehicle.setFuel_type("Alcool");
+                                break;
+                            case 4:
+                                vehicle.setFuel_type("Flex");
+                                break;
+                            default:
+                                break;
+                        }
+                        
+                        
+                        
+                        int selectedIndex1 = this.jComboCategoriaEditar.getSelectedIndex();
+                        vehicle.setCategory_idcategory(selectedIndex1);
+                        
+                        int selectedIndex2 = this.jComboModeloEditar.getSelectedIndex();
+                        vehicle.setVehicle_models_idvehicle_models(selectedIndex2);
+                        
+
+                        
+                        
+                        VehicleController controller = new VehicleController();
+                        controller.update(vehicle, this.vehicleID);
+                   
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Entre com a potencia do veiculo!");
+                        this.jTXTPower.requestFocus();
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Entre com o chassi do veiculo!");
+                    this.jTXTChassi.requestFocus();
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Entre com a placa do veiculo!");
+                this.jTXTPlaca.requestFocus();
+            } 
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o ano de fabricação do veiculo!");
+            this.jTXTAnoFab.requestFocus();
+        }
+        
     }//GEN-LAST:event_EditarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -483,8 +632,45 @@ public class VehicleCRUDView extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        new VehicleModelCRUDView().setVisible(true);
+        String criteria = "";
+
+        if (Validacao.notNull(this.jTXTAnoFabProcurar.getText())) {
+            criteria += " AND manufaturing_year LIKE \'%" + this.jTXTAnoFabProcurar.getText() + "%\'";
+        }
+
+        if (Validacao.notNull(this.jTXTPlacaProcurar.getText())) {
+            criteria += " AND transit_board LIKE \'%" + this.jTXTPlacaProcurar.getText() + "%\'";
+        }
+
+        if (Validacao.notNull(this.jComboCategoriaPesquisar.getSelectedIndex()+"")) {
+            criteria += " AND category_idcategory LIKE \'%" + this.jComboCategoriaPesquisar.getSelectedIndex() + "%\'";
+        }
+
+        if (Validacao.notNull(this.jComboModeloPesquisar.getSelectedIndex()+"")) {
+            criteria += " AND vehicle_models_idvehicle_models LIKE \'%" + this.jComboModeloPesquisar.getSelectedIndex() + "%\'";
+        }
+        
+        VehicleController controller = new VehicleController();
+        controller.populateTable(jTable1, criteria);
+
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.vehicleID = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
+        this.jTXTAnoFabEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 1)));
+        this.jTXTPlacaEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 2)));
+        this.jTXTChassiEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 3)));
+        this.jTXTPowerEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 4)));
+        String comb = (String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 5)));
+        int CombustivelID = Integer.parseInt(comb);
+        this.comboCombustivelEditar.setSelectedIndex(CombustivelID);
+        this.jComboCategoriaEditar.setSelectedIndex(Integer.parseInt((String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 6)))));
+        this.jComboModeloEditar.setSelectedIndex(Integer.parseInt((String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 7)))));
+        
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -497,7 +683,7 @@ public class VehicleCRUDView extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -524,7 +710,6 @@ public class VehicleCRUDView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Editar;
-    private javax.swing.JComboBox<String> combo;
     private javax.swing.JComboBox<String> comboCombustivelEditar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -532,8 +717,9 @@ public class VehicleCRUDView extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBoxCat;
+    private javax.swing.JComboBox<String> jComboBoxCombustivel;
+    private javax.swing.JComboBox<String> jComboBoxModel;
     private javax.swing.JComboBox<String> jComboCategoriaEditar;
     private javax.swing.JComboBox<String> jComboCategoriaPesquisar;
     private javax.swing.JComboBox<String> jComboModeloEditar;
@@ -550,10 +736,10 @@ public class VehicleCRUDView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

@@ -163,6 +163,8 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         jLabel6.setBounds(49, 364, 54, 22);
         jPanel2.add(jPasswordField1);
         jPasswordField1.setBounds(177, 364, 183, 28);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Carro.png"))); // NOI18N
         jPanel2.add(jLabel7);
         jLabel7.setBounds(470, 110, 320, 160);
 
@@ -344,6 +346,8 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel17.setText("Senha:");
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Carro.png"))); // NOI18N
 
         jLabel19.setText("Nova senha obrigatória");
 

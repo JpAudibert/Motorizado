@@ -223,6 +223,11 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/IMG/Carro.png"/>
+                    </Property>
+                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="470" y="110" width="320" height="160"/>
@@ -661,6 +666,11 @@
                 <Component class="javax.swing.JPasswordField" name="jPasswordFieldEditar">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel18">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/IMG/Carro.png"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel19">
                   <Properties>
