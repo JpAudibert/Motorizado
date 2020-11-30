@@ -5,6 +5,7 @@ import controllers.EmployeeController;
 import controllers.LoginController;
 import helpers.Formatacao;
 import helpers.Validacao;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -157,8 +158,7 @@ public class Login extends javax.swing.JFrame {
         String emailLogin = this.jTXTUser.getText();
         String passwordLogin = this.jTXTPass.getText();
         if (!Validacao.notNull(emailLogin) || !Validacao.notNull(passwordLogin)) {
-            //            this.warning.setText("Preencha os campos obrigatórios, indicados por *");
-            //            this.warning.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Preencha os campos de email e senha");
         } else {
             if (loginController.authenticate(emailLogin, passwordLogin)) {
                 System.out.println("Logou");
@@ -168,8 +168,7 @@ public class Login extends javax.swing.JFrame {
 
                 new MainView(clientId).setVisible(true);
             } else {
-                //                this.warning.setText("Email ou Senha incorretos");
-                //                this.warning.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Valores inválidos");
             }
         }
     }//GEN-LAST:event_JBTNAcessarActionPerformed

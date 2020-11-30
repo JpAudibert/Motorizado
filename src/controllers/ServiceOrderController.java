@@ -28,7 +28,9 @@ public class ServiceOrderController implements IIncrementedController<ServiceOrd
 
             String query = " SELECT * FROM service_order WHERE deleted_at IS NULL";
 
-            if (Validacao.notNull(criteria)) {
+            criteria = criteria + "";
+
+            if (!criteria.equals("null")) {
                 query += criteria;
             }
 

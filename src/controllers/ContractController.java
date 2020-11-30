@@ -29,7 +29,9 @@ public class ContractController implements IIncrementedController<Contract> {
 
             String query = " SELECT * FROM contract WHERE deleted_at IS NULL ";
 
-            if (Validacao.notNull(criteria)) {
+            criteria = criteria + "";
+
+            if (!criteria.equals("null")) {
                 query += criteria;
             }
 

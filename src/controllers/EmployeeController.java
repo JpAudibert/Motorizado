@@ -14,14 +14,13 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import models.Client;
 import models.Employee;
 
 public class EmployeeController implements IIncrementedController<Employee> {
 
     private ResultSet result;
-    private ArrayList<String> helperCity;
-    private ArrayList<String> helperResponsibility;
+    private ArrayList helperCity = new ArrayList<String>();
+    private ArrayList helperResponsibility = new ArrayList<String>();
 
     @Override
     public ArrayList<Employee> index(String criteria) {
@@ -46,28 +45,30 @@ public class EmployeeController implements IIncrementedController<Employee> {
                     + " WHERE"
                     + "	em.deleted_at IS NULL";
 
-            if (Validacao.notNull(criteria)) {
+            criteria = criteria + "";
+
+            if (!criteria.equals("null")) {
                 query += criteria;
             }
 
             System.out.println(query);
 
             result = stmt.executeQuery(query);
-
             while (result.next()) {
                 Employee resultEmployee = new Employee();
-                resultEmployee.setIdemployees(result.getInt("idemployee"));
+                resultEmployee.setIdemployees(result.getInt("idemployees"));
                 resultEmployee.setName(result.getString("name"));
                 resultEmployee.setCpf(result.getString("cpf"));
                 resultEmployee.setPhone(result.getString("phone"));
-                resultEmployee.setBirthday(result.getDate("birthday"));
                 resultEmployee.setEmail(result.getString("email"));
                 resultEmployee.setHiring_date(result.getDate("hiring_date"));
 
                 employees.add(resultEmployee);
 
                 helperCity.add(result.getString("city"));
+
                 helperResponsibility.add(result.getString("sector"));
+
             }
         } catch (SQLException e) {
             Logger.getLogger(EmployeeController.class.getName()).log(Level.WARNING, null, e);
@@ -110,11 +111,10 @@ public class EmployeeController implements IIncrementedController<Employee> {
 
             while (result.next()) {
                 Employee resultEmployee = new Employee();
-                resultEmployee.setIdemployees(result.getInt("idemployee"));
+                resultEmployee.setIdemployees(result.getInt("idemployees"));
                 resultEmployee.setName(result.getString("name"));
                 resultEmployee.setCpf(result.getString("cpf"));
                 resultEmployee.setPhone(result.getString("phone"));
-                resultEmployee.setBirthday(result.getDate("birthday"));
                 resultEmployee.setEmail(result.getString("email"));
                 resultEmployee.setHiring_date(result.getDate("hiring_date"));
 
@@ -158,7 +158,7 @@ public class EmployeeController implements IIncrementedController<Employee> {
 
             if (result.next()) {
                 employee = new Employee();
-                employee.setIdemployees(result.getInt("idemployee"));
+                employee.setIdemployees(result.getInt("idemployees"));
                 employee.setName(result.getString("name"));
                 employee.setCpf(result.getString("cpf"));
                 employee.setPhone(result.getString("phone"));
@@ -259,8 +259,8 @@ public class EmployeeController implements IIncrementedController<Employee> {
                     + "password = \'" + employees.getPassword() + "\',"
                     + "hiring_date = \'" + employees.getHiring_date() + "\',"
                     + "firing_date = \'" + employees.getFiring_date() + "\',"
-                    + "responsibility_idresponsibility = \'" + employees.getResponsibility_idresponsibility()+ "\',"
-                    + "city_idcity = \'" + employees.getCity_idcity()+ "\',"
+                    + "responsibility_idresponsibility = \'" + employees.getResponsibility_idresponsibility() + "\',"
+                    + "city_idcity = \'" + employees.getCity_idcity() + "\',"
                     + "updated_at = \'" + new Timestamp(new Date().getTime()) + "\'"
                     + " WHERE idemployees = " + id;
 
@@ -295,7 +295,7 @@ public class EmployeeController implements IIncrementedController<Employee> {
 
     @Override
     public boolean hardDelete(int id) {
-       try {
+        try {
             Statement stmt = DBConnection
                     .getInstance()
                     .getConnection()

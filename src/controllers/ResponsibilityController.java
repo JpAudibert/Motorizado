@@ -29,7 +29,9 @@ public class ResponsibilityController implements IBasicController<Responsibility
 
             String query = " SELECT * FROM responsibility WHERE deleted_at IS NULL ";
 
-            if (Validacao.notNull(criteria)) {
+            criteria = criteria + "";
+
+            if (!criteria.equals("null")) {
                 query += criteria;
             }
 

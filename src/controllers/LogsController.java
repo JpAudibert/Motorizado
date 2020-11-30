@@ -27,7 +27,9 @@ public class LogsController implements IAutomaticallyInsertedController<Logs> {
 
             String query = " SELECT * FROM logs ";
 
-            if (Validacao.notNull(criteria)) {
+            criteria = criteria + "";
+
+            if (!criteria.equals("null")) {
                 query += criteria;
             }
 

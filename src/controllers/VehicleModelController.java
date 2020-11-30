@@ -35,7 +35,9 @@ public class VehicleModelController implements IBasicController<VehicleModel> {
                     + "		INNER JOIN brand br ON br.idbrand = vm.brand_idbrand"
                     + " WHERE vm.deleted_at IS NULL AND br.deleted_at IS NULL";
 
-            if (Validacao.notNull(criteria)) {
+            criteria = criteria + "";
+
+            if (!criteria.equals("null")) {
                 query += criteria;
             }
 

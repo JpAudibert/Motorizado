@@ -29,7 +29,9 @@ public class CategoryController implements IBasicController<Category> {
 
             String query = " SELECT * FROM category WHERE deleted_at IS NULL ";
 
-            if (Validacao.notNull(criteria)) {
+            criteria = criteria + "";
+
+            if (!criteria.equals("null")) {
                 query += criteria;
             }
 

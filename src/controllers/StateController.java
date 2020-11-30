@@ -26,7 +26,9 @@ public class StateController implements IAutomaticallyInsertedController<State> 
 
             String query = " SELECT * FROM state ";
 
-            if (Validacao.notNull(criteria)) {
+            criteria = criteria + "";
+
+            if (!criteria.equals("null")) {
                 query += criteria;
             }
 

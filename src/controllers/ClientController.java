@@ -20,7 +20,7 @@ import models.Client;
 public class ClientController implements IIncrementedController<Client> {
 
     private ResultSet result;
-    private ArrayList<String> helper;
+    private ArrayList helper = new ArrayList<String>();
 
     @Override
     public ArrayList<Client> index(String criteria) {
@@ -36,11 +36,7 @@ public class ClientController implements IIncrementedController<Client> {
                     + "	cl.birthday AS birthday, "
                     + "	cl.email AS email, "
                     + "	cl.cnh_register AS cnh_register, "
-                    + "	cl.cnh_mirror AS cnh_mirror "
-                    + "	cl.created_at AS created_at "
-                    + "	cl.updated_at AS updated_at "
-                    + "	cl.deleted_at AS deleted_at "
-                    + "	cl.city_idcity AS city_idcity "
+                    + "	cl.cnh_mirror AS cnh_mirror, "
                     + "	CONCAT(ct.name, '/', st.abreviation) AS city "
                     + " FROM "
                     + "	client cl "
@@ -49,7 +45,9 @@ public class ClientController implements IIncrementedController<Client> {
                     + " WHERE"
                     + "	cl.deleted_at IS NULL ";
 
-            if (Validacao.notNull(criteria)) {
+            criteria = criteria + "";
+
+            if (!criteria.equals("null")) {
                 query += criteria;
             }
 
@@ -67,10 +65,6 @@ public class ClientController implements IIncrementedController<Client> {
                 resultClient.setEmail(result.getString("email"));
                 resultClient.setCNH_register(result.getString("cnh_register"));
                 resultClient.setCNH_mirror(result.getString("cnh_mirror"));
-                resultClient.setCreated_at(result.getDate("created_at"));
-                resultClient.setUpdated_at(result.getDate("updated_at"));
-                resultClient.setDeleted_at(result.getDate("deleted_at"));
-                resultClient.setCity_idcity(result.getInt("city_idcity"));
 
                 clients.add(resultClient);
 
@@ -325,7 +319,6 @@ public class ClientController implements IIncrementedController<Client> {
         }
         return false;
     }
-
 
     @Override
     public void populateTable(JTable table, String criteria) {

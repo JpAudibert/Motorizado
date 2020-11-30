@@ -28,7 +28,9 @@ public class BrandController implements IBasicController<Brand> {
 
             String query = " SELECT * FROM brand WHERE deleted_at IS NULL ";
 
-            if (Validacao.notNull(criteria)) {
+            criteria = criteria + "";
+
+            if (!criteria.equals("null")) {
                 query += criteria;
             }
 

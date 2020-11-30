@@ -28,7 +28,9 @@ public class MaintenanceController implements IIncrementedController<Maintenance
 
             String query = " SELECT * FROM maintenance WHERE deleted_at IS NULL";
 
-            if (Validacao.notNull(criteria)) {
+            criteria = criteria + "";
+
+            if (!criteria.equals("null")) {
                 query += criteria;
             }
 

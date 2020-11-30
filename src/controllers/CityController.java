@@ -33,7 +33,9 @@ public class CityController implements IAutomaticallyInsertedController<City> {
                     + "FROM city ct "
                     + "	INNER JOIN state st ON st.idstate = ct.state_idstate ";
 
-            if (Validacao.notNull(criteria)) {
+            criteria = criteria + "";
+
+            if (!criteria.equals("null")) {
                 query += criteria;
             }
 
