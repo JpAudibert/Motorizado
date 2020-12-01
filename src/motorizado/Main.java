@@ -17,7 +17,7 @@ public class Main {
      */
     public static void main(String[] args) {
         if (DBConnection.getInstance() != null) {
-    /*       Inserts.insertStates();
+          /*Inserts.insertStates();
             Inserts.insertCities();
             Inserts.insertResponsibilities();
             
@@ -32,7 +32,8 @@ public class Main {
             employee.setCity_idcity(2);
             EmployeeController employeeController = new EmployeeController();
             employeeController.create(employee);
-          */ new Login().setVisible(true);
+*/
+            new Login().setVisible(true);
         } else {
             System.out.println("Oops buddy :|");
         }

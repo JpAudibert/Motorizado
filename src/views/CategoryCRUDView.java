@@ -27,7 +27,7 @@ public class CategoryCRUDView extends javax.swing.JFrame {
     public CategoryCRUDView() {
         initComponents();
        CategoryController bc = new CategoryController();
-       bc.populateTable(jTable1, null);
+       bc.populateTable(jTable1, "");
         
     }
 
@@ -262,7 +262,7 @@ public class CategoryCRUDView extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String ValueOF = String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-        BrandController bc = new BrandController();
+        CategoryController bc = new CategoryController();
         bc.delete(Integer.parseInt(ValueOF));
         bc.populateTable(jTable1, null);
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -288,12 +288,13 @@ public class CategoryCRUDView extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
 
-        BrandController bc = new BrandController();
-        int id = Integer.parseInt((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        CategoryController bc = new CategoryController();
+        System.out.println(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
+        int id = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
 
-        Brand a = bc.show(id);
-        this.jTextField3.setText(a.getIdBrand() + "");
-        this.jTextField4.setText(a.getName());
+        Category a = bc.show(id);
+        this.jTextField3.setText(a.getIdCategory()+ "");
+        this.jTextField4.setText(a.getCategory_name());
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

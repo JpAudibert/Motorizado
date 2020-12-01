@@ -35,10 +35,10 @@ public class VehicleCRUDView extends javax.swing.JFrame {
 
         cdao.popularCombo("Category", jComboBoxCat);
         cdao.popularCombo("Vehicle_models", jComboBoxModel);
-        cdao.popularCombo("Category", jComboCategoriaEditar);
-        cdao.popularCombo("Category", jComboCategoriaPesquisar);
-        cdao.popularCombo("Vahicle_models", jComboModeloEditar);
-        cdao.popularCombo("Vahicle_models", jComboModeloPesquisar);
+        cdao.popularCombo("category", jComboCategoriaEditar);
+        cdao.popularCombo("category", jComboCategoriaPesquisar);
+        cdao.popularCombo("vehicle_models", jComboModeloEditar);
+        cdao.popularCombo("Vehicle_models", jComboModeloPesquisar);
         
 
         jComboBoxCombustivel.removeAllItems();

@@ -25,8 +25,8 @@ public class BrandCRUDView extends javax.swing.JFrame {
     public BrandCRUDView() {
         initComponents();
 
-        //BrandController bc = new BrandController();
-        //bc.populateTable(jTable1, null);
+        BrandController bc = new BrandController();
+        bc.populateTable(jTable1, null);
     }
 
     /**
@@ -88,7 +88,7 @@ public class BrandCRUDView extends javax.swing.JFrame {
         jPanel1.add(jButton2);
         jButton2.setBounds(45, 244, 75, 23);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Login.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucas\\Desktop\\PROJETO INTEGRADOR\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
         jPanel1.add(jLabel5);
         jLabel5.setBounds(210, 60, 370, 200);
 

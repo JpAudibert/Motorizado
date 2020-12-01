@@ -7,6 +7,7 @@ package views;
 
 import controllers.BrandController;
 import controllers.CategoryController;
+import controllers.VehicleModelController;
 import helpers.CombosDAO;
 import helpers.Validacao;
 import java.awt.Dialog;
@@ -15,6 +16,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import models.Brand;
 import models.Category;
+import models.VehicleModel;
 
 /**
  *
@@ -28,8 +30,10 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
     public VehicleModelCRUDView() {
         initComponents();
         CombosDAO cdao = new CombosDAO();
-        cdao.popularCombo("Category", jComboBox1);
-        cdao.popularCombo("Category", jComboBox2);
+        cdao.popularCombo("Brand", jComboBox1);
+        cdao.popularCombo("Brand", jComboBox2);
+        VehicleModelController controller = new VehicleModelController();
+        controller.populateTable(jTable1, null);
 
     }
 
@@ -97,9 +101,9 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
         jButton2.setBounds(160, 260, 75, 23);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Categoria:");
+        jLabel5.setText("Marca:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(100, 110, 63, 17);
+        jLabel5.setBounds(100, 110, 41, 17);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox1);
@@ -149,7 +153,7 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Categoria:");
+        jLabel6.setText("Marca:");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -259,18 +263,22 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        CategoryController bc = new CategoryController();
+        VehicleModelController controller = new VehicleModelController();
         Date suaData = new Date();
         String name = this.jTextField1.getText();
 
         if (Validacao.notNull(this.jTextField1.getText())) {
             if (true) {
-
-                Calendar calendario = Calendar.getInstance();
-                calendario.setTime(suaData);
-                Category ca = new Category();
-                ca.setCategory_name(name);
-                bc.create(ca);
+                VehicleModel model = new VehicleModel();
+                int selectedIndex = this.jComboBox1.getSelectedIndex();
+                model.setModel_name(name);
+                if (selectedIndex != 0){
+                    model.setBrand_idbrand(selectedIndex);
+                    controller.create(model);
+                }
+                else{
+                    JOptionPane.showConfirmDialog(null, "Erro, selecione a marca!");
+                }
 
             } else {
                 JOptionPane.showConfirmDialog(null, "Preencha o codigo da marca!");

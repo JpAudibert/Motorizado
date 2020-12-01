@@ -492,6 +492,7 @@ public class MainView extends javax.swing.JFrame {
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
         new CategoryCRUDView().setVisible(true);
+        System.out.println("Abriu");
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
@@ -506,6 +507,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
+        new ServiceOrderCRUDView().setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jBTNFineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNFineActionPerformed
