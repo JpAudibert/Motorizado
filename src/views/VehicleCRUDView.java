@@ -523,6 +523,7 @@ public class VehicleCRUDView extends javax.swing.JFrame {
                         
                         VehicleController controller = new VehicleController();
                         controller.create(vehicle);
+                        JOptionPane.showMessageDialog(null, "Veiculo registrado com sucesso!");
                    
                     }
                     else{

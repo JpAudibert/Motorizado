@@ -408,6 +408,7 @@ public class ContractCRUDView extends javax.swing.JFrame {
         
         if(ok){
             cc.create(ct);
+            JOptionPane.showMessageDialog(null, "Contrato registrado com sucesso!");
             cc.populateTable(jTable1,"");
         }
         else {

@@ -548,6 +548,7 @@ public class ServiceOrderCRUDView extends javax.swing.JFrame {
                                 serviceOrder.setEquipment_purchased(this.jTXTEquipamento.getText());
                                 ServiceOrderController controller = new ServiceOrderController();
                                 controller.create(serviceOrder);
+                                JOptionPane.showMessageDialog(null, "Ordem de serviço registrada com sucesso!");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Entre com o o equipamento comprado!");
                                 this.jTXTValorTotal.requestFocus();

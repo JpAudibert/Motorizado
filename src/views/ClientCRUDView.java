@@ -106,12 +106,12 @@ public class ClientCRUDView extends javax.swing.JFrame {
         jTXTNomeEditar = new javax.swing.JTextField();
         jTXTEmailEditar = new javax.swing.JTextField();
         jTXTcpfEditar = new javax.swing.JFormattedTextField();
-        jTXTCNHEditar = new javax.swing.JFormattedTextField();
         jLabel18 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         jComboCidadeEditar = new javax.swing.JComboBox<>();
         jTXTDataNascimentoEditar = new javax.swing.JFormattedTextField();
+        jTXTCNHEditar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Clientes");
@@ -360,12 +360,6 @@ public class ClientCRUDView extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel16.setText("CNH:");
 
-        jTXTCNHEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTXTCNHEditarActionPerformed(evt);
-            }
-        });
-
         jButton6.setText("salvar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -404,19 +398,18 @@ public class ClientCRUDView extends javax.swing.JFrame {
                             .addComponent(jTXTDataNascimentoEditar, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel15))
+                        .addGap(39, 39, 39)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTXTCNHEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTXTEmailEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(85, 85, 85))
+                            .addComponent(jTXTEmailEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTXTCNHEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(293, 293, 293)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110))))
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,15 +417,16 @@ public class ClientCRUDView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel15)
                     .addComponent(jTXTNomeEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTXTEmailEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTXTEmailEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(jLabel16)
-                    .addComponent(jTXTcpfEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTXTCNHEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addComponent(jTXTcpfEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
@@ -525,9 +519,8 @@ public class ClientCRUDView extends javax.swing.JFrame {
             criteria += " AND name LIKE \'%" + this.jTXTNameSearch.getText() + "%\'";
         }
 
-        if (Validacao.notNull(this.jTXTCpfSearch.getText())) {
-            criteria += " AND cpf LIKE \'%" + this.jTXTCpfSearch.getText() + "%\'";
-        }
+        if(!this.jTXTCpfSearch.getText().equals("   .   .   -  ")){
+            criteria += criteria += " AND cpf LIKE \'%" + this.jTXTCpfSearch.getText() + "%\'";
 
         if (Validacao.notNull(this.jTXTEmailSearch.getText())) {
             criteria += " AND email LIKE \'%" + this.jTXTEmailSearch.getText() + "%\'";
@@ -544,11 +537,8 @@ public class ClientCRUDView extends javax.swing.JFrame {
         clientController.populateTable(jTable1, criteria);
 
 
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jTXTCNHEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTXTCNHEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTXTCNHEditarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -612,6 +602,7 @@ public class ClientCRUDView extends javax.swing.JFrame {
                                 client.setCity_idcity(this.jComboCidade.getSelectedIndex());
 
                                 clientController.create(client);
+                                JOptionPane.showMessageDialog(null, "Cliente registrado com sucesso!");
                             }
                         } else {
                             JOptionPane.showMessageDialog(null, "Entre com o email!");
@@ -727,7 +718,7 @@ public class ClientCRUDView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JFormattedTextField jTXTCNH;
     private javax.swing.JFormattedTextField jTXTCNH1;
-    private javax.swing.JFormattedTextField jTXTCNHEditar;
+    private javax.swing.JTextField jTXTCNHEditar;
     private javax.swing.JTextField jTXTCnhSeacrh;
     private javax.swing.JFormattedTextField jTXTCpf;
     private javax.swing.JTextField jTXTCpfSearch;

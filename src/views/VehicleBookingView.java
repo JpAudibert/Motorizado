@@ -493,6 +493,7 @@ public class VehicleBookingView extends javax.swing.JFrame {
                     booking.setVehicle_idvehicle(Integer.parseInt(this.jTXTVeiculo.getText()));
                     VehicleBookingController controller = new VehicleBookingController();
                     controller.create(booking);
+                    JOptionPane.showMessageDialog(null, "Carro alugado com sucesso!");
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Entre com o ID do veiculo!");

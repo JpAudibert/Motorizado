@@ -276,6 +276,7 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
                 if (selectedIndex != 0){
                     model.setBrand_idbrand(selectedIndex);
                     controller.create(model);
+                    JOptionPane.showMessageDialog(null, "Modelo registrado com sucesso!");
                 }
                 else{
                     JOptionPane.showConfirmDialog(null, "Erro, selecione a marca!");
@@ -288,8 +289,6 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
         } else {
             JOptionPane.showConfirmDialog(null, "Preencha o nome da marca!");
         }
-
-        dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -63,6 +63,12 @@ public class CategoryCRUDView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Categoria");
 
+        jTabbedPane1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTabbedPane1FocusGained(evt);
+            }
+        });
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(null);
@@ -246,6 +252,7 @@ public class CategoryCRUDView extends javax.swing.JFrame {
                 Category ca = new Category();
                 ca.setCategory_name(name);
                 bc.create(ca);
+                JOptionPane.showMessageDialog(null, "Categoria registrada com sucesso!");
 
             } else {
                 JOptionPane.showConfirmDialog(null, "Preencha o codigo da marca!");
@@ -295,6 +302,12 @@ public class CategoryCRUDView extends javax.swing.JFrame {
         this.jTextField4.setText(a.getCategory_name());
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
+        // TODO add your handling code here:
+        CategoryController categoryController = new CategoryController();
+        categoryController.populateTable(jTable1, "");
+    }//GEN-LAST:event_jTabbedPane1FocusGained
 
     /**
      * @param args the command line arguments

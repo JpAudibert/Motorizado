@@ -450,6 +450,7 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
             MaintenanceController mc = new MaintenanceController();
         
             mc.create(maintenance);
+            JOptionPane.showMessageDialog(null, "Manutenção registrada com sucesso!");
         }
         
         

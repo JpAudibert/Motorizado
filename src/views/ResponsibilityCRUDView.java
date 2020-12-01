@@ -243,6 +243,7 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
                 Responsibility re = new Responsibility();
                 re.setSector(this.jTextField1.getText());
                 bc.create(re);
+                JOptionPane.showMessageDialog(null, "Setor registrado com sucesso!");
                 
 
 
@@ -254,7 +255,7 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(null, "Preencha o nome da marca!");
         }
 
-        dispose();
+
         
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -270,16 +271,17 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        Date suaData = new Date();
-        Calendar calendario = Calendar.getInstance();
-        calendario.setTime(suaData);
         int id = Integer.parseInt(this.jTextField3.getText());
-        BrandController bc = new BrandController();
+        System.out.println(id);
+        ResponsibilityController bc = new ResponsibilityController();
         String name = this.jTextField4.getText();
-        Brand a = bc.show(id);
+        Responsibility a = bc.show(id);
         if (Validacao.notNull(this.jTextField4.getText())) {
-            Brand b = new Brand(id, name, a.getCreated_at(), suaData, a.getDeleted_at());
+            Responsibility b = new Responsibility();
+            b.setIdresponsibility(id);
+            b.setSector(name);
             bc.update(b, id);
+            bc.populateTable(jTable1, "");
         }
         else{
             JOptionPane.showConfirmDialog(null, "Entre com o nome da marca a ser alterada!");

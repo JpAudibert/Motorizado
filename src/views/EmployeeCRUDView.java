@@ -106,6 +106,12 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Funcionarios");
 
+        jTabbedPane1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTabbedPane1FocusGained(evt);
+            }
+        });
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);
 
@@ -221,6 +227,12 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("Email:");
+
+        jTXTTelefoneConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTXTTelefoneConsultarActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Consultar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -532,7 +544,7 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String criteria = "";
-        if(Validacao.notNull(this.jTXTCPFConsultar.getText())){
+        if(!this.jTXTCPFConsultar.getText().equals("   .   .   -  ")){
             criteria += criteria += " AND cpf LIKE \'%" + this.jTXTCPFConsultar.getText() + "%\'";
         }
         if (Validacao.notNull(this.jTXTEmailConsultar.getText())){
@@ -620,6 +632,7 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         
         if(ok){
             ec.create(employee);
+            JOptionPane.showMessageDialog(null, "Funcionario registrado com sucesso!");
         }
         else {
             JOptionPane.showMessageDialog(null, "Verificar entradas de dados!");
@@ -638,70 +651,81 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-//        // TODO add your handling code here:
-//        
-//        boolean ok = true;
-//        Employee employee = new Employee();
-//        
-//        if(Validacao.notNull(this.jTXTNomeEditar.getText())){
-//            employee.setName(this.jTXTNomeEditar.getText());
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(null, "Entre com o nome do empregado!");
-//            this.jTXTNomeEditar.requestFocus();
-//            ok = false;
-//        }
-//        if(Validacao.notNull(this.jTXTCPFEditar.getText())){
-//            employee.setCpf(this.jTXTCPFEditar.getText());
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(null, "Entre com o CPF!");
-//            this.jTXTCPFEditar.requestFocus();
-//            ok = false;
-//        }
-//        if(Validacao.notNull(this.jTXTEmailEditar.getText())){
-//            employee.setEmail(this.jTXTEmailEditar.getText());
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(null, "Entre com o Email!");
-//            this.jTXTEmail.requestFocus();
-//            ok = false;
-//        }
-//        if (Validacao.notNull(this.jTXTCidadeEditar.getText())){
-//            employee.setCity_idcity(Integer.parseInt(this.jTXTCidadeEditar.getText()));
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(null, "Busque a cidade!");
-//            SearchCityByID sa = new SearchCityByID(this);
-//            sa.setVisible(true);
-//            ok = false;
-//        }
-//        if(Validacao.notNull(this.jTXTTelefoneEditar.getText())){
-//            employee.setPhone(this.jTXTTelefoneEditar.getText());
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(null, "Entre com o telefone!");
-//            this.jTXTTelefone.requestFocus();
-//            ok = false;
-//        }
-//        if(Validacao.notNull(this.jPasswordFieldEditar.getText())){
-//            employee.setPassword(this.jPasswordFieldEditar.getText());
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(null, "Entre com a senha!");
-//            ok = false;
-//        }
-//        
-//        EmployeeController ec = new EmployeeController();
-//        
-//        if(ok){
-//            ec.update(employee, employeeID);
-//        }
-//        else {
-//            JOptionPane.showMessageDialog(null, "Verificar entradas de dados!");
-//        }
+        // TODO add your handling code here:
+        
+        boolean ok = true;
+        Employee employee = new Employee();
+        
+        if(Validacao.notNull(this.jTXTNomeEditar.getText())){
+            employee.setName(this.jTXTNomeEditar.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o nome do empregado!");
+            this.jTXTNomeEditar.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTCPFEditar.getText())){
+            employee.setCpf(this.jTXTCPFEditar.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o CPF!");
+            this.jTXTCPFEditar.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTEmailEditar.getText())){
+            employee.setEmail(this.jTXTEmailEditar.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o Email!");
+            this.jTXTEmail.requestFocus();
+            ok = false;
+       }
+        if (Validacao.notNull(this.jTXTCidadeEditar.getText())){
+            employee.setCity_idcity(Integer.parseInt(this.jTXTCidadeEditar.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Busque a cidade!");
+            SearchCityByID sa = new SearchCityByID(this);
+            sa.setVisible(true);
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTTelefoneEditar.getText())){
+            employee.setPhone(this.jTXTTelefoneEditar.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o telefone!");
+            this.jTXTTelefone.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jPasswordFieldEditar.getText())){
+            employee.setPassword(this.jPasswordFieldEditar.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com a senha!");
+            ok = false;
+        }
+        
+        EmployeeController ec = new EmployeeController();
+        
+        if(ok){
+            ec.update(employee, employeeID);
+            JOptionPane.showMessageDialog(null, "Funcionario atualizado com sucesso!");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Verificar entradas de dados!");
+        }
         
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
+        // TODO add your handling code here:
+        EmployeeController controller = new EmployeeController();
+        controller.populateTable(jTable1, "");
+    }//GEN-LAST:event_jTabbedPane1FocusGained
+
+    private void jTXTTelefoneConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTXTTelefoneConsultarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTXTTelefoneConsultarActionPerformed
 
     /**
      * @param args the command line arguments
