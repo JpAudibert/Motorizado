@@ -155,7 +155,7 @@ public class CategoryController implements IBasicController<Category> {
             }
 
             String query = " UPDATE category SET "
-                    + "name = \'" + category.getCategory_name() + "\',"
+                    + "category_name = \'" + category.getCategory_name() + "\',"
                     + "updated_at = \'" + new Timestamp(new Date().getTime()) + "\'"
                     + " WHERE idcategory = " + id;
 

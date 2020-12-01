@@ -7,6 +7,7 @@ package views;
 
 import controllers.ContractController;
 import controllers.EmployeeController;
+import helpers.Formatacao;
 import helpers.Validacao;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -28,6 +29,10 @@ public class ContractCRUDView extends javax.swing.JFrame {
         initComponents();
         ContractController cc = new ContractController();
         cc.populateTable(jTable1, null);
+        Formatacao.formatarData(this.jTXTDataFinal);
+        Formatacao.formatarData(this.jTXTDataFinalEditar);
+        Formatacao.formatarData(this.jTXTDataInicial);
+        Formatacao.formatarData(this.jTXTDataInicialEditar);
         
     }
 

@@ -238,9 +238,9 @@ public class ClientController implements IIncrementedController<Client> {
                 throw new Error("This is email is already in use.");
             }
 
-            if (!Validacao.validarCPF(client.getCpf())) {
-                throw new Error("Invalid CPF.");
-            }
+            //if (!Validacao.validarCPF(client.getCpf())) {
+            //    throw new Error("Invalid CPF.");
+            //}
 
             String query = " UPDATE client SET "
                     + "name = \'" + client.getName() + "\',"

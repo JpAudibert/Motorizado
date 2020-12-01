@@ -32,10 +32,11 @@ public class ClientCRUDView extends javax.swing.JFrame {
         Formatacao.formatarData(jTXTData);
         Formatacao.formatarData(jTXTDataNascimentoEditar);
         Formatacao.formatarCpf((JFormattedTextField) jTXTCpf);
+        Formatacao.formatarCpf((JFormattedTextField) jTXTcpfEditar);
         clientController.populateTable(jTable1, "");
         CombosDAO cdao = new CombosDAO();
         cdao.popularCombo("city", jComboCidade);
-        cdao.popularCombo("city",jComboCidadeEditar);
+        cdao.popularCombo("city", jComboCidadeEditar);
     }
 
     public ClientCRUDView(int id) {
@@ -48,7 +49,7 @@ public class ClientCRUDView extends javax.swing.JFrame {
         Formatacao.formatarCpf((JFormattedTextField) jTXTcpfEditar);
         CombosDAO cdao = new CombosDAO();
         cdao.popularCombo("city", jComboCidade);
-        cdao.popularCombo("city",jComboCidadeEditar);
+        cdao.popularCombo("city", jComboCidadeEditar);
     }
 
     /**
@@ -261,6 +262,11 @@ public class ClientCRUDView extends javax.swing.JFrame {
         });
 
         jButton4.setText("Deletar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -554,6 +560,7 @@ public class ClientCRUDView extends javax.swing.JFrame {
         this.jTXTDataNascimentoEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 4)));
         this.clientID = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
         this.jComboCidadeEditar.setSelectedIndex(Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 7))));
+        this.jTabbedPane1.requestFocus();
 
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -585,40 +592,45 @@ public class ClientCRUDView extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         Client client = new Client();
-        if (Validacao.notNull(this.jTXTCpf.getText())) {
-            client.setCpf(this.jTXTCpf.getText());
-            if (Validacao.notNull(this.jTXTCNH.getText())) {
-                client.setCNH_register(this.jTXTCNH.getText());
-                if (Validacao.notNull(this.jTXTData.getText())) {
-                    String[] split = this.jTXTData.getText().split("/");
-                    int day = Integer.parseInt(split[0]);
-                    int month = Integer.parseInt(split[1]);
-                    int year = Integer.parseInt(split[2]);
-                    Date birthday = new Date(year, month, day);
-                    client.setBirthday(birthday);
-                    if (Validacao.notNull(this.jTXTEmail.getText())) {
-                        client.setEmail(this.jTXTEmail.getText());
-                        if(Validacao.notNull(this.jTXTCNH1.getText())){
-                            client.setCNH_mirror(this.jTXTCNH1.getText());
-                            client.setCity_idcity(this.jComboCidade.getSelectedIndex());
-                            
-                            clientController.create(client);
+        if (Validacao.notNull(this.jTXTNome.getText())) {
+            client.setName(this.jTXTNome.getText());
+            if (Validacao.notNull(this.jTXTCpf.getText())) {
+                client.setCpf(this.jTXTCpf.getText());
+                if (Validacao.notNull(this.jTXTCNH.getText())) {
+                    client.setCNH_register(this.jTXTCNH.getText());
+                    if (Validacao.notNull(this.jTXTData.getText())) {
+                        String[] split = this.jTXTData.getText().split("/");
+                        int day = Integer.parseInt(split[0]);
+                        int month = Integer.parseInt(split[1]);
+                        int year = Integer.parseInt(split[2]);
+                        Date birthday = new Date(year, month, day);
+                        client.setBirthday(birthday);
+                        if (Validacao.notNull(this.jTXTEmail.getText())) {
+                            client.setEmail(this.jTXTEmail.getText());
+                            if (Validacao.notNull(this.jTXTCNH1.getText())) {
+                                client.setCNH_mirror(this.jTXTCNH1.getText());
+                                client.setCity_idcity(this.jComboCidade.getSelectedIndex());
+
+                                clientController.create(client);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Entre com o email!");
+                            this.jTXTEmail.requestFocus();
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Entre com o email!");
-                        this.jTXTEmail.requestFocus();
+                        JOptionPane.showMessageDialog(null, "Entre com a data de aniversario!");
+                        this.jTXTData.requestFocus();
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Entre com a data de aniversario!");
-                    this.jTXTData.requestFocus();
+                    JOptionPane.showMessageDialog(null, "Entre com a CNH!");
+                    this.jTXTCNH.requestFocus();
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Entre com a CNH!");
-                this.jTXTCNH.requestFocus();
+                JOptionPane.showMessageDialog(null, "Entre com o cpf!");
+                this.jTXTCpf.requestFocus();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Entre com o cpf!");
-            this.jTXTCpf.requestFocus();
+            JOptionPane.showMessageDialog(null, "Entre com o nome!");
         }
 
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -627,6 +639,14 @@ public class ClientCRUDView extends javax.swing.JFrame {
         // TODO add your handling code here:
         clientController.populateTable(jTable1, "");
     }//GEN-LAST:event_jTabbedPane1FocusGained
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.clientID = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
+        clientController.delete(this.clientID);
+        clientController.populateTable(jTable1, "");
+
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

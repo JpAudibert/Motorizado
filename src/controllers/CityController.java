@@ -17,7 +17,7 @@ import models.City;
 public class CityController implements IAutomaticallyInsertedController<City> {
 
     private ResultSet result;
-    private ArrayList<String> helper;
+    private ArrayList<String> helper = new ArrayList<>();
 
     @Override
     public ArrayList<City> index(String criteria) {
@@ -29,9 +29,9 @@ public class CityController implements IAutomaticallyInsertedController<City> {
                     + "	ct.idcity,"
                     + "	ct.name,"
                     + "	ct.state_idstate,"
-                    + "	st.abreviation"
+                    + "	st.abreviation "
                     + "FROM city ct "
-                    + "	INNER JOIN state st ON st.idstate = ct.state_idstate ";
+                    + "INNER JOIN state st ON st.idstate = ct.state_idstate ";
 
             criteria = criteria + "";
 

@@ -60,6 +60,12 @@ public class BrandCRUDView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Marca");
 
+        jTabbedPane1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTabbedPane1FocusGained(evt);
+            }
+        });
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(null);
@@ -276,6 +282,7 @@ public class BrandCRUDView extends javax.swing.JFrame {
         if (Validacao.notNull(this.jTextField4.getText())) {
             Brand b = new Brand(id, name, a.getCreated_at(), suaData, a.getDeleted_at());
             bc.update(b, id);
+            bc.populateTable(jTable1, null);
         }
         else{
             JOptionPane.showConfirmDialog(null, "Entre com o nome da marca a ser alterada!");
@@ -291,8 +298,15 @@ public class BrandCRUDView extends javax.swing.JFrame {
         Brand a = bc.show(id);
         this.jTextField3.setText(a.getIdBrand() + "");
         this.jTextField4.setText(a.getName());
+        bc.populateTable(jTable1, "");
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
+        // TODO add your handling code here:
+        BrandController bc = new BrandController();
+        bc.populateTable(jTable1, "");
+    }//GEN-LAST:event_jTabbedPane1FocusGained
 
     /**
      * @param args the command line arguments
