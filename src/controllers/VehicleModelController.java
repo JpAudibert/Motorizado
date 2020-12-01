@@ -147,7 +147,7 @@ public class VehicleModelController implements IBasicController<VehicleModel> {
                 throw new Error("Invalid Model Name.");
             }
 
-            String query = " INSERT INTO vehicle_models VALUES("
+            String query = " INSERT INTO vehicle_models (idvehicle_models, model_name, brand_idbrand) VALUES("
                     + "DEFAULT,"
                     + "\'" + vehicleModel.getModel_name()+ "\',"
                     + "\'" + vehicleModel.getBrand_idbrand()+ "\'"

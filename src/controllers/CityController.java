@@ -101,7 +101,7 @@ public class CityController implements IAutomaticallyInsertedController<City> {
                 throw new Error("Invalid Name.");
             }
 
-            String query = " INSERT INTO city VALUES("
+            String query = " INSERT INTO city (idcity, name, state_idstate) VALUES("
                     + "DEFAULT,"
                     + "\'" + city.getName() + "\'"
                     + "\'" + city.getState_idState() + "\'"

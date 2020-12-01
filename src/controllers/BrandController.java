@@ -125,7 +125,7 @@ public class BrandController implements IBasicController<Brand> {
                 throw new Error("Invalid Name.");
             }
 
-            String query = " INSERT INTO brand VALUES("
+            String query = " INSERT INTO brand (idbrand, name) VALUES("
                     + "DEFAULT,"
                     + "\'" + brand.getName() + "\'"
                     + ")";

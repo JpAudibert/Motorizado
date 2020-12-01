@@ -92,7 +92,7 @@ public class StateController implements IAutomaticallyInsertedController<State> 
                 throw new Error("Invalid Name.");
             }
 
-            String query = " INSERT INTO state VALUES("
+            String query = " INSERT INTO state (idstate, name, abreviation) VALUES("
                     + "DEFAULT,"
                     + "\'" + state.getName() + "\'"
                     + ")";

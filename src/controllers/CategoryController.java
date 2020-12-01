@@ -126,7 +126,7 @@ public class CategoryController implements IBasicController<Category> {
                 throw new Error("Invalid Category Name.");
             }
 
-            String query = " INSERT INTO category VALUES("
+            String query = " INSERT INTO category (idcategory, category_name) VALUES("
                     + "DEFAULT,"
                     + "\'" + category.getCategory_name() + "\'"
                     + ")";
@@ -311,10 +311,6 @@ public class CategoryController implements IBasicController<Category> {
 //                return this;
 //            }
 //        });
-    }
-
-    public void create(Responsibility res) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

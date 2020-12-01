@@ -189,7 +189,9 @@ public class VehicleController implements IIncrementedController<Vehicle> {
                 throw new Error("Invalid Vehicle Name.");
             }
 
-            String query = " INSERT INTO vehicle VALUES("
+            String query = " INSERT INTO vehicle "
+                    + " (manufacturing_year, transit_board, chassis_id, vehicle_power, fuel_type, vehicle_models_idvehicle_models, category_idcategory) "
+                    + " VALUES("
                     + "DEFAULT,"
                     + "\'" + vehicle.getManufaturing_year()+ "\',"
                     + "\'" + vehicle.getTransit_board()+ "\',"

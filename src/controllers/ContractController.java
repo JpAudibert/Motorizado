@@ -131,11 +131,8 @@ public class ContractController implements IIncrementedController<Contract> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            // Fazer validacoes de data no aruivo de validacao
-//            if (!Validacao.(client.getCpf())) {
-//                throw new Error("Invalid CPF.");
-//            }
-            String query = " INSERT INTO contract VALUES("
+            
+            String query = " INSERT INTO contract (idcontract, contract_date, contract_cancel_date, penalty, payment_type, contract_value) VALUES("
                     + "DEFAULT,"
                     + "\'" + contract.getContract_date() + "\',"
                     + "\'" + contract.getContract_cancel_date() + "\',"
@@ -159,9 +156,6 @@ public class ContractController implements IIncrementedController<Contract> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-//            if (!Validacao.validarCPF(client.getCpf())) {
-//                throw new Error("Invalid CPF.");
-//            }
             String query = " UPDATE contract SET "
                     + "contract_date = \'" + contract.getContract_date()+ "\',"
                     + "contract_cancel_date = \'" + contract.getContract_cancel_date()+ "\',"

@@ -128,7 +128,7 @@ public class ResponsibilityController implements IBasicController<Responsibility
                 throw new Error("Invalid Sector Name.");
             }
 
-            String query = " INSERT INTO category VALUES("
+            String query = " INSERT INTO responsibility (idresponsibility, sector) VALUES("
                     + "DEFAULT,"
                     + "\'" + responsibility.getSector()+ "\'"
                     + ")";
