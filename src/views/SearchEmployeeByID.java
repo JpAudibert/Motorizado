@@ -201,8 +201,8 @@ public class SearchEmployeeByID extends javax.swing.JFrame {
         // TODO add your handling code here:
         String criteria = null;
 
-        if (Validacao.notNull(this.jTXTCPF.getText())) {
-            criteria += " AND cpf LIKE \'%" + this.jTXTCPF.getText() + "%\'";
+        if(!this.jTXTCPF.getText().equals("   .   .   -  ")){
+            criteria += criteria += " AND cpf LIKE \'%" + this.jTXTCPF.getText() + "%\'";
         }
         if (Validacao.notNull(this.jTXTNome.getText())) {
             criteria += " AND name LIKE \'%" + this.jTXTNome.getText() + "%\'";

@@ -28,8 +28,8 @@ public class CityCRUDView extends javax.swing.JFrame {
     public CityCRUDView() {
         initComponents();
 
-        BrandController bc = new BrandController();
-        bc.populateTable(jTable1, null);
+        CityController cc = new CityController();
+        cc.populateTable(jTable1, null);
         CombosDAO cdao = new CombosDAO();
         cdao.popularCombo("State" , this.jComboBox1);
         cdao.popularCombo("State" , this.jComboBox2);
@@ -284,7 +284,7 @@ public class CityCRUDView extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String ValueOF = String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-        BrandController bc = new BrandController();
+        CityController bc = new CityController();
         bc.delete(Integer.parseInt(ValueOF));
         bc.populateTable(jTable1, null);
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -321,7 +321,7 @@ public class CityCRUDView extends javax.swing.JFrame {
 
     private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
         // TODO add your handling code here:
-        BrandController bc = new BrandController();
+        CityController bc = new CityController();
         bc.populateTable(jTable1, "");
     }//GEN-LAST:event_jTabbedPane1FocusGained
 
