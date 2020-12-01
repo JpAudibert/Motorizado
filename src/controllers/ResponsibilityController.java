@@ -91,7 +91,7 @@ public class ResponsibilityController implements IBasicController<Responsibility
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM responsibility WHERE deleted_at IS NULL idresponsibility = " + id;
+            String query = " SELECT * FROM responsibility WHERE deleted_at IS NULL AND idresponsibility = " + id;
 
             result = stmt.executeQuery(query);
 

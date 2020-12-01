@@ -89,7 +89,7 @@ public class CategoryController implements IBasicController<Category> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM category WHERE deleted_at IS NULL idcategory = " + id;
+            String query = " SELECT * FROM category WHERE deleted_at IS NULL AND idcategory = " + id;
 
             result = stmt.executeQuery(query);
 

@@ -109,7 +109,7 @@ public class VehicleModelController implements IBasicController<VehicleModel> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM vehicle_models WHERE deleted_at IS NULL idvehicle_models = " + id;
+            String query = " SELECT * FROM vehicle_models WHERE deleted_at IS NULL AND idvehicle_models = " + id;
 
             result = stmt.executeQuery(query);
 

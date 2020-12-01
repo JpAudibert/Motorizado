@@ -88,7 +88,7 @@ public class BrandController implements IBasicController<Brand> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM brand WHERE deleted_at IS NULL idbrand = " + id;
+            String query = " SELECT * FROM brand WHERE deleted_at IS NULL AND idbrand = " + id;
 
             result = stmt.executeQuery(query);
 

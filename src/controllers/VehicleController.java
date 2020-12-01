@@ -146,7 +146,7 @@ public class VehicleController implements IIncrementedController<Vehicle> {
         try {
             Statement stmt = DBConnection.getInstance().getConnection().createStatement();
 
-            String query = " SELECT * FROM vehicle WHERE deleted_at IS NULL idcategory = " + id;
+            String query = " SELECT * FROM vehicle WHERE deleted_at IS NULL AND idvehicle = " + id;
 
             result = stmt.executeQuery(query);
 
@@ -190,7 +190,7 @@ public class VehicleController implements IIncrementedController<Vehicle> {
             }
 
             String query = " INSERT INTO vehicle "
-                    + " (manufacturing_year, transit_board, chassis_id, vehicle_power, fuel_type, vehicle_models_idvehicle_models, category_idcategory) "
+                    + " (idvehicle, manufaturing_year, transit_board, chassis_id, vehicle_power, fuel_type, vehicle_models_idvehicle_models, category_idcategory) "
                     + " VALUES("
                     + "DEFAULT,"
                     + "\'" + vehicle.getManufaturing_year()+ "\',"
