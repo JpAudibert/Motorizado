@@ -137,7 +137,8 @@ public class VehicleCRUDView extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jTXTAnoFabEditar = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Veiculos");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());

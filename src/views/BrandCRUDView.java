@@ -286,7 +286,7 @@ public class BrandCRUDView extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         BrandController bc = new BrandController();
-        int id = Integer.parseInt((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        int id = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
 
         Brand a = bc.show(id);
         this.jTextField3.setText(a.getIdBrand() + "");

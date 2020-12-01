@@ -28,6 +28,7 @@ public class ContractCRUDView extends javax.swing.JFrame {
         initComponents();
         ContractController cc = new ContractController();
         cc.populateTable(jTable1, null);
+        
     }
 
     /**

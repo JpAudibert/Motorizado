@@ -48,7 +48,6 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -63,6 +62,12 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Setor");
+
+        jTabbedPane1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTabbedPane1FocusGained(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -93,10 +98,6 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
         jPanel1.add(jButton2);
         jButton2.setBounds(130, 170, 90, 23);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Carro.png"))); // NOI18N
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(240, 50, 350, 200);
-
         jTabbedPane1.addTab("Registrar", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -126,7 +127,7 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
 
         jLabel3.setText("Id:");
 
-        jLabel4.setText("Nome:");
+        jLabel4.setText("Setor:");
 
         jTextField3.setEnabled(false);
 
@@ -236,14 +237,9 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
         // TODO add your handling code here:
         //CategoryController bc = new CategoryController();
         ResponsibilityController bc = new ResponsibilityController();
-        Date suaData = new Date();
-        String setor = this.jTextField1.getText();
         
         if (Validacao.notNull(this.jTextField1.getText())) {
             if (true) {
-
-                Calendar calendario = Calendar.getInstance();
-                calendario.setTime(suaData);
                 Responsibility re = new Responsibility();
                 re.setSector(this.jTextField1.getText());
                 bc.create(re);
@@ -293,14 +289,20 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
 
-        BrandController bc = new BrandController();
-        int id = Integer.parseInt((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        ResponsibilityController controller = new ResponsibilityController();
+        int id = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
 
-        Brand a = bc.show(id);
-        this.jTextField3.setText(a.getIdBrand() + "");
-        this.jTextField4.setText(a.getName());
+        Responsibility responsibility = controller.show(id);
+        this.jTextField3.setText(responsibility.getIdresponsibility() + "");
+        this.jTextField4.setText(responsibility.getSector());
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
+        // TODO add your handling code here:
+        ResponsibilityController controller = new ResponsibilityController();
+        controller.populateTable(jTable1, "");
+    }//GEN-LAST:event_jTabbedPane1FocusGained
 
     /**
      * @param args the command line arguments
@@ -349,7 +351,6 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
