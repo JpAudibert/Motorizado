@@ -187,9 +187,9 @@ public class EmployeeController implements IIncrementedController<Employee> {
                 throw new Error("This email is already in use.");
             }
 
-            if (!Validacao.validarCPF(employee.getCpf())) {
-                throw new Error("Invalid CPF.");
-            }
+           // if (!Validacao.validarCPF(employee.getCpf())) {
+           //     throw new Error("Invalid CPF.");
+           // }
 
             String query = " INSERT INTO employees "
                     + "(idemployees, name, cpf, phone, birthday, email, password, responsibility_idresponsibility, city_idcity) VALUES("

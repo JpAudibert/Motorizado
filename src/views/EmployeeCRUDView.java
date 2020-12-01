@@ -6,8 +6,10 @@
 package views;
 
 import controllers.EmployeeController;
+import helpers.CombosDAO;
 import helpers.Formatacao;
 import helpers.Validacao;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import models.Employee;
 
@@ -24,11 +26,15 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
     int employeeID;
     public EmployeeCRUDView() {
         initComponents();
-        Formatacao.formatarCpf(jTXTCpf);
+        Formatacao.formatarCpf(jTXTCpf1);
         Formatacao.formatarCpf(jTXTCPFEditar);
         Formatacao.formatarCpf(jTXTCPFConsultar);
+        Formatacao.formatarData(jTXTDataContEditar);
         EmployeeController ec = new EmployeeController();
         ec.populateTable(jTable1, null);
+        CombosDAO cdao = new CombosDAO();
+        cdao.popularCombo("responsibility", jComboBoxCargo);
+        cdao.popularCombo("responsibility", jComboBoxCargoEditar);
     }
 
     /**
@@ -50,7 +56,6 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTXTNome = new javax.swing.JTextField();
         jTXTEmail = new javax.swing.JTextField();
-        jTXTCpf = new javax.swing.JFormattedTextField();
         jTXTTelefone = new javax.swing.JFormattedTextField();
         jTXTCidade = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -58,6 +63,9 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jButton7 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jTXTCpf1 = new javax.swing.JFormattedTextField();
+        jComboBoxCargo = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -90,6 +98,10 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jPasswordFieldEditar = new javax.swing.JPasswordField();
         jLabel19 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jComboBoxCargoEditar = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
+        jTXTDataContEditar = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Funcionarios");
@@ -98,9 +110,9 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         jPanel2.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Nome:");
+        jLabel1.setText("Cargo:");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(49, 31, 52, 22);
+        jLabel1.setBounds(470, 170, 100, 22);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("CPF:");
@@ -131,8 +143,6 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         });
         jPanel2.add(jTXTEmail);
         jTXTEmail.setBounds(177, 297, 425, 28);
-        jPanel2.add(jTXTCpf);
-        jTXTCpf.setBounds(177, 99, 231, 28);
         jPanel2.add(jTXTTelefone);
         jTXTTelefone.setBounds(177, 174, 160, 28);
         jPanel2.add(jTXTCidade);
@@ -171,6 +181,17 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         });
         jPanel2.add(jButton7);
         jButton7.setBounds(500, 362, 102, 33);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("Nome:");
+        jPanel2.add(jLabel7);
+        jLabel7.setBounds(49, 31, 52, 22);
+        jPanel2.add(jTXTCpf1);
+        jTXTCpf1.setBounds(177, 99, 231, 28);
+
+        jComboBoxCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(jComboBoxCargo);
+        jComboBoxCargo.setBounds(580, 170, 150, 30);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -344,18 +365,39 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
 
         jLabel19.setText("Nova senha obrigatória");
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel21.setText("Cargo:");
+
+        jComboBoxCargoEditar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel18.setText("Data de contratação:");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(195, 195, 195)
                 .addComponent(jLabel19)
                 .addContainerGap(557, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTXTDataContEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(135, 135, 135))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                            .addComponent(jLabel21)
+                            .addGap(58, 58, 58)
+                            .addComponent(jComboBoxCargoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(174, 174, 174)))))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -390,7 +432,15 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(390, Short.MAX_VALUE)
+                .addGap(130, 130, 130)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jTXTDataContEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxCargoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(155, 155, 155)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel19)
@@ -438,7 +488,7 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 490, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Editar", jPanel5);
@@ -518,46 +568,53 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
             this.jTXTNome.requestFocus();
             ok = false;
         }
-//        if(Validacao.notNull(this.jTXTCpf.getText())){
-//            employee.setCpf(this.jTXTCpf.getText());
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(null, "Entre com o CPF!");
-//            this.jTXTCpf.requestFocus();
-//            ok = false;
-//        }
-//        if(Validacao.notNull(this.jTXTEmail.getText())){
-//            employee.setEmail(this.jTXTEmail.getText());
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(null, "Entre com o Email!");
-//            this.jTXTEmail.requestFocus();
-//            ok = false;
-//        }
-//        if (Validacao.notNull(this.jTXTCidade.getText())){
-//            employee.setCity_idcity(Integer.parseInt(this.jTXTCidade.getText()));
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(null, "Busque a cidade!");
-//            SearchCityByID sa = new SearchCityByID(this);
-//            sa.setVisible(true);
-//            ok = false;
-//        }
-//        if(Validacao.notNull(this.jTXTTelefone.getText())){
-//            employee.setPhone(this.jTXTTelefone.getText());
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(null, "Entre com o telefone!");
-//            this.jTXTTelefone.requestFocus();
-//            ok = false;
-//        }
-//        if(Validacao.notNull(this.jPasswordField1.getText())){
-//            employee.setPassword(this.jPasswordField1.getText());
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(null, "Entre com a senha!");
-//            ok = false;
-//        }
+        if(Validacao.notNull(this.jTXTCpf1.getText())){
+            employee.setCpf(this.jTXTCpf1.getText());
+        }
+        else{
+           JOptionPane.showMessageDialog(null, "Entre com o CPF!");
+            this.jTXTCpf1.requestFocus();
+           ok = false;
+        }
+        if(Validacao.notNull(this.jTXTEmail.getText())){
+            employee.setEmail(this.jTXTEmail.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o Email!");
+            this.jTXTEmail.requestFocus();
+            ok = false;
+        }
+        if (Validacao.notNull(this.jTXTCidade.getText())){
+            employee.setCity_idcity(Integer.parseInt(this.jTXTCidade.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Busque a cidade!");
+            SearchCityByID sa = new SearchCityByID(this);
+            sa.setVisible(true);
+            ok = false;
+        }
+        if(Validacao.notNull(this.jTXTTelefone.getText())){
+           employee.setPhone(this.jTXTTelefone.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com o telefone!");
+            this.jTXTTelefone.requestFocus();
+            ok = false;
+        }
+        if(Validacao.notNull(this.jPasswordField1.getText())){
+            employee.setPassword(this.jPasswordField1.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Entre com a senha!");
+            ok = false;
+        }
+        
+        Date data = new Date();
+        employee.setHiring_date(data);
+
+  
+        employee.setResponsibility_idresponsibility(this.jComboBoxCargo.getSelectedIndex());
+        
         
         EmployeeController ec = new EmployeeController();
         
@@ -571,13 +628,13 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-//        // TODO add your handling code here:
-//        this.jTXTNomeEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 1)));
-//        this.jTXTEmailEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 4)));
-//        this.jTXTCPFEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 2)));
-//        this.jTXTTelefoneEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 3)));
-//        this.jTXTCidadeEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 8)));
-//        this.employeeID= Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
+
+        this.jTXTNomeEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 1)));
+        this.jTXTEmailEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 4)));
+        this.jTXTCPFEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 2)));
+        this.jTXTTelefoneEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 3)));
+        this.jTXTCidadeEditar.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 8)));
+        this.employeeID= Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -690,6 +747,8 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JComboBox<String> jComboBoxCargo;
+    private javax.swing.JComboBox<String> jComboBoxCargoEditar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -699,12 +758,15 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -720,7 +782,8 @@ public class EmployeeCRUDView extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jTXTCPFEditar;
     private javax.swing.JTextField jTXTCidade;
     private javax.swing.JTextField jTXTCidadeEditar;
-    private javax.swing.JFormattedTextField jTXTCpf;
+    private javax.swing.JFormattedTextField jTXTCpf1;
+    private javax.swing.JFormattedTextField jTXTDataContEditar;
     private javax.swing.JTextField jTXTEmail;
     private javax.swing.JTextField jTXTEmailConsultar;
     private javax.swing.JTextField jTXTEmailEditar;

@@ -192,6 +192,11 @@ public class ContractCRUDView extends javax.swing.JFrame {
         });
 
         jButton6.setText("Remover");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Cancelar");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -403,6 +408,7 @@ public class ContractCRUDView extends javax.swing.JFrame {
         
         if(ok){
             cc.create(ct);
+            cc.populateTable(jTable1,"");
         }
         else {
             JOptionPane.showMessageDialog(null, "Verificar entradas de dados!");
@@ -494,6 +500,14 @@ public class ContractCRUDView extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_EditarActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        this.contractID = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
+        ContractController controller = new ContractController();
+        controller.delete(this.contractID);
+        controller.populateTable(jTable1, "");
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
