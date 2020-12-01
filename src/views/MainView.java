@@ -55,9 +55,6 @@ public class MainView extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jBTNRent = new javax.swing.JButton();
-        jBTNReturn = new javax.swing.JButton();
-        jBTNBudget = new javax.swing.JButton();
         jBTNVehicle = new javax.swing.JButton();
         jBTNReserve = new javax.swing.JButton();
         jBTNFine = new javax.swing.JButton();
@@ -108,25 +105,6 @@ public class MainView extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jBTNRent.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBTNRent.setText("Retirada");
-
-        jBTNReturn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBTNReturn.setText("Devolução");
-        jBTNReturn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBTNReturnActionPerformed(evt);
-            }
-        });
-
-        jBTNBudget.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBTNBudget.setText("Orçamento");
-        jBTNBudget.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBTNBudgetActionPerformed(evt);
-            }
-        });
-
         jBTNVehicle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBTNVehicle.setText("Veículo");
         jBTNVehicle.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +114,7 @@ public class MainView extends javax.swing.JFrame {
         });
 
         jBTNReserve.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBTNReserve.setText("Reserva");
+        jBTNReserve.setText("Booking");
         jBTNReserve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBTNReserveActionPerformed(evt);
@@ -158,30 +136,21 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBTNRent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBTNReturn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBTNBudget, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                     .addComponent(jBTNVehicle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBTNReserve, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBTNFine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBTNFine, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jBTNRent, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(jBTNReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(jBTNBudget, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addGap(49, 49, 49)
                 .addComponent(jBTNVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addGap(68, 68, 68)
                 .addComponent(jBTNReserve, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addComponent(jBTNFine, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(71, 71, 71))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -189,7 +158,6 @@ public class MainView extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\home.png")); // NOI18N
         jLabel1.setText("Principal");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -227,7 +195,6 @@ public class MainView extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Felipe Fritz\\Motorizado\\Motorizado\\src\\IMG\\Calendar.png")); // NOI18N
         jLabel2.setText("Lembretes / Agenda");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -439,20 +406,9 @@ public class MainView extends javax.swing.JFrame {
 
     private void jBTNReserveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNReserveActionPerformed
         // TODO add your handling code here:
+        new VehicleBookingView().setVisible(true);
 
     }//GEN-LAST:event_jBTNReserveActionPerformed
-
-    private void jBTNReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNReturnActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jBTNReturnActionPerformed
-
-    private void jBTNBudgetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNBudgetActionPerformed
-        // TODO add your handling code here:
-
-        
-        
-    }//GEN-LAST:event_jBTNBudgetActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
@@ -556,11 +512,8 @@ public class MainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBTNBudget;
     private javax.swing.JButton jBTNFine;
-    private javax.swing.JButton jBTNRent;
     private javax.swing.JButton jBTNReserve;
-    private javax.swing.JButton jBTNReturn;
     private javax.swing.JButton jBTNVehicle;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

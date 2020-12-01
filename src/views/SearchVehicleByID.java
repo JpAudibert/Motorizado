@@ -60,7 +60,8 @@ public class SearchVehicleByID extends javax.swing.JFrame {
         jTXTPlaca = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Veiculos");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -192,11 +193,11 @@ public class SearchVehicleByID extends javax.swing.JFrame {
         
         String id =  String.valueOf(jTable.getValueAt(jTable.getSelectedRow(), 0));
         
-        if (this.maintenanceCRUDView.isActive()){
+        if (this.maintenanceCRUDView != null){
             this.maintenanceCRUDView.preencherCamposVeiculos(id);
             this.dispose();
         }
-        if (this.bookingView.isActive()){
+        if (this.bookingView != null){
             this.bookingView.PreencherCampoVeiculo(id);
             this.dispose();
         }

@@ -199,11 +199,11 @@ public class ClientController implements IIncrementedController<Client> {
                 throw new Error("This email is already in use.");
             }
 
-            if (!Validacao.validarCPF(client.getCpf())) {
-                throw new Error("Invalid CPF.");
-            }
+            //if (!Validacao.validarCPF(client.getCpf())) {
+            //    throw new Error("Invalid CPF.");
+            //}
 
-            String query = " INSERT INTO client (idclient, name, email, cpf, phone, birthday, email, cnh_register, cnh_mirror, city_idcity) VALUES("
+            String query = " INSERT INTO client (idclient, name, cpf, phone, birthday, email, cnh_register, cnh_mirror, city_idcity) VALUES("
                     + "DEFAULT,"
                     + "\'" + client.getName() + "\',"
                     + "\'" + client.getCpf() + "\',"

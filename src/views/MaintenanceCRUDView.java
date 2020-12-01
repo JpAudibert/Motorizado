@@ -88,7 +88,8 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Manutenção");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
@@ -544,6 +545,7 @@ public class MaintenanceCRUDView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        new SearchVehicleByID(this).setVisible(true);
         
         
     }//GEN-LAST:event_jButton2ActionPerformed

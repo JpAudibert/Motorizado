@@ -135,7 +135,7 @@ public class SearchCityByID extends javax.swing.JFrame {
         
         int id = Integer.parseInt((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         
-        if (this.employeeCRUDView.isActive()){
+        if (this.employeeCRUDView != null){
             this.employeeCRUDView.definirValor(id);
             this.dispose();
         }

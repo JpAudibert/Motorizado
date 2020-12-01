@@ -19,7 +19,7 @@ import models.VehicleModel;
 public class VehicleModelController implements IBasicController<VehicleModel> {
 
     private ResultSet result;
-    private ArrayList<String> helper;
+    private ArrayList<String> helper = new ArrayList<>();
 
     @Override
     public ArrayList<VehicleModel> index(String criteria) {

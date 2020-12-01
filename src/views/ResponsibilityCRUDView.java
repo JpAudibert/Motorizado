@@ -61,7 +61,8 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Setor");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -91,6 +92,8 @@ public class ResponsibilityCRUDView extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2);
         jButton2.setBounds(130, 170, 90, 23);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Carro.png"))); // NOI18N
         jPanel1.add(jLabel5);
         jLabel5.setBounds(240, 50, 350, 200);
 

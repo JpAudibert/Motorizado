@@ -26,13 +26,9 @@ public class ServiceOrderCRUDView extends javax.swing.JFrame {
     public ServiceOrderCRUDView() {
         initComponents();
         Formatacao.formatarData(this.jTXTDataEm);
-        Formatacao.formatarDecimal(jTXTValorUnit);
-        Formatacao.formatarDecimal(jTXTValorTotal);
+
         Formatacao.formatarData(jTXTDataEmEditar);
-        Formatacao.formatarDecimal(jTXTValorTotalConsultar);
-        Formatacao.formatarDecimal(jTXTValorUnitEditar);
-        Formatacao.formatarDecimal(jTXTValorUnitEditar);
-        Formatacao.formatarDecimal(jTXTValorTotalEditar);
+
 
         ServiceOrderController controller = new ServiceOrderController();
         controller.populateTable(jTable1, null);
@@ -164,8 +160,12 @@ public class ServiceOrderCRUDView extends javax.swing.JFrame {
         jTXTDataEm.setBounds(588, 27, 124, 28);
         jPanel1.add(JTXTDocument);
         JTXTDocument.setBounds(520, 210, 188, 28);
+
+        jTXTValorUnit.setText("0.00");
         jPanel1.add(jTXTValorUnit);
         jTXTValorUnit.setBounds(208, 71, 188, 28);
+
+        jTXTValorTotal.setText("0.00");
         jPanel1.add(jTXTValorTotal);
         jTXTValorTotal.setBounds(208, 110, 188, 28);
         jPanel1.add(jTXTFuncionarioID);
@@ -248,6 +248,8 @@ public class ServiceOrderCRUDView extends javax.swing.JFrame {
         jTXTFuncIDConsultar.setBounds(530, 10, 30, 20);
         jPanel2.add(jTXTDescConsultar);
         jTXTDescConsultar.setBounds(150, 10, 210, 20);
+
+        jTXTValorTotalConsultar.setText("0.00");
         jPanel2.add(jTXTValorTotalConsultar);
         jTXTValorTotalConsultar.setBounds(150, 50, 210, 20);
 
@@ -308,6 +310,15 @@ public class ServiceOrderCRUDView extends javax.swing.JFrame {
         jLabel19.setText("Equipamento comprado:");
 
         jLabel20.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucas\\Desktop\\PROJETO INTEGRADOR\\Motorizado\\src\\IMG\\Login.png")); // NOI18N
+
+        jTXTValorUnitEditar.setText("0.00");
+
+        jTXTValorTotalEditar.setText("0.00");
+        jTXTValorTotalEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTXTValorTotalEditarActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Buscar");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -646,6 +657,10 @@ public class ServiceOrderCRUDView extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jTXTValorTotalEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTXTValorTotalEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTXTValorTotalEditarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -19,19 +19,20 @@ public class SearchEmployeeByID extends javax.swing.JFrame {
      */
     MaintenanceCRUDView maintenanceCRUDView;
     ServiceOrderCRUDView serviceOrderCRUDView;
+
     public SearchEmployeeByID() {
         initComponents();
         EmployeeController ec = new EmployeeController();
         ec.populateTable(jTable1, null);
     }
-    
+
     public SearchEmployeeByID(MaintenanceCRUDView maintenanceCRUDView) {
         initComponents();
         EmployeeController ec = new EmployeeController();
         ec.populateTable(jTable1, null);
         this.maintenanceCRUDView = maintenanceCRUDView;
     }
-    
+
     public SearchEmployeeByID(ServiceOrderCRUDView serviceOrderCRUDView) {
         initComponents();
         EmployeeController ec = new EmployeeController();
@@ -61,7 +62,8 @@ public class SearchEmployeeByID extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Funcionario");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -180,37 +182,38 @@ public class SearchEmployeeByID extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String id =  String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-        
-        if(this.maintenanceCRUDView.isActive()){
+        String id = String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+
+        if (this.maintenanceCRUDView != null) {
             this.maintenanceCRUDView.preencherCamposFuncionario(id);
             this.dispose();
+
         }
-        
-        if(this.serviceOrderCRUDView.isActive()){
+
+        if (this.serviceOrderCRUDView != null) {
             this.serviceOrderCRUDView.PreencherCamposFuncionarios(id);
+            this.dispose();
         }
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String criteria = null;
-        
-        
-        if(Validacao.notNull(this.jTXTCPF.getText())){
+
+        if (Validacao.notNull(this.jTXTCPF.getText())) {
             criteria += " AND cpf LIKE \'%" + this.jTXTCPF.getText() + "%\'";
         }
-        if(Validacao.notNull(this.jTXTNome.getText())){
+        if (Validacao.notNull(this.jTXTNome.getText())) {
             criteria += " AND name LIKE \'%" + this.jTXTNome.getText() + "%\'";
         }
-        if(Validacao.notNull(this.jTXTID.getText())){
+        if (Validacao.notNull(this.jTXTID.getText())) {
             criteria += " AND id LIKE \'%" + this.jTXTID.getText() + "%\'";
         }
-        
+
         EmployeeController ec = new EmployeeController();
         ec.populateTable(jTable1, criteria);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

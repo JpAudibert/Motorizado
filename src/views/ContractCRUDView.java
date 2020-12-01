@@ -79,7 +79,8 @@ public class ContractCRUDView extends javax.swing.JFrame {
         jCheckBoxCartaoEditar = new javax.swing.JCheckBox();
         jCheckBoxBoletoEditar = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Contratos");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);

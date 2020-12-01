@@ -33,7 +33,7 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
         cdao.popularCombo("Brand", jComboBox1);
         cdao.popularCombo("Brand", jComboBox2);
         VehicleModelController controller = new VehicleModelController();
-        controller.populateTable(jTable1, null);
+        controller.populateTable(jTable1, "");
 
     }
 
@@ -304,14 +304,16 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         Date suaData = new Date();
-        Calendar calendario = Calendar.getInstance();
-        calendario.setTime(suaData);
+
         int id = Integer.parseInt(this.jTextField3.getText());
         BrandController bc = new BrandController();
         String name = this.jTextField4.getText();
         Brand a = bc.show(id);
         if (Validacao.notNull(this.jTextField4.getText())) {
-            Brand b = new Brand(id, name, a.getCreated_at(), suaData, a.getDeleted_at());
+            Brand b = new Brand();
+            b.setName(name);
+            b.setIdBrand(id);
+            b.setCreated_at(a.getCreated_at());
             bc.update(b, id);
         }
         else{
@@ -324,11 +326,13 @@ public class VehicleModelCRUDView extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         BrandController bc = new BrandController();
-        int id = Integer.parseInt((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        int id = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
 
         Brand a = bc.show(id);
         this.jTextField3.setText(a.getIdBrand() + "");
         this.jTextField4.setText(a.getName());
+        this.jComboBox2.setSelectedIndex(a.getIdBrand());
+        bc.populateTable(jTable1,"");
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

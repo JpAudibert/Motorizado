@@ -50,7 +50,8 @@ public class SearchClientByID extends javax.swing.JFrame {
         jTXTNome = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Clientes");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -147,7 +148,7 @@ public class SearchClientByID extends javax.swing.JFrame {
         // TODO add your handling code here:
         String valueAt = String.valueOf(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 0));
         
-        if (this.bookingView.isActive()){
+        if (this.bookingView != null){
             this.bookingView.PreencherCampoCliente(valueAt);
         }
 
